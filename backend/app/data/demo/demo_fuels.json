@@ -1,0 +1,34 @@
+[
+  {
+    "id": "VLSFO",
+    "name": "Very Low Sulfur Fuel Oil (0.5% S)",
+    "price_per_tonne": 620.0,
+    "emission_factor_kg_co2_per_tonne": 3151.0,
+    "energy_density_mj_per_kg": 41.2,
+    "lifecycle_ghg_factor_kg_co2e_per_tonne": 3580.0
+  },
+  {
+    "id": "MGO",
+    "name": "Marine Gas Oil (0.1% S)",
+    "price_per_tonne": 810.0,
+    "emission_factor_kg_co2_per_tonne": 3206.0,
+    "energy_density_mj_per_kg": 42.7,
+    "lifecycle_ghg_factor_kg_co2e_per_tonne": 3650.0
+  },
+  {
+    "id": "LNG",
+    "name": "Liquefied Natural Gas",
+    "price_per_tonne": 680.0,
+    "emission_factor_kg_co2_per_tonne": 2750.0,
+    "energy_density_mj_per_kg": 49.2,
+    "lifecycle_ghg_factor_kg_co2e_per_tonne": 3120.0
+  },
+  {
+    "id": "BIO-B20",
+    "name": "B20 Marine Biofuel Blend",
+    "price_per_tonne": 890.0,
+    "emission_factor_kg_co2_per_tonne": 2520.0,
+    "energy_density_mj_per_kg": 40.5,
+    "lifecycle_ghg_factor_kg_co2e_per_tonne": 2180.0
+  }
+]

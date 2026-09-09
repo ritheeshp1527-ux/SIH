@@ -1,0 +1,7 @@
+id,name,type,capacity_tonnes,min_speed_knots,max_speed_knots,engine_power_kw,design_draft_m,fuel_options
+VES-001,Poseidon Leader,Ultra Large Container Vessel (ULCV),120000.0,10.0,22.0,45000.0,15.5,"HFO,LNG,METHANOL"
+VES-002,Green Horizon,Post-Panamax Bulk Carrier,82000.0,9.0,18.0,22000.0,14.0,"HFO,MDO,AMMONIA"
+VES-003,Oceanic Pioneer,Aframax Product Tanker,115000.0,9.5,16.5,18500.0,14.8,"HFO,MDO"
+VES-004,Proto Gas Carrier (Ref Profile),LNG Carrier (Q-Flex Class),95000.0,11.0,20.0,32000.0,12.5,"LNG,MDO"
+VES-005,Proto Ro-Ro Voyager (Ref Profile),Pure Car & Truck Carrier / Ro-Ro,25000.0,10.0,19.0,15000.0,9.5,"MDO,HFO"
+VES-006,Proto Feeder Express (Ref Profile),Regional Feeder Container Vessel,35000.0,10.0,19.5,18000.0,11.0,"MDO,METHANOL"

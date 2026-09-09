@@ -1,0 +1,38 @@
+[
+  {
+    "timestamp": "2026-09-08T06:00:00Z",
+    "wind": 14.5,
+    "wave": 1.6,
+    "current": 0.6,
+    "sea_state": 3,
+    "risk": "low",
+    "location_name": "Singapore Strait"
+  },
+  {
+    "timestamp": "2026-09-10T12:00:00Z",
+    "wind": 24.0,
+    "wave": 3.2,
+    "current": -1.1,
+    "sea_state": 5,
+    "risk": "moderate",
+    "location_name": "Indian Ocean North"
+  },
+  {
+    "timestamp": "2026-09-14T18:00:00Z",
+    "wind": 32.0,
+    "wave": 4.5,
+    "current": -1.8,
+    "sea_state": 6,
+    "risk": "high",
+    "location_name": "Cape of Good Hope"
+  },
+  {
+    "timestamp": "2026-09-18T00:00:00Z",
+    "wind": 12.0,
+    "wave": 1.2,
+    "current": 0.4,
+    "sea_state": 2,
+    "risk": "low",
+    "location_name": "English Channel"
+  }
+]

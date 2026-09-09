@@ -1,0 +1,81 @@
+from backend.app.models.shipment import Shipment
+from backend.app.models.vessel import Vessel
+from backend.app.models.fuel import Fuel
+from backend.app.models.route import Route, Checkpoint
+from backend.app.models.weather import WeatherCondition
+from backend.app.models.optimization import (
+    OptimizationRequest,
+    VoyagePlan,
+    ComparativeAnalysis,
+    VoyageOptimizationRequest,
+    DecisionOption,
+    VoyageCandidate,
+    OptimizationModeResult,
+    OptimizationBenchmarkStats,
+    ClassicalOptimizationResponse,
+    SimulatedAnnealingConfig,
+    QUBOVariableMapping,
+    QUBOModelSummary,
+    QuantumInspiredSolution,
+    QuantumInspiredOptimizationRequest,
+    QuantumInspiredOptimizationResponse,
+    MethodBenchmarkSummary,
+    OptimizationComparisonRequest,
+    OptimizationComparisonResponse,
+    OptimizationTimingBreakdown,
+    StochasticRunTelemetry,
+)
+from backend.app.models.fuel_intelligence import (
+    FuelEstimationRequest,
+    FuelConsumptionBreakdown,
+    FuelEstimationResult,
+    ScenarioPreset,
+)
+from backend.app.models.maritime_network import (
+    Port,
+    Waypoint,
+    RouteSegment,
+    MaritimeRoute,
+    CandidateRouteRequest,
+    CandidateRouteResponse,
+)
+
+__all__ = [
+    "Shipment",
+    "Vessel",
+    "Fuel",
+    "Route",
+    "Checkpoint",
+    "WeatherCondition",
+    "OptimizationRequest",
+    "VoyagePlan",
+    "ComparativeAnalysis",
+    "VoyageOptimizationRequest",
+    "DecisionOption",
+    "VoyageCandidate",
+    "OptimizationModeResult",
+    "OptimizationBenchmarkStats",
+    "ClassicalOptimizationResponse",
+    "SimulatedAnnealingConfig",
+    "QUBOVariableMapping",
+    "QUBOModelSummary",
+    "QuantumInspiredSolution",
+    "QuantumInspiredOptimizationRequest",
+    "QuantumInspiredOptimizationResponse",
+    "MethodBenchmarkSummary",
+    "OptimizationComparisonRequest",
+    "OptimizationComparisonResponse",
+    "OptimizationTimingBreakdown",
+    "StochasticRunTelemetry",
+    "FuelEstimationRequest",
+    "FuelConsumptionBreakdown",
+    "FuelEstimationResult",
+    "ScenarioPreset",
+    "Port",
+    "Waypoint",
+    "RouteSegment",
+    "MaritimeRoute",
+    "CandidateRouteRequest",
+    "CandidateRouteResponse",
+]
+

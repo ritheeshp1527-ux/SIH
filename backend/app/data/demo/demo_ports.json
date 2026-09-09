@@ -1,0 +1,28 @@
+[
+  {
+    "id": "PORT-SG",
+    "name": "Port of Singapore",
+    "country": "Singapore",
+    "latitude": 1.29027,
+    "longitude": 103.851959,
+    "draft_limit_m": 21.0,
+    "max_vessel_capacity_tonnes": 250000.0,
+    "fuel_availability": ["VLSFO", "MGO", "LNG", "BIO-B20"],
+    "shore_power_available": true,
+    "port_cost": 15000.0,
+    "typical_wait_hours": 6.0
+  },
+  {
+    "id": "PORT-RTM",
+    "name": "Port of Rotterdam",
+    "country": "Netherlands",
+    "latitude": 51.92442,
+    "longitude": 4.477733,
+    "draft_limit_m": 24.0,
+    "max_vessel_capacity_tonnes": 300000.0,
+    "fuel_availability": ["VLSFO", "MGO", "LNG", "BIO-B20"],
+    "shore_power_available": true,
+    "port_cost": 22000.0,
+    "typical_wait_hours": 8.0
+  }
+]

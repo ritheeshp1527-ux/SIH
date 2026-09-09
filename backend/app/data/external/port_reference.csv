@@ -1,0 +1,6 @@
+un_locode,name,country,latitude,longitude,draft_limit_m,max_vessel_capacity_tonnes,port_cost,typical_wait_hours
+INBOM,Port of Mumbai (Nhava Sheva),India,18.95,72.95,15.5,180000.0,14000.0,6.0
+NLRTM,Port of Rotterdam,Netherlands,51.92442,4.477733,24.0,300000.0,22000.0,8.0
+SGSIN,Port of Singapore,Singapore,1.29027,103.851959,21.0,250000.0,15000.0,6.0
+AEDXB,Port of Jebel Ali (Dubai),United Arab Emirates,25.01,55.06,17.0,220000.0,16000.0,5.0
+USNYC,Port of New York and New Jersey,United States,40.68,-74.04,16.5,200000.0,25000.0,7.0

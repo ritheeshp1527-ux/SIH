@@ -1,0 +1,20 @@
+waypoint_id,name,latitude,longitude,waypoint_type,country,draft_limit_m,navigational_notes
+WP-INBOM,Port of Mumbai Approach,18.9500,72.9500,port,India,15.5,Terminal approach for Nhava Sheva
+WP-SGSIN,Port of Singapore Approach,1.2903,103.8520,port,Singapore,21.0,Terminal approach for Singapore
+WP-AEDXB,Port of Jebel Ali Approach,25.0100,55.0600,port,United Arab Emirates,17.0,Terminal approach for Dubai Jebel Ali
+WP-NLRTM,Port of Rotterdam Approach,51.9244,4.4777,port,Netherlands,24.0,Terminal approach for Rotterdam
+WP-USNYC,Port of New York Approach,40.6800,-74.0400,port,United States,16.5,Terminal approach for New York Ambrose
+WP-MALACCA,Strait of Malacca TSS,2.5000,101.5000,strait,,25.0,Traffic Separation Scheme
+WP-INDIAN-OCEAN,Southern Sri Lanka (Dondra Head),5.8000,80.5000,sea,,,East-West Indian Ocean trunk route junction
+WP-ARABIAN-SEA,Central Arabian Sea Junction,16.0000,64.0000,sea,,,Deep-water convergence point
+WP-HORMUZ,Strait of Hormuz TSS,26.5000,56.4000,strait,,28.0,Persian Gulf entrance TSS
+WP-GULF-ADEN,Gulf of Aden IRTC,12.5000,47.0000,sea,,,Internationally Recommended Transit Corridor
+WP-BAB-MANDAB,Bab-el-Mandeb Strait,12.6000,43.3000,strait,,30.0,Southern Red Sea chokepoint
+WP-RED-SEA,Central Red Sea,20.0000,38.5000,sea,,,Red Sea deep-water corridor
+WP-SUEZ-SOUTH,Suez Canal Southern Entrance,29.9700,32.5500,canal,Egypt,16.0,Port Tewfik convoy staging
+WP-SUEZ-NORTH,Suez Canal Northern Entrance,31.2500,32.3000,canal,Egypt,16.0,Port Said convoy exit
+WP-MED-SEA,Central Mediterranean Sea,35.0000,18.0000,sea,,,Trunk sea lane south of Greece/Sicily
+WP-GIBRALTAR,Strait of Gibraltar,35.9500,-5.6000,strait,,40.0,Mediterranean exit to Atlantic
+WP-ENGLISH-CHANNEL,English Channel (Dover Strait),50.5000,0.5000,strait,,28.0,ECA zone and Dover TSS
+WP-CAPE,Cape of Good Hope,-34.5000,18.5000,checkpoint,South Africa,,Deep-water alternative passage
+WP-MID-ATLANTIC,Equatorial South Atlantic,0.0000,-15.0000,ocean,,,Open ocean corridor

@@ -1,0 +1,6 @@
+fuel_type,lcv_mj_per_g,ttw_co2_g_per_gFuel,wtw_ghg_intensity_gCO2eq_per_MJ
+HFO (Heavy Fuel Oil),0.0405,3.114,91.16
+MDO (Marine Diesel Oil),0.0427,3.206,90.5
+LNG (Liquefied Natural Gas),0.0491,2.75,78.5
+Green Methanol (e-methanol),0.0199,1.375,15.0
+Green Ammonia (e-ammonia),0.0186,0.0,9.0

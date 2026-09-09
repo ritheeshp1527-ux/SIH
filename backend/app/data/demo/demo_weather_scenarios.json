@@ -1,0 +1,135 @@
+[
+  {
+    "id": "scenario-a-favorable-current",
+    "title": "Scenario A: Strong Assisting Currents (Monsoon Drift)",
+    "description": "Favorable surface currents and following seas accelerate vessel progress across the Indian Ocean and European approaches.",
+    "expected_behavior": "Effective SOG increases by +1.5 to +2.5 kts over commanded STW; voyage travel time is shortened by ~20-30 hours; fuel multiplier reduced.",
+    "route_id": "RT-SG-RTM-SUEZ",
+    "vessel_id": "VES-001",
+    "speed_knots": 14.0,
+    "overrides": {
+      "SEG-MALACCA-INDIAN": {
+        "along_track_current_knots": 2.2,
+        "ocean_current_speed_knots": 2.5,
+        "significant_wave_height_m": 1.5,
+        "sea_state": 3
+      },
+      "SEG-INDIAN-ARABIAN": {
+        "along_track_current_knots": 2.0,
+        "ocean_current_speed_knots": 2.2,
+        "significant_wave_height_m": 1.6,
+        "sea_state": 3
+      },
+      "SEG-ATLANTIC-RTM": {
+        "along_track_current_knots": 1.5,
+        "ocean_current_speed_knots": 2.0,
+        "significant_wave_height_m": 1.2,
+        "sea_state": 2
+      }
+    }
+  },
+  {
+    "id": "scenario-b-adverse-current",
+    "title": "Scenario B: Severe Head Currents & Headwinds",
+    "description": "Persistent adverse currents and strong opposing winds confront the vessel in the Red Sea and Gulf of Aden bottlenecks.",
+    "expected_behavior": "Effective SOG drops significantly below STW; travel time increases; added hydrodynamic resistance raises the fuel multiplier.",
+    "route_id": "RT-SG-RTM-SUEZ",
+    "vessel_id": "VES-001",
+    "speed_knots": 14.0,
+    "overrides": {
+      "SEG-ARABIAN-GULF-ADEN": {
+        "along_track_current_knots": -1.8,
+        "ocean_current_speed_knots": 2.0,
+        "significant_wave_height_m": 2.8,
+        "sea_state": 5,
+        "wind_speed_knots": 28.0,
+        "weather_risk_level": "MODERATE"
+      },
+      "SEG-GULF-ADEN-RED-SEA": {
+        "along_track_current_knots": -2.2,
+        "ocean_current_speed_knots": 2.4,
+        "significant_wave_height_m": 3.0,
+        "sea_state": 5,
+        "wind_speed_knots": 30.0,
+        "weather_risk_level": "MODERATE"
+      },
+      "SEG-RED-SEA-SUEZ": {
+        "along_track_current_knots": -1.6,
+        "ocean_current_speed_knots": 1.8,
+        "significant_wave_height_m": 2.5,
+        "sea_state": 4,
+        "wind_speed_knots": 25.0
+      }
+    }
+  },
+  {
+    "id": "scenario-c-rough-sea",
+    "title": "Scenario C: Elevated Swell & Rough Sea State",
+    "description": "High seasonal swell across the Bay of Biscay and Cape approaches without crossing safety thresholds.",
+    "expected_behavior": "Wave height reaches 4.5m with Sea State 6; hydrodynamic resistance factor climbs to ~1.28x; route remains feasible with navigational advisories.",
+    "route_id": "RT-SG-RTM-CAPE",
+    "vessel_id": "VES-002",
+    "speed_knots": 14.0,
+    "overrides": {
+      "SEG-INDIAN-CAPE": {
+        "significant_wave_height_m": 4.8,
+        "sea_state": 6,
+        "wind_speed_knots": 36.0,
+        "along_track_current_knots": -0.8,
+        "weather_risk_level": "HIGH"
+      },
+      "SEG-CAPE-MID-ATLANTIC": {
+        "significant_wave_height_m": 4.2,
+        "sea_state": 6,
+        "wind_speed_knots": 32.0,
+        "along_track_current_knots": 0.2,
+        "weather_risk_level": "MODERATE"
+      }
+    }
+  },
+  {
+    "id": "scenario-d-storm",
+    "title": "Scenario D: Severe Cyclone / Gale Feasibility Breach",
+    "description": "Severe cyclonic depression tracking across the Arabian Sea generating dangerous seas and extreme winds.",
+    "expected_behavior": "Wave height reaches 7.5m, Sea State 8, storm flag active; route fails feasibility safety check with explicit safety violation codes.",
+    "route_id": "RT-SG-RTM-SUEZ",
+    "vessel_id": "VES-001",
+    "speed_knots": 14.0,
+    "overrides": {
+      "SEG-INDIAN-ARABIAN": {
+        "significant_wave_height_m": 7.5,
+        "sea_state": 8,
+        "wind_speed_knots": 58.0,
+        "along_track_current_knots": -3.2,
+        "ocean_current_speed_knots": 3.8,
+        "visibility_nm": 0.8,
+        "storm_flag": true,
+        "weather_risk_level": "CRITICAL"
+      }
+    }
+  },
+  {
+    "id": "scenario-e-route-comparison",
+    "title": "Scenario E: Suez Headwinds vs Cape Agulhas Tail Assistance",
+    "description": "Direct environmental trade-off: Suez route confronts persistent head-currents while Cape route benefits from favorable 2.2-knot Agulhas jet.",
+    "expected_behavior": "Highlights contrasting environmental speed gains and added resistance between candidate routes.",
+    "route_id": "RT-SG-RTM-CAPE",
+    "vessel_id": "VES-001",
+    "speed_knots": 15.0,
+    "overrides": {
+      "SEG-INDIAN-CAPE": {
+        "along_track_current_knots": 2.2,
+        "ocean_current_speed_knots": 2.8,
+        "significant_wave_height_m": 3.4,
+        "sea_state": 5,
+        "weather_risk_level": "MODERATE"
+      },
+      "SEG-CAPE-MID-ATLANTIC": {
+        "along_track_current_knots": 1.6,
+        "ocean_current_speed_knots": 1.8,
+        "significant_wave_height_m": 2.0,
+        "sea_state": 3
+      }
+    }
+  }
+]

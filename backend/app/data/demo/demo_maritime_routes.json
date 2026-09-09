@@ -1,0 +1,81 @@
+[
+  {
+    "id": "RT-SG-RTM-SUEZ",
+    "name": "Singapore to Rotterdam via Suez Canal",
+    "origin_port_id": "PORT-SG",
+    "destination_port_id": "PORT-RTM",
+    "waypoint_ids": [
+      "PORT-SG",
+      "WP-MALACCA",
+      "WP-INDIAN-OCEAN",
+      "WP-ARABIAN-SEA",
+      "WP-GULF-ADEN",
+      "WP-RED-SEA",
+      "WP-SUEZ",
+      "WP-MED-SEA",
+      "WP-GIBRALTAR",
+      "WP-ATLANTIC",
+      "PORT-RTM"
+    ],
+    "segment_ids": [
+      "SEG-SG-MALACCA",
+      "SEG-MALACCA-INDIAN",
+      "SEG-INDIAN-ARABIAN",
+      "SEG-ARABIAN-GULF-ADEN",
+      "SEG-GULF-ADEN-RED-SEA",
+      "SEG-RED-SEA-SUEZ",
+      "SEG-SUEZ-TRANSIT",
+      "SEG-MED-GIBRALTAR",
+      "SEG-GIBRALTAR-ATLANTIC",
+      "SEG-ATLANTIC-RTM"
+    ],
+    "total_distance_nm": 8280.0,
+    "estimated_transit_hours": 591.4,
+    "estimated_transit_days": 24.6,
+    "route_cost": 387000.0,
+    "restrictions": [
+      "CANAL_TRANSIT",
+      "TSS_COMPLIANCE",
+      "HRA_SECURITY",
+      "CONGESTED_STRAIT",
+      "ECA_EMISSION_CONTROL"
+    ],
+    "route_type": "canal_transit",
+    "feasibility_status": "feasible",
+    "infeasibility_reasons": []
+  },
+  {
+    "id": "RT-SG-RTM-CAPE",
+    "name": "Singapore to Rotterdam via Cape of Good Hope",
+    "origin_port_id": "PORT-SG",
+    "destination_port_id": "PORT-RTM",
+    "waypoint_ids": [
+      "PORT-SG",
+      "WP-MALACCA",
+      "WP-INDIAN-OCEAN",
+      "WP-CAPE",
+      "WP-MID-ATLANTIC",
+      "WP-ATLANTIC",
+      "PORT-RTM"
+    ],
+    "segment_ids": [
+      "SEG-SG-MALACCA",
+      "SEG-MALACCA-INDIAN",
+      "SEG-INDIAN-CAPE",
+      "SEG-CAPE-MID-ATLANTIC",
+      "SEG-MID-ATLANTIC-ATLANTIC",
+      "SEG-ATLANTIC-RTM"
+    ],
+    "total_distance_nm": 11720.0,
+    "estimated_transit_hours": 837.1,
+    "estimated_transit_days": 34.9,
+    "route_cost": 37000.0,
+    "restrictions": [
+      "TSS_COMPLIANCE",
+      "ECA_EMISSION_CONTROL"
+    ],
+    "route_type": "open_ocean",
+    "feasibility_status": "feasible",
+    "infeasibility_reasons": []
+  }
+]

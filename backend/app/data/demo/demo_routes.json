@@ -1,0 +1,36 @@
+[
+  {
+    "id": "RT-SG-RTM-SUEZ",
+    "name": "Singapore to Rotterdam via Suez Canal",
+    "source": "Port of Singapore",
+    "destination": "Port of Rotterdam",
+    "distance": 8280.0,
+    "is_canal_route": true,
+    "estimated_transit_hours": 460.0,
+    "checkpoints": [
+      {"name": "Singapore Strait", "latitude": 1.25, "longitude": 103.82, "sequence_order": 1},
+      {"name": "Strait of Malacca", "latitude": 3.12, "longitude": 100.55, "sequence_order": 2},
+      {"name": "Bab-el-Mandeb", "latitude": 12.58, "longitude": 43.33, "sequence_order": 3},
+      {"name": "Suez Canal", "latitude": 29.97, "longitude": 32.55, "sequence_order": 4},
+      {"name": "Strait of Gibraltar", "latitude": 35.96, "longitude": -5.58, "sequence_order": 5},
+      {"name": "English Channel", "latitude": 50.12, "longitude": -1.45, "sequence_order": 6}
+    ]
+  },
+  {
+    "id": "RT-SG-RTM-CAPE",
+    "name": "Singapore to Rotterdam via Cape of Good Hope",
+    "source": "Port of Singapore",
+    "destination": "Port of Rotterdam",
+    "distance": 11720.0,
+    "is_canal_route": false,
+    "estimated_transit_hours": 650.0,
+    "checkpoints": [
+      {"name": "Singapore Strait", "latitude": 1.25, "longitude": 103.82, "sequence_order": 1},
+      {"name": "Sunda Strait", "latitude": -5.92, "longitude": 105.75, "sequence_order": 2},
+      {"name": "South Indian Ocean", "latitude": -25.0, "longitude": 70.0, "sequence_order": 3},
+      {"name": "Cape of Good Hope", "latitude": -34.35, "longitude": 18.49, "sequence_order": 4},
+      {"name": "Mid-Atlantic Passage", "latitude": 15.0, "longitude": -20.0, "sequence_order": 5},
+      {"name": "English Channel", "latitude": 50.12, "longitude": -1.45, "sequence_order": 6}
+    ]
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "PORT-SG",
+    "name": "Port of Singapore (Terminal)",
+    "latitude": 1.29027,
+    "longitude": 103.851959,
+    "waypoint_type": "port",
+    "navigational_notes": "Southeast Asia primary transshipment hub"
+  },
+  {
+    "id": "WP-MALACCA",
+    "name": "Strait of Malacca",
+    "latitude": 3.12,
+    "longitude": 100.55,
+    "waypoint_type": "strait",
+    "navigational_notes": "High traffic density choke point, TSS lane compliance mandatory"
+  },
+  {
+    "id": "WP-INDIAN-OCEAN",
+    "name": "Central Indian Ocean",
+    "latitude": 5.0,
+    "longitude": 80.0,
+    "waypoint_type": "ocean",
+    "navigational_notes": "Open sea transit corridor South of Sri Lanka"
+  },
+  {
+    "id": "WP-ARABIAN-SEA",
+    "name": "Arabian Sea",
+    "latitude": 14.0,
+    "longitude": 60.0,
+    "waypoint_type": "sea",
+    "navigational_notes": "Approaching Western Indian Ocean passage"
+  },
+  {
+    "id": "WP-GULF-ADEN",
+    "name": "Gulf of Aden",
+    "latitude": 12.5,
+    "longitude": 48.0,
+    "waypoint_type": "strait",
+    "navigational_notes": "Internationally Recommended Transit Corridor (IRTC)"
+  },
+  {
+    "id": "WP-RED-SEA",
+    "name": "Red Sea Passage",
+    "latitude": 20.0,
+    "longitude": 38.5,
+    "waypoint_type": "sea",
+    "navigational_notes": "Bab-el-Mandeb to Southern Gulf of Suez"
+  },
+  {
+    "id": "WP-SUEZ",
+    "name": "Suez Canal",
+    "latitude": 29.97,
+    "longitude": 32.55,
+    "waypoint_type": "canal",
+    "navigational_notes": "Regulated transit convoy; maximum permissible draft 16.0m"
+  },
+  {
+    "id": "WP-MED-SEA",
+    "name": "Mediterranean Sea",
+    "latitude": 35.5,
+    "longitude": 18.0,
+    "waypoint_type": "sea",
+    "navigational_notes": "Eastern-to-Western Mediterranean trunk route"
+  },
+  {
+    "id": "WP-GIBRALTAR",
+    "name": "Strait of Gibraltar",
+    "latitude": 35.96,
+    "longitude": -5.58,
+    "waypoint_type": "strait",
+    "navigational_notes": "Mediterranean-Atlantic gateway"
+  },
+  {
+    "id": "WP-ATLANTIC",
+    "name": "North Atlantic Approach",
+    "latitude": 45.0,
+    "longitude": -9.0,
+    "waypoint_type": "ocean",
+    "navigational_notes": "Bay of Biscay outer approach to English Channel"
+  },
+  {
+    "id": "WP-CAPE",
+    "name": "Cape of Good Hope",
+    "latitude": -34.35,
+    "longitude": 18.49,
+    "waypoint_type": "checkpoint",
+    "navigational_notes": "Deep-water alternative bypassing Suez Canal, unconstrained draft"
+  },
+  {
+    "id": "WP-MID-ATLANTIC",
+    "name": "South Atlantic Ocean",
+    "latitude": 0.0,
+    "longitude": -20.0,
+    "waypoint_type": "ocean",
+    "navigational_notes": "Equatorial South Atlantic northbound sea lane"
+  },
+  {
+    "id": "PORT-RTM",
+    "name": "Port of Rotterdam (Europort)",
+    "latitude": 51.92442,
+    "longitude": 4.477733,
+    "waypoint_type": "port",
+    "navigational_notes": "Primary European deep-water gateway terminal"
+  }
+]

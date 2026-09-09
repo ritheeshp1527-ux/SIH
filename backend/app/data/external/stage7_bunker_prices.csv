@@ -1,0 +1,8 @@
+port,fuel_type,fuel_price,currency,unit,date
+SGSIN,HFO (Heavy Fuel Oil),648.0,USD,MT,2026-09-08
+SGSIN,MDO (Marine Diesel Oil),1371.0,USD,MT,2026-09-08
+SGSIN,LNG (Liquefied Natural Gas),821.95,USD,MT,2026-09-08
+INBOM,HFO (Heavy Fuel Oil),660.0,USD,MT,2026-09-08
+INBOM,LNG (Liquefied Natural Gas),845.0,USD,MT,2026-09-08
+NLRTM,HFO (Heavy Fuel Oil),590.0,USD,MT,2026-09-08
+NLRTM,LNG (Liquefied Natural Gas),790.0,USD,MT,2026-09-08
