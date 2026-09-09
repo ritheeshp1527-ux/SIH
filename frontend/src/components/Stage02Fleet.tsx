@@ -196,14 +196,14 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
 
   return (
     <div className="stage-shell-card" style={{ maxWidth: '980px', margin: '0 auto 2.5rem' }}>
-      {/* 1. Stage Header with Read-Only Context Summary */}
+      {/* Stage Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.25rem', marginBottom: '1.5rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.4rem' }}>
             <span className="badge badge-cyan" style={{ fontSize: '0.75rem' }}>
               Stage 02
             </span>
-            <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)', fontSize: '0.75rem' }}>
+            <span className="badge badge-emerald" style={{ fontSize: '0.75rem' }}>
               Fleet Availability
             </span>
           </div>
@@ -211,7 +211,7 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
             Fleet
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginTop: '0.35rem', maxWidth: '650px', lineHeight: 1.5 }}>
-            Select the vessels available for this voyage.
+            Select the vessels available for this voyage and review deadweight cargo capacities.
           </p>
         </div>
 
@@ -223,10 +223,10 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
             onClick={handleUseDemoFleet}
             style={{
               padding: '0.65rem 1.15rem',
-              background: 'linear-gradient(135deg, rgba(0, 229, 255, 0.15) 0%, rgba(0, 180, 216, 0.25) 100%)',
-              border: '1px solid var(--accent-cyan)',
+              background: 'var(--accent-teal-subtle)',
+              border: '1px solid #BCE5D7',
               borderRadius: 'var(--radius-sm)',
-              color: 'var(--accent-cyan)',
+              color: 'var(--accent-teal-dark)',
               cursor: 'pointer',
               fontSize: '0.84rem',
               fontWeight: 700,
@@ -234,6 +234,7 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
               alignItems: 'center',
               gap: '0.45rem',
               transition: 'all 0.15s ease',
+              boxShadow: 'var(--shadow-sm)',
             }}
             title="Select all supported vessels compatible with the requested cargo"
           >
@@ -245,7 +246,7 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
 
       {/* Read-Only Voyage Context Banner */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.85)',
+        background: 'var(--bg-card-inset)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1rem 1.25rem',
@@ -266,7 +267,7 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
           <div style={{ width: '1px', height: '24px', background: 'var(--border-subtle)' }} />
           <div>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Cargo Payload</div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--accent-cyan)', marginTop: '0.15rem' }}>
+            <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--accent-ocean)', marginTop: '0.15rem' }}>
               {voyageConfig.cargoWeight.toLocaleString()} MT
             </div>
           </div>
@@ -286,15 +287,15 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
       {/* Processing State Banner */}
       {processingStatus && (
         <div style={{
-          background: 'rgba(0, 229, 255, 0.12)',
-          border: '1px solid var(--accent-cyan)',
+          background: 'var(--accent-blue-subtle)',
+          border: '1px solid #BEDDF0',
           borderRadius: 'var(--radius-sm)',
           padding: '0.85rem 1.25rem',
           marginBottom: '1.5rem',
           display: 'flex',
           alignItems: 'center',
           gap: '0.65rem',
-          color: 'var(--accent-cyan)',
+          color: 'var(--accent-ocean)',
           fontWeight: 700,
           fontSize: '0.85rem',
         }}>
@@ -326,22 +327,22 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
                 onClick={() => handleToggleVessel(vessel)}
                 style={{
                   background: isSelected
-                    ? 'rgba(0, 229, 255, 0.08)'
+                    ? 'var(--accent-blue-subtle)'
                     : isCompatible
-                    ? 'rgba(15, 23, 42, 0.7)'
-                    : 'rgba(15, 23, 42, 0.4)',
+                    ? '#FFFFFF'
+                    : '#FAFBFD',
                   border: '1px solid',
                   borderColor: isSelected
-                    ? 'var(--accent-cyan)'
+                    ? 'var(--accent-ocean)'
                     : isCompatible
                     ? 'var(--border-subtle)'
-                    : 'rgba(239, 68, 68, 0.3)',
+                    : 'var(--border-subtle)',
                   borderRadius: 'var(--radius-md)',
                   padding: '1.25rem',
                   cursor: isCompatible ? 'pointer' : 'not-allowed',
-                  opacity: isCompatible ? 1 : 0.6,
+                  opacity: isCompatible ? 1 : 0.65,
                   transition: 'all 0.15s ease',
-                  boxShadow: isSelected ? '0 0 15px rgba(0, 229, 255, 0.18)' : 'none',
+                  boxShadow: isSelected ? '0 4px 15px rgba(31, 90, 133, 0.12)' : 'var(--shadow-sm)',
                   position: 'relative',
                 }}
               >
@@ -353,12 +354,12 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
                         width: '20px',
                         height: '20px',
                         borderRadius: '4px',
-                        border: `1.5px solid ${isSelected ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
-                        background: isSelected ? 'var(--accent-cyan)' : 'transparent',
+                        border: `1.5px solid ${isSelected ? 'var(--accent-ocean)' : 'var(--border-medium)'}`,
+                        background: isSelected ? 'var(--accent-ocean)' : '#FFFFFF',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#080d1a',
+                        color: '#FFFFFF',
                         fontWeight: 900,
                         fontSize: '0.75rem',
                         flexShrink: 0,
@@ -389,15 +390,15 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
                 {/* Cargo Compatibility Indicator */}
                 <div style={{
                   padding: '0.65rem 0.85rem',
-                  background: isCompatible ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.1)',
-                  border: `1px solid ${isCompatible ? 'rgba(16, 185, 129, 0.25)' : 'rgba(239, 68, 68, 0.3)'}`,
+                  background: isCompatible ? 'var(--accent-teal-subtle)' : 'var(--accent-rose-light)',
+                  border: `1px solid ${isCompatible ? '#C2E8DC' : '#F6D0D8'}`,
                   borderRadius: 'var(--radius-sm)',
                   marginBottom: '0.85rem',
                 }}>
                   {isCompatible ? (
                     <div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '0.75rem', color: '#34d399', fontWeight: 700 }}>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--accent-teal-dark)', fontWeight: 700 }}>
                           ✓ Cargo compatible
                         </span>
                         <span style={{ fontSize: '0.72rem', color: 'var(--text-primary)', fontWeight: 700 }}>
@@ -410,10 +411,10 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
                     </div>
                   ) : (
                     <div>
-                      <div style={{ fontSize: '0.75rem', color: '#f87171', fontWeight: 700 }}>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--accent-rose)', fontWeight: 700 }}>
                         ✕ Insufficient capacity
                       </div>
-                      <div style={{ fontSize: '0.72rem', color: '#fca5a5', marginTop: '0.2rem' }}>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
                         Capacity: <strong>{vessel.capacity_tonnes.toLocaleString()} MT</strong> &bull; Required: {voyageConfig.cargoWeight.toLocaleString()} MT
                       </div>
                     </div>
@@ -436,7 +437,7 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
                   </div>
                   <div>
                     <span style={{ color: 'var(--text-muted)' }}>Fuels: </span>
-                    <strong style={{ color: 'var(--accent-cyan)' }}>{vessel.fuel_options.join(', ')}</strong>
+                    <strong style={{ color: 'var(--accent-ocean)' }}>{vessel.fuel_options.join(', ')}</strong>
                   </div>
                 </div>
               </div>
@@ -447,8 +448,8 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
 
       {/* Selection Summary Warning / Status */}
       <div style={{
-        background: selectedVesselIds.length > 0 ? 'rgba(16, 185, 129, 0.08)' : 'rgba(245, 158, 11, 0.08)',
-        border: `1px solid ${selectedVesselIds.length > 0 ? 'rgba(16, 185, 129, 0.25)' : 'rgba(245, 158, 11, 0.25)'}`,
+        background: selectedVesselIds.length > 0 ? 'var(--accent-teal-subtle)' : 'var(--accent-amber-light)',
+        border: `1px solid ${selectedVesselIds.length > 0 ? '#C2E8DC' : '#F5DEBF'}`,
         borderRadius: 'var(--radius-sm)',
         padding: '0.85rem 1.15rem',
         display: 'flex',
@@ -460,7 +461,7 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <span style={{ fontSize: '1rem' }}>{selectedVesselIds.length > 0 ? '✓' : '⚠️'}</span>
-          <span style={{ fontSize: '0.82rem', color: selectedVesselIds.length > 0 ? '#34d399' : '#fbbf24', fontWeight: 600 }}>
+          <span style={{ fontSize: '0.82rem', color: selectedVesselIds.length > 0 ? 'var(--accent-teal-dark)' : 'var(--accent-amber)', fontWeight: 600 }}>
             {selectedVesselIds.length > 0
               ? `${selectedVesselIds.length} vessel${selectedVesselIds.length > 1 ? 's' : ''} assigned to voyage fleet.`
               : 'Select at least one compatible vessel from the fleet above to proceed.'}
@@ -487,7 +488,7 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-ocean)' }}>
             Stage 02 of 07
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>

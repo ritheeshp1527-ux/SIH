@@ -563,10 +563,10 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.5rem' }}>
               <span className="badge badge-cyan">03 / 07</span>
-              <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+              <span className="badge badge-emerald">
                 Ocean &amp; Weather Modeling
               </span>
-              <span className="badge" style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
+              <span className="badge badge-cyan">
                 Deterministic Feasibility
               </span>
             </div>
@@ -583,13 +583,13 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
 
           <div style={{
             padding: '0.55rem 1.15rem',
-            background: 'rgba(15, 23, 42, 0.6)',
+            background: 'var(--bg-secondary)',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-sm)',
             fontSize: '0.78rem',
-            color: 'var(--text-muted)'
+            color: 'var(--text-secondary)'
           }}>
-            Status: <strong style={{ color: canContinue ? '#34d399' : isProcessing ? 'var(--accent-cyan)' : '#f87171' }}>
+            Status: <strong style={{ color: canContinue ? 'var(--accent-teal-dark)' : isProcessing ? 'var(--accent-ocean)' : 'var(--accent-rose)' }}>
               {isProcessing ? 'Evaluating Conditions...' : canContinue ? `${feasibleRoutes.length} Feasible Routes Ready` : 'No Feasible Routes'}
             </strong>
           </div>
@@ -599,7 +599,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
         <div style={{
           marginTop: '1.25rem',
           padding: '0.9rem 1.25rem',
-          background: 'rgba(15, 23, 42, 0.75)',
+          background: 'var(--bg-card-inset)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-md)',
           display: 'grid',
@@ -613,7 +613,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
             </div>
             <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <span>{voyageConfig.sourcePort}</span>
-              <span style={{ color: 'var(--accent-cyan)' }}>→</span>
+              <span style={{ color: 'var(--accent-ocean)' }}>→</span>
               <span>{voyageConfig.destPort}</span>
             </div>
           </div>
@@ -631,7 +631,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
             <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>
               Selected Fleet (Stage 02)
             </div>
-            <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--accent-cyan)', marginTop: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={fleetSummaryText}>
+            <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--accent-ocean)', marginTop: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={fleetSummaryText}>
               {fleetSummaryText}
             </div>
           </div>
@@ -640,7 +640,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
             <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>
               Current Impact Model
             </div>
-            <div style={{ fontSize: '0.82rem', fontFamily: 'monospace', color: '#38bdf8', marginTop: '0.2rem' }}>
+            <div style={{ fontSize: '0.82rem', fontFamily: 'monospace', color: 'var(--accent-ocean)', marginTop: '0.2rem' }}>
               Speed Over Ground (SOG = STW + Ocean Drift)
             </div>
           </div>
@@ -651,11 +651,12 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
       {/* 2. ENVIRONMENTAL DATA SOURCE & HONESTY LABEL                   */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.65)',
+        background: '#FFFFFF',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.25rem',
         marginBottom: '1.75rem',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.85rem' }}>
           <div>
@@ -671,11 +672,11 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
           {/* Honest Source Label */}
           <div style={{
             padding: '0.35rem 0.75rem',
-            background: 'rgba(245, 158, 11, 0.12)',
-            border: '1px solid rgba(245, 158, 11, 0.35)',
+            background: 'var(--accent-amber-light)',
+            border: '1px solid #F5DEBF',
             borderRadius: 'var(--radius-sm)',
             fontSize: '0.75rem',
-            color: '#fbbf24',
+            color: 'var(--accent-amber)',
             display: 'flex',
             alignItems: 'center',
             gap: '0.4rem',
@@ -688,7 +689,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
 
         <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
           Deterministic demonstration dataset calibrated for the Singapore–Rotterdam maritime corridors.
-          <strong style={{ color: '#fbbf24' }}> Not a live external weather API feed.</strong> All along-track currents, significant wave heights (Hs), and demo environmental fuel factors (<em>f_env</em>) are simulated sensitivity models engineered for reproducible SIH evaluation.
+          <strong style={{ color: 'var(--accent-amber)' }}> Not a live external weather API feed.</strong> All along-track currents, significant wave heights (Hs), and demo environmental fuel factors (<em>f_env</em>) are simulated sensitivity models engineered for reproducible SIH evaluation.
         </p>
 
         {/* Presentation Scenario Selector */}
@@ -704,12 +705,13 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
               style={{
                 flex: '1 1 300px',
                 padding: '0.55rem 0.85rem',
-                background: 'rgba(15, 23, 42, 0.9)',
-                border: '1px solid var(--border-subtle)',
+                background: '#FFFFFF',
+                border: '1px solid var(--border-medium)',
                 borderRadius: 'var(--radius-sm)',
                 color: 'var(--text-primary)',
                 fontSize: '0.82rem',
                 cursor: 'pointer',
+                boxShadow: 'var(--shadow-sm)'
               }}
             >
               {scenarios.map((sc) => (
@@ -727,16 +729,17 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
               }}
               style={{
                 padding: '0.55rem 1rem',
-                background: 'rgba(0, 229, 255, 0.1)',
-                border: '1px solid rgba(0, 229, 255, 0.3)',
+                background: 'var(--accent-blue-subtle)',
+                border: '1px solid #BEDDF0',
                 borderRadius: 'var(--radius-sm)',
-                color: 'var(--accent-cyan)',
+                color: 'var(--accent-ocean)',
                 fontSize: '0.8rem',
                 fontWeight: 600,
                 cursor: 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
+                boxShadow: 'var(--shadow-sm)'
               }}
             >
               <span>↻</span>
@@ -757,7 +760,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
       {/* 3. PROCESSING SEQUENCE BANNER                                 */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.55)',
+        background: 'var(--bg-card-inset)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1rem 1.25rem',
@@ -774,11 +777,11 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
             alignItems: 'center',
             gap: '0.6rem',
             padding: '0.5rem 0.75rem',
-            background: processingStep >= 1 ? 'rgba(0, 229, 255, 0.08)' : 'rgba(15, 23, 42, 0.3)',
-            border: `1px solid ${processingStep >= 1 ? 'rgba(0, 229, 255, 0.25)' : 'var(--border-subtle)'}`,
+            background: processingStep >= 1 ? 'var(--accent-teal-subtle)' : '#FFFFFF',
+            border: `1px solid ${processingStep >= 1 ? '#C2E8DC' : 'var(--border-subtle)'}`,
             borderRadius: 'var(--radius-sm)',
           }}>
-            <span style={{ color: processingStep >= 1 ? '#34d399' : 'var(--text-muted)', fontSize: '0.95rem' }}>
+            <span style={{ color: processingStep >= 1 ? 'var(--accent-teal-dark)' : 'var(--text-muted)', fontSize: '0.95rem' }}>
               {processingStep >= 1 ? '✓' : '○'}
             </span>
             <span style={{ fontSize: '0.78rem', color: processingStep >= 1 ? 'var(--text-primary)' : 'var(--text-muted)', fontWeight: 600 }}>
@@ -792,11 +795,11 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
             alignItems: 'center',
             gap: '0.6rem',
             padding: '0.5rem 0.75rem',
-            background: processingStep >= 2 ? 'rgba(0, 229, 255, 0.08)' : 'rgba(15, 23, 42, 0.3)',
-            border: `1px solid ${processingStep >= 2 ? 'rgba(0, 229, 255, 0.25)' : 'var(--border-subtle)'}`,
+            background: processingStep >= 2 ? 'var(--accent-teal-subtle)' : '#FFFFFF',
+            border: `1px solid ${processingStep >= 2 ? '#C2E8DC' : 'var(--border-subtle)'}`,
             borderRadius: 'var(--radius-sm)',
           }}>
-            <span style={{ color: processingStep >= 2 ? '#34d399' : processingStep === 1 ? 'var(--accent-cyan)' : 'var(--text-muted)', fontSize: '0.95rem' }}>
+            <span style={{ color: processingStep >= 2 ? 'var(--accent-teal-dark)' : processingStep === 1 ? 'var(--accent-ocean)' : 'var(--text-muted)', fontSize: '0.95rem' }}>
               {processingStep >= 2 ? '✓' : processingStep === 1 ? '●' : '○'}
             </span>
             <span style={{ fontSize: '0.78rem', color: processingStep >= 2 ? 'var(--text-primary)' : 'var(--text-muted)', fontWeight: 600 }}>
@@ -810,11 +813,11 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
             alignItems: 'center',
             gap: '0.6rem',
             padding: '0.5rem 0.75rem',
-            background: processingStep >= 3 ? 'rgba(0, 229, 255, 0.08)' : 'rgba(15, 23, 42, 0.3)',
-            border: `1px solid ${processingStep >= 3 ? 'rgba(0, 229, 255, 0.25)' : 'var(--border-subtle)'}`,
+            background: processingStep >= 3 ? 'var(--accent-teal-subtle)' : '#FFFFFF',
+            border: `1px solid ${processingStep >= 3 ? '#C2E8DC' : 'var(--border-subtle)'}`,
             borderRadius: 'var(--radius-sm)',
           }}>
-            <span style={{ color: processingStep >= 3 ? '#34d399' : processingStep === 2 ? 'var(--accent-cyan)' : 'var(--text-muted)', fontSize: '0.95rem' }}>
+            <span style={{ color: processingStep >= 3 ? 'var(--accent-teal-dark)' : processingStep === 2 ? 'var(--accent-ocean)' : 'var(--text-muted)', fontSize: '0.95rem' }}>
               {processingStep >= 3 ? '✓' : processingStep === 2 ? '●' : '○'}
             </span>
             <span style={{ fontSize: '0.78rem', color: processingStep >= 3 ? 'var(--text-primary)' : 'var(--text-muted)', fontWeight: 600 }}>
@@ -828,11 +831,11 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
             alignItems: 'center',
             gap: '0.6rem',
             padding: '0.5rem 0.75rem',
-            background: processingStep >= 4 ? 'rgba(0, 229, 255, 0.08)' : 'rgba(15, 23, 42, 0.3)',
-            border: `1px solid ${processingStep >= 4 ? 'rgba(0, 229, 255, 0.25)' : 'var(--border-subtle)'}`,
+            background: processingStep >= 4 ? (feasibleRoutes.length > 0 ? 'var(--accent-teal-subtle)' : 'var(--accent-rose-light)') : '#FFFFFF',
+            border: `1px solid ${processingStep >= 4 ? (feasibleRoutes.length > 0 ? '#C2E8DC' : '#F6D0D8') : 'var(--border-subtle)'}`,
             borderRadius: 'var(--radius-sm)',
           }}>
-            <span style={{ color: processingStep >= 4 ? (feasibleRoutes.length > 0 ? '#34d399' : '#f87171') : processingStep === 3 ? 'var(--accent-cyan)' : 'var(--text-muted)', fontSize: '0.95rem' }}>
+            <span style={{ color: processingStep >= 4 ? (feasibleRoutes.length > 0 ? 'var(--accent-teal-dark)' : 'var(--accent-rose)') : processingStep === 3 ? 'var(--accent-ocean)' : 'var(--text-muted)', fontSize: '0.95rem' }}>
               {processingStep >= 4 ? (feasibleRoutes.length > 0 ? '✓' : '✕') : processingStep === 3 ? '●' : '○'}
             </span>
             <span style={{ fontSize: '0.78rem', color: processingStep >= 4 ? 'var(--text-primary)' : 'var(--text-muted)', fontWeight: 600 }}>
@@ -846,11 +849,12 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
       {/* 4. SCHEMATIC ROUTE CORRIDOR VISUALIZATION                      */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.6)',
+        background: '#FFFFFF',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.25rem',
         marginBottom: '1.75rem',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
           <h3 style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -863,32 +867,32 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
         </div>
 
         {/* Lightweight SVG Corridor Schematic */}
-        <div style={{ width: '100%', overflowX: 'auto', background: 'rgba(10, 15, 30, 0.7)', borderRadius: 'var(--radius-sm)', padding: '1rem', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ width: '100%', overflowX: 'auto', background: 'var(--bg-card-inset)', borderRadius: 'var(--radius-sm)', padding: '1rem', border: '1px solid var(--border-subtle)' }}>
           <svg viewBox="0 0 840 180" style={{ width: '100%', minWidth: '600px', height: 'auto', display: 'block' }}>
             <defs>
               <linearGradient id="suezFeasibleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#34d399" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#1F5A85" stopOpacity="0.85" />
+                <stop offset="50%" stopColor="#3884C7" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#3FA48E" stopOpacity="0.85" />
               </linearGradient>
               <linearGradient id="capeFeasibleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#c084fc" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#34d399" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#1F5A85" stopOpacity="0.85" />
+                <stop offset="50%" stopColor="#5A69B8" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#3FA48E" stopOpacity="0.85" />
               </linearGradient>
             </defs>
 
             {/* Singapore Origin Node */}
-            <circle cx="70" cy="90" r="10" fill="#00e5ff" />
-            <text x="70" y="118" fill="#00e5ff" fontSize="11" fontWeight="700" textAnchor="middle">PORT-SG</text>
-            <text x="70" y="132" fill="#94a3b8" fontSize="9" textAnchor="middle">Singapore</text>
+            <circle cx="70" cy="90" r="10" fill="#1F5A85" />
+            <text x="70" y="118" fill="#1F5A85" fontSize="11" fontWeight="700" textAnchor="middle">PORT-SG</text>
+            <text x="70" y="132" fill="#4C6D87" fontSize="9" textAnchor="middle">Singapore</text>
 
             {/* Rotterdam Destination Node */}
-            <circle cx="770" cy="90" r="10" fill="#34d399" />
-            <text x="770" y="118" fill="#34d399" fontSize="11" fontWeight="700" textAnchor="middle">PORT-RTM</text>
-            <text x="770" y="132" fill="#94a3b8" fontSize="9" textAnchor="middle">Rotterdam</text>
+            <circle cx="770" cy="90" r="10" fill="#3FA48E" />
+            <text x="770" y="118" fill="#3FA48E" fontSize="11" fontWeight="700" textAnchor="middle">PORT-RTM</text>
+            <text x="770" y="132" fill="#4C6D87" fontSize="9" textAnchor="middle">Rotterdam</text>
 
-            {/* Route 1: Suez Corridor (Upper arc via Malacca, Red Sea, Suez Canal, Mediterranean) */}
+            {/* Route 1: Suez Corridor */}
             {(() => {
               const suezInfo = evaluatedRoutes.find((r) => r.route.id.includes('SUEZ'));
               const isFeas = suezInfo ? suezInfo.isFeasible : true;
@@ -897,25 +901,25 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                   <path
                     d="M 70 90 Q 240 25, 420 40 T 770 90"
                     fill="none"
-                    stroke={isFeas ? 'url(#suezFeasibleGrad)' : '#f87171'}
+                    stroke={isFeas ? 'url(#suezFeasibleGrad)' : '#D44A61'}
                     strokeWidth={isFeas ? '3.5' : '2'}
                     strokeDasharray={isFeas ? 'none' : '5,5'}
                   />
                   {/* Waypoint markers on Suez */}
-                  <circle cx="250" cy="40" r="4.5" fill={isFeas ? '#38bdf8' : '#f87171'} />
-                  <text x="250" y="30" fill="#cbd5e1" fontSize="9" textAnchor="middle">WP-MALACCA</text>
-                  <circle cx="420" cy="40" r="5.5" fill={isFeas ? '#f59e0b' : '#f87171'} />
-                  <text x="420" y="28" fill="#fbbf24" fontSize="10" fontWeight="700" textAnchor="middle">Suez Canal (16m Draft)</text>
-                  <circle cx="580" cy="55" r="4.5" fill={isFeas ? '#38bdf8' : '#f87171'} />
-                  <text x="580" y="45" fill="#cbd5e1" fontSize="9" textAnchor="middle">WP-GIBRALTAR</text>
-                  <text x="420" y="62" fill={isFeas ? '#34d399' : '#f87171'} fontSize="10" fontWeight="700" textAnchor="middle">
+                  <circle cx="250" cy="40" r="4.5" fill={isFeas ? '#3884C7' : '#D44A61'} />
+                  <text x="250" y="30" fill="#4C6D87" fontSize="9" textAnchor="middle">WP-MALACCA</text>
+                  <circle cx="420" cy="40" r="5.5" fill={isFeas ? '#CF7E24' : '#D44A61'} />
+                  <text x="420" y="28" fill="#CF7E24" fontSize="10" fontWeight="700" textAnchor="middle">Suez Canal (16m Draft)</text>
+                  <circle cx="580" cy="55" r="4.5" fill={isFeas ? '#3884C7' : '#D44A61'} />
+                  <text x="580" y="45" fill="#4C6D87" fontSize="9" textAnchor="middle">WP-GIBRALTAR</text>
+                  <text x="420" y="62" fill={isFeas ? '#2C8271' : '#D44A61'} fontSize="10" fontWeight="700" textAnchor="middle">
                     Suez Corridor — 8,280 NM {isFeas ? '(✓ Feasible)' : '(✕ Excluded)'}
                   </text>
                 </g>
               );
             })()}
 
-            {/* Route 2: Cape of Good Hope Corridor (Lower arc via Indian Ocean, Cape, Atlantic) */}
+            {/* Route 2: Cape of Good Hope Corridor */}
             {(() => {
               const capeInfo = evaluatedRoutes.find((r) => r.route.id.includes('CAPE'));
               const isFeas = capeInfo ? capeInfo.isFeasible : true;
@@ -924,18 +928,18 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                   <path
                     d="M 70 90 Q 240 165, 420 155 T 770 90"
                     fill="none"
-                    stroke={isFeas ? 'url(#capeFeasibleGrad)' : '#f87171'}
+                    stroke={isFeas ? 'url(#capeFeasibleGrad)' : '#D44A61'}
                     strokeWidth={isFeas ? '3.5' : '2'}
                     strokeDasharray={isFeas ? 'none' : '5,5'}
                   />
                   {/* Waypoint markers on Cape */}
-                  <circle cx="280" cy="148" r="4.5" fill={isFeas ? '#c084fc' : '#f87171'} />
-                  <text x="280" y="165" fill="#cbd5e1" fontSize="9" textAnchor="middle">WP-INDIAN-OCEAN</text>
-                  <circle cx="420" cy="155" r="5.5" fill={isFeas ? '#c084fc' : '#f87171'} />
-                  <text x="420" y="174" fill="#c084fc" fontSize="10" fontWeight="700" textAnchor="middle">Cape of Good Hope (Open Ocean)</text>
-                  <circle cx="580" cy="135" r="4.5" fill={isFeas ? '#c084fc' : '#f87171'} />
-                  <text x="580" y="152" fill="#cbd5e1" fontSize="9" textAnchor="middle">WP-ATLANTIC</text>
-                  <text x="420" y="140" fill={isFeas ? '#34d399' : '#f87171'} fontSize="10" fontWeight="700" textAnchor="middle">
+                  <circle cx="280" cy="148" r="4.5" fill={isFeas ? '#5A69B8' : '#D44A61'} />
+                  <text x="280" y="165" fill="#4C6D87" fontSize="9" textAnchor="middle">WP-INDIAN-OCEAN</text>
+                  <circle cx="420" cy="155" r="5.5" fill={isFeas ? '#5A69B8' : '#D44A61'} />
+                  <text x="420" y="174" fill="#5A69B8" fontSize="10" fontWeight="700" textAnchor="middle">Cape of Good Hope (Open Ocean)</text>
+                  <circle cx="580" cy="135" r="4.5" fill={isFeas ? '#5A69B8' : '#D44A61'} />
+                  <text x="580" y="152" fill="#4C6D87" fontSize="9" textAnchor="middle">WP-ATLANTIC</text>
+                  <text x="420" y="140" fill={isFeas ? '#2C8271' : '#D44A61'} fontSize="10" fontWeight="700" textAnchor="middle">
                     Cape Route — 11,720 NM {isFeas ? '(✓ Feasible)' : '(✕ Excluded)'}
                   </text>
                 </g>
@@ -959,7 +963,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
               Corridors satisfying navigational wave thresholds, sea state limits, and vessel draft constraints.
             </div>
           </div>
-          <span style={{ fontSize: '0.78rem', color: '#34d399', background: 'rgba(16, 185, 129, 0.1)', padding: '0.35rem 0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(16, 185, 129, 0.25)', fontWeight: 600 }}>
+          <span style={{ fontSize: '0.78rem', color: 'var(--accent-teal-dark)', background: 'var(--accent-teal-subtle)', padding: '0.35rem 0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid #C2E8DC', fontWeight: 600 }}>
             {feasibleRoutes.length} of {evaluatedRoutes.length} available for optimization
           </span>
         </div>
@@ -967,13 +971,13 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
         {feasibleRoutes.length === 0 ? (
           <div style={{
             padding: '1.75rem',
-            background: 'rgba(239, 68, 68, 0.08)',
-            border: '1px solid rgba(239, 68, 68, 0.3)',
+            background: 'var(--accent-rose-light)',
+            border: '1px solid #F6D0D8',
             borderRadius: 'var(--radius-md)',
             textAlign: 'center',
           }}>
             <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>⛔</div>
-            <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#f87171', margin: 0 }}>
+            <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--accent-rose)', margin: 0 }}>
               No Feasible Routes Remain in Search Space
             </h4>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', maxWidth: '580px', margin: '0.5rem auto 0', lineHeight: 1.5 }}>
@@ -988,21 +992,21 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                 <div
                   key={item.route.id}
                   style={{
-                    background: 'rgba(15, 23, 42, 0.75)',
-                    border: '1px solid rgba(16, 185, 129, 0.3)',
+                    background: '#FFFFFF',
+                    border: '1px solid #C2E8DC',
                     borderRadius: 'var(--radius-md)',
                     padding: '1.25rem',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+                    boxShadow: 'var(--shadow-card)',
                     transition: 'all 0.2s ease',
                   }}
                 >
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.75rem' }}>
                       <div>
-                        <div style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: 'var(--accent-cyan)' }}>
+                        <div style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: 'var(--accent-ocean)' }}>
                           {item.route.id}
                         </div>
                         <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0 0' }}>
@@ -1018,9 +1022,9 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                         borderRadius: 'var(--radius-sm)',
                         fontSize: '0.72rem',
                         fontWeight: 700,
-                        background: 'rgba(16, 185, 129, 0.15)',
-                        color: '#34d399',
-                        border: '1px solid rgba(16, 185, 129, 0.35)',
+                        background: 'var(--accent-teal-subtle)',
+                        color: 'var(--accent-teal-dark)',
+                        border: '1px solid #BCE5D7',
                         whiteSpace: 'nowrap',
                       }}>
                         ✓ Feasible
@@ -1032,7 +1036,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                       display: 'grid',
                       gridTemplateColumns: 'repeat(2, 1fr)',
                       gap: '0.65rem',
-                      background: 'rgba(10, 15, 30, 0.6)',
+                      background: 'var(--bg-card-inset)',
                       padding: '0.85rem',
                       borderRadius: 'var(--radius-sm)',
                       marginBottom: '0.85rem',
@@ -1047,7 +1051,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
 
                       <div>
                         <span style={{ color: 'var(--text-muted)', fontSize: '0.72rem', display: 'block' }}>Draft Requirement:</span>
-                        <strong style={{ color: item.draftRequirementM ? '#38bdf8' : '#94a3b8', fontSize: '0.85rem' }}>
+                        <strong style={{ color: item.draftRequirementM ? 'var(--accent-ocean)' : 'var(--text-secondary)', fontSize: '0.85rem' }}>
                           {item.draftRequirementM ? `${item.draftRequirementM.toFixed(1)} m limit` : 'Unrestricted'}
                         </strong>
                       </div>
@@ -1070,40 +1074,40 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                     {/* Environmental Conditions Summary */}
                     <div style={{
                       padding: '0.75rem 0.85rem',
-                      background: 'rgba(0, 229, 255, 0.04)',
-                      border: '1px solid rgba(0, 229, 255, 0.15)',
+                      background: 'var(--accent-blue-subtle)',
+                      border: '1px solid #BEDDF0',
                       borderRadius: 'var(--radius-sm)',
                       marginBottom: '0.85rem',
                       fontSize: '0.78rem',
                     }}>
-                      <div style={{ fontWeight: 700, color: 'var(--accent-cyan)', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <div style={{ fontWeight: 700, color: 'var(--accent-ocean)', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <span>🌊</span>
                         <span>Environmental Condition Summary:</span>
                       </div>
 
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.4rem', color: 'var(--text-secondary)' }}>
                         <div>Wind: <strong style={{ color: 'var(--text-primary)' }}>{item.windSpeedKnots.toFixed(1)} kts</strong></div>
-                        <div>Waves (Hs): <strong style={{ color: item.significantWaveM > 3.0 ? '#fbbf24' : 'var(--text-primary)' }}>{item.significantWaveM.toFixed(1)} m</strong></div>
+                        <div>Waves (Hs): <strong style={{ color: item.significantWaveM > 3.0 ? 'var(--accent-amber)' : 'var(--text-primary)' }}>{item.significantWaveM.toFixed(1)} m</strong></div>
                         <div>Sea State: <strong style={{ color: 'var(--text-primary)' }}>WMO State {item.seaState}</strong></div>
-                        <div>Risk Level: <strong style={{ color: item.riskLevel === 'LOW' ? '#34d399' : '#fbbf24' }}>{item.riskLevel}</strong></div>
+                        <div>Risk Level: <strong style={{ color: item.riskLevel === 'LOW' ? 'var(--accent-teal-dark)' : 'var(--accent-amber)' }}>{item.riskLevel}</strong></div>
                       </div>
 
-                      <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid #D5E7F2', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div>
                           Current effect:{' '}
-                          <strong style={{ color: item.currentType === 'favorable' ? '#34d399' : item.currentType === 'adverse' ? '#fbbf24' : 'var(--text-muted)' }}>
+                          <strong style={{ color: item.currentType === 'favorable' ? 'var(--accent-teal-dark)' : item.currentType === 'adverse' ? 'var(--accent-amber)' : 'var(--text-muted)' }}>
                             {item.currentType === 'favorable' ? 'Favorable current' : item.currentType === 'adverse' ? 'Adverse current' : 'Neutral current'}
                             {' '}({item.alongTrackCurrentKnots >= 0 ? `+${item.alongTrackCurrentKnots.toFixed(1)}` : item.alongTrackCurrentKnots.toFixed(1)} kn)
                           </strong>
                         </div>
-                        <div style={{ fontFamily: 'monospace', color: '#38bdf8', fontSize: '0.8rem', fontWeight: 600 }}>
+                        <div style={{ fontFamily: 'monospace', color: 'var(--accent-ocean)', fontSize: '0.8rem', fontWeight: 600 }}>
                           SOG: {item.effectiveSogKnots.toFixed(1)} kn
                         </div>
                       </div>
 
                       <div style={{ marginTop: '0.4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ color: 'var(--text-muted)' }}>Demo Environmental Fuel Factor:</span>
-                        <strong style={{ color: item.demoEnvFuelFactor > 1.1 ? '#fbbf24' : item.demoEnvFuelFactor < 1.0 ? '#34d399' : 'var(--text-primary)', fontFamily: 'monospace' }}>
+                        <strong style={{ color: item.demoEnvFuelFactor > 1.1 ? 'var(--accent-amber)' : item.demoEnvFuelFactor < 1.0 ? 'var(--accent-teal-dark)' : 'var(--text-primary)', fontFamily: 'monospace' }}>
                           {item.demoEnvFuelFactor.toFixed(3)}x
                         </strong>
                       </div>
@@ -1113,11 +1117,11 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                     {item.warnings.length > 0 && (
                       <div style={{
                         padding: '0.5rem 0.75rem',
-                        background: 'rgba(245, 158, 11, 0.08)',
-                        border: '1px solid rgba(245, 158, 11, 0.25)',
+                        background: 'var(--accent-amber-light)',
+                        border: '1px solid #F5DEBF',
                         borderRadius: 'var(--radius-sm)',
                         fontSize: '0.74rem',
-                        color: '#fbbf24',
+                        color: 'var(--accent-amber)',
                         marginBottom: '0.75rem',
                       }}>
                         <div style={{ fontWeight: 600, marginBottom: '0.2rem' }}>⚠️ Environmental Advisory:</div>
@@ -1147,13 +1151,13 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
         <div style={{
           marginBottom: '2rem',
           padding: '1.25rem',
-          background: 'rgba(239, 68, 68, 0.05)',
-          border: '1px solid rgba(239, 68, 68, 0.25)',
+          background: 'var(--accent-rose-light)',
+          border: '1px solid #F6D0D8',
           borderRadius: 'var(--radius-md)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f87171', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-rose)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span>✕</span>
                 <span>Excluded Routes ({excludedRoutes.length})</span>
               </h3>
@@ -1161,7 +1165,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                 Corridors pruned from candidate search space due to environmental safety breaches or vessel draft limits.
               </div>
             </div>
-            <span style={{ fontSize: '0.75rem', color: '#f87171', background: 'rgba(239, 68, 68, 0.15)', padding: '0.3rem 0.65rem', borderRadius: 'var(--radius-sm)', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.75rem', color: 'var(--accent-rose)', background: '#FFFFFF', padding: '0.3rem 0.65rem', borderRadius: 'var(--radius-sm)', border: '1px solid #F6D0D8', fontWeight: 600 }}>
               Pruned Before Optimization
             </span>
           </div>
@@ -1173,18 +1177,19 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                 <div
                   key={item.route.id}
                   style={{
-                    background: 'rgba(15, 23, 42, 0.8)',
-                    border: '1px solid rgba(239, 68, 68, 0.35)',
+                    background: '#FFFFFF',
+                    border: '1px solid #F6D0D8',
                     borderRadius: 'var(--radius-md)',
                     padding: '1.15rem',
+                    boxShadow: 'var(--shadow-sm)'
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.65rem' }}>
                     <div>
-                      <div style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#f87171' }}>
+                      <div style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: 'var(--accent-rose)' }}>
                         {item.route.id}
                       </div>
-                      <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: '#fca5a5', margin: '0.2rem 0 0' }}>
+                      <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--accent-rose)', margin: '0.2rem 0 0' }}>
                         {isSuez ? 'Suez Route (Excluded)' : 'Cape Route (Excluded)'}
                       </h4>
                       <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -1197,9 +1202,9 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                       borderRadius: 'var(--radius-sm)',
                       fontSize: '0.7rem',
                       fontWeight: 700,
-                      background: 'rgba(239, 68, 68, 0.2)',
-                      color: '#f87171',
-                      border: '1px solid rgba(239, 68, 68, 0.4)',
+                      background: 'var(--accent-rose-light)',
+                      color: 'var(--accent-rose)',
+                      border: '1px solid #F6D0D8',
                     }}>
                       ✕ Infeasible
                     </span>
@@ -1208,13 +1213,13 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
                   {/* Exclusion Reasons */}
                   <div style={{
                     padding: '0.75rem',
-                    background: 'rgba(239, 68, 68, 0.1)',
-                    border: '1px solid rgba(239, 68, 68, 0.25)',
+                    background: 'var(--accent-rose-light)',
+                    border: '1px solid #F6D0D8',
                     borderRadius: 'var(--radius-sm)',
                     fontSize: '0.78rem',
-                    color: '#fca5a5',
+                    color: 'var(--text-primary)',
                   }}>
-                    <div style={{ fontWeight: 700, marginBottom: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <div style={{ fontWeight: 700, marginBottom: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--accent-rose)' }}>
                       <span>⛔</span>
                       <span>Disqualification Criteria:</span>
                     </div>
@@ -1250,7 +1255,7 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-ocean)' }}>
             Stage 03 of 07
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>

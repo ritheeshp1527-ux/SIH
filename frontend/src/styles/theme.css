@@ -1,31 +1,72 @@
 :root {
-  --bg-primary: #080d1a;
-  --bg-secondary: #0f172a;
-  --bg-card: rgba(18, 28, 51, 0.75);
-  --bg-card-hover: rgba(24, 38, 70, 0.9);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(0, 229, 255, 0.35);
+  /* Light Watercolor Ocean Maritime Palette */
+  --bg-primary: #F4FAFC;
+  --bg-secondary: #EEF7FB;
+  --bg-tertiary: #E2EFF7;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FBFE;
+  --bg-card-inset: #F5FAFD;
+  --bg-glass: rgba(255, 255, 255, 0.88);
 
-  --accent-cyan: #00e5ff;
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-purple: #8b5cf6;
-  --accent-rose: #f43f5e;
+  /* Subtle Borders */
+  --border-subtle: #E2EDF5;
+  --border-medium: #CFE1ED;
+  --border-strong: #B4D1E3;
+  --border-glow: rgba(56, 132, 199, 0.25);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  /* Primary Maritime Ocean Blues */
+  --accent-ocean: #1F5A85;
+  --accent-ocean-dark: #164B73;
+  --accent-ocean-hover: #174A6F;
+  --accent-blue: #3884C7;
+  --accent-blue-light: #DCEFF8;
+  --accent-blue-subtle: #EEF7FB;
+  --accent-cyan: #2A7DBB;
 
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  /* Sustainability & Marine Accents */
+  --accent-teal: #3FA48E;
+  --accent-teal-dark: #2C8271;
+  --accent-teal-light: #DDF2EC;
+  --accent-teal-subtle: #EFF8F5;
+  --accent-emerald: #3FA48E;
+  --accent-emerald-light: #DDF2EC;
+
+  /* Status Accents */
+  --accent-amber: #CF7E24;
+  --accent-amber-light: #FDF3E7;
+  --accent-purple: #5A69B8;
+  --accent-purple-light: #EFF1FB;
+  --accent-rose: #C94A60;
+  --accent-rose-light: #FDF0F3;
+
+  /* Text & Typography */
+  --text-primary: #13324B;
+  --text-secondary: #4C6D87;
+  --text-muted: #7E9EB5;
+  --text-light: #A5BED0;
+  --text-inverse: #FFFFFF;
+
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  /* Radii */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 22px;
   --radius-full: 9999px;
 
-  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.05);
-  --shadow-glow: 0 0 25px -5px rgba(0, 229, 255, 0.25);
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(19, 50, 75, 0.04);
+  --shadow-card: 0 4px 20px -2px rgba(19, 50, 75, 0.05), 0 1px 3px rgba(19, 50, 75, 0.03);
+  --shadow-card-hover: 0 8px 30px -4px rgba(19, 50, 75, 0.08), 0 2px 6px rgba(19, 50, 75, 0.04);
+  --shadow-glow: 0 0 20px -3px rgba(56, 132, 199, 0.18);
+  --shadow-button: 0 3px 12px rgba(31, 90, 133, 0.2);
+
+  /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -251,7 +251,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             <span className="badge badge-cyan" style={{ fontSize: '0.75rem' }}>
               Stage 01
             </span>
-            <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)', fontSize: '0.75rem' }}>
+            <span className="badge badge-emerald" style={{ fontSize: '0.75rem' }}>
               Shipment Definition
             </span>
           </div>
@@ -259,7 +259,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             Voyage
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginTop: '0.35rem', maxWidth: '650px', lineHeight: 1.5 }}>
-            Define the shipment you want to optimize.
+            Define the shipment you want to optimize: origin, destination, cargo weight, and operational deadlines.
           </p>
         </div>
 
@@ -271,10 +271,10 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             onClick={handleLoadDemo}
             style={{
               padding: '0.65rem 1.15rem',
-              background: 'linear-gradient(135deg, rgba(0, 229, 255, 0.15) 0%, rgba(0, 180, 216, 0.25) 100%)',
-              border: '1px solid var(--accent-cyan)',
+              background: 'var(--accent-teal-subtle)',
+              border: '1px solid #BCE5D7',
               borderRadius: 'var(--radius-sm)',
-              color: 'var(--accent-cyan)',
+              color: 'var(--accent-teal-dark)',
               cursor: 'pointer',
               fontSize: '0.84rem',
               fontWeight: 700,
@@ -282,6 +282,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
               alignItems: 'center',
               gap: '0.45rem',
               transition: 'all 0.15s ease',
+              boxShadow: 'var(--shadow-sm)',
             }}
             title="Populate verified Singapore to Rotterdam 60,000 MT voyage scenario"
           >
@@ -289,7 +290,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             <span>Load SIH Demo Scenario</span>
           </button>
           {demoLoadedNotification && (
-            <span style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.75rem', color: 'var(--accent-teal-dark)', fontWeight: 600 }}>
               ✓ SIH Demo values populated
             </span>
           )}
@@ -298,7 +299,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
 
       {/* Primary Input Fields Card */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.65)',
+        background: 'var(--bg-card-inset)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.75rem',
@@ -313,7 +314,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
           {/* 1. Source Port */}
           <div>
             <label htmlFor="voyage-source-port" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.45rem' }}>
-              Source Port <span style={{ color: '#f87171' }}>*</span>
+              Source Port <span style={{ color: '#D44A61' }}>*</span>
             </label>
             <select
               id="voyage-source-port"
@@ -322,13 +323,14 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
               style={{
                 width: '100%',
                 padding: '0.7rem 0.85rem',
-                background: 'rgba(8, 13, 26, 0.85)',
-                border: `1px solid ${touched.sourcePort && errors.sourcePort ? '#ef4444' : 'var(--border-subtle)'}`,
+                background: '#FFFFFF',
+                border: `1px solid ${touched.sourcePort && errors.sourcePort ? '#D44A61' : 'var(--border-medium)'}`,
                 color: 'var(--text-primary)',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.92rem',
                 fontFamily: 'var(--font-sans)',
                 outline: 'none',
+                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <option value="" disabled>Select port of origin...</option>
@@ -342,7 +344,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
               Commercial port of departure with verified bunker availability.
             </div>
             {touched.sourcePort && errors.sourcePort && (
-              <div style={{ fontSize: '0.78rem', color: '#f87171', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <div style={{ fontSize: '0.78rem', color: '#D44A61', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                 <span>⚠️</span>
                 <span>{errors.sourcePort}</span>
               </div>
@@ -352,7 +354,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
           {/* 2. Destination Port */}
           <div>
             <label htmlFor="voyage-dest-port" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.45rem' }}>
-              Destination Port <span style={{ color: '#f87171' }}>*</span>
+              Destination Port <span style={{ color: '#D44A61' }}>*</span>
             </label>
             <select
               id="voyage-dest-port"
@@ -361,13 +363,14 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
               style={{
                 width: '100%',
                 padding: '0.7rem 0.85rem',
-                background: 'rgba(8, 13, 26, 0.85)',
-                border: `1px solid ${touched.destPort && errors.destPort ? '#ef4444' : 'var(--border-subtle)'}`,
+                background: '#FFFFFF',
+                border: `1px solid ${touched.destPort && errors.destPort ? '#D44A61' : 'var(--border-medium)'}`,
                 color: 'var(--text-primary)',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.92rem',
                 fontFamily: 'var(--font-sans)',
                 outline: 'none',
+                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <option value="" disabled>Select destination port...</option>
@@ -381,7 +384,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
               Discharge port for vessel berthing and cargo unloading.
             </div>
             {touched.destPort && errors.destPort && (
-              <div style={{ fontSize: '0.78rem', color: '#f87171', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <div style={{ fontSize: '0.78rem', color: '#D44A61', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                 <span>⚠️</span>
                 <span>{errors.destPort}</span>
               </div>
@@ -398,9 +401,9 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
               <label htmlFor="voyage-cargo-load" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                Cargo Load <span style={{ color: '#f87171' }}>*</span>
+                Cargo Load <span style={{ color: '#D44A61' }}>*</span>
               </label>
-              <span style={{ fontSize: '0.72rem', color: 'var(--accent-cyan)', fontWeight: 700 }}>
+              <span style={{ fontSize: '0.72rem', color: 'var(--accent-ocean)', fontWeight: 700 }}>
                 Metric Tonnes (MT)
               </span>
             </div>
@@ -415,20 +418,21 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
               style={{
                 width: '100%',
                 padding: '0.7rem 0.85rem',
-                background: 'rgba(8, 13, 26, 0.85)',
-                border: `1px solid ${touched.cargoWeight && errors.cargoWeight ? '#ef4444' : 'var(--border-subtle)'}`,
+                background: '#FFFFFF',
+                border: `1px solid ${touched.cargoWeight && errors.cargoWeight ? '#D44A61' : 'var(--border-medium)'}`,
                 color: 'var(--text-primary)',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.92rem',
                 fontFamily: 'var(--font-mono)',
                 outline: 'none',
+                boxShadow: 'var(--shadow-sm)',
               }}
             />
             <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
               Total shipment weight to be transported (determines vessel displacement and draft).
             </div>
             {touched.cargoWeight && errors.cargoWeight && (
-              <div style={{ fontSize: '0.78rem', color: '#f87171', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <div style={{ fontSize: '0.78rem', color: '#D44A61', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                 <span>⚠️</span>
                 <span>{errors.cargoWeight}</span>
               </div>
@@ -439,10 +443,10 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
               <label htmlFor="voyage-delivery-deadline" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                Delivery Deadline <span style={{ color: '#f87171' }}>*</span>
+                Delivery Deadline <span style={{ color: '#D44A61' }}>*</span>
               </label>
               {transitDays && (
-                <span style={{ fontSize: '0.72rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--accent-teal-dark)', fontWeight: 700 }}>
                   Transit: {transitDays} days
                 </span>
               )}
@@ -455,20 +459,21 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
               style={{
                 width: '100%',
                 padding: '0.7rem 0.85rem',
-                background: 'rgba(8, 13, 26, 0.85)',
-                border: `1px solid ${touched.deadlineDate && errors.deadlineDate ? '#ef4444' : 'var(--border-subtle)'}`,
+                background: '#FFFFFF',
+                border: `1px solid ${touched.deadlineDate && errors.deadlineDate ? '#D44A61' : 'var(--border-medium)'}`,
                 color: 'var(--text-primary)',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.92rem',
                 fontFamily: 'var(--font-sans)',
                 outline: 'none',
+                boxShadow: 'var(--shadow-sm)',
               }}
             />
             <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
               Required arrival time at destination (relative to reference departure: {values.departureDate.replace('T', ' ')} UTC).
             </div>
             {touched.deadlineDate && errors.deadlineDate && (
-              <div style={{ fontSize: '0.78rem', color: '#f87171', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <div style={{ fontSize: '0.78rem', color: '#D44A61', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                 <span>⚠️</span>
                 <span>{errors.deadlineDate}</span>
               </div>
@@ -479,8 +484,8 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
 
       {/* Voyage Scenario Summary Badge */}
       <div style={{
-        background: isFormValid ? 'rgba(16, 185, 129, 0.08)' : 'rgba(245, 158, 11, 0.08)',
-        border: `1px solid ${isFormValid ? 'rgba(16, 185, 129, 0.25)' : 'rgba(245, 158, 11, 0.25)'}`,
+        background: isFormValid ? 'var(--accent-teal-subtle)' : 'var(--accent-amber-light)',
+        border: `1px solid ${isFormValid ? '#C2E8DC' : '#F5DEBF'}`,
         borderRadius: 'var(--radius-sm)',
         padding: '0.85rem 1.15rem',
         display: 'flex',
@@ -492,7 +497,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <span style={{ fontSize: '1rem' }}>{isFormValid ? '✓' : 'ℹ️'}</span>
-          <span style={{ fontSize: '0.82rem', color: isFormValid ? '#34d399' : '#fbbf24', fontWeight: 600 }}>
+          <span style={{ fontSize: '0.82rem', color: isFormValid ? 'var(--accent-teal-dark)' : 'var(--accent-amber)', fontWeight: 600 }}>
             {isFormValid
               ? `Shipment Configured: ${values.sourcePort} ➔ ${values.destPort} &bull; ${values.cargoWeight.toLocaleString()} MT`
               : 'Complete the required voyage parameters above to unlock Stage 02 (Fleet).'}
@@ -519,7 +524,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-ocean)' }}>
             Stage 01 of 07
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>

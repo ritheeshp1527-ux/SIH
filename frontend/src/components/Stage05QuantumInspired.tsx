@@ -399,10 +399,10 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
             <span className="badge badge-cyan" id="stage-badge-indicator">
               05 / 07
             </span>
-            <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+            <span className="badge badge-purple">
               QUBO
             </span>
-            <span className="badge" style={{ background: 'rgba(56, 189, 248, 0.12)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.25)' }}>
+            <span className="badge badge-cyan">
               Quantum-Inspired
             </span>
             <span className="badge badge-amber">
@@ -422,13 +422,13 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
 
         <div style={{
           padding: '0.55rem 1rem',
-          background: 'rgba(15, 23, 42, 0.65)',
+          background: 'var(--bg-secondary)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-sm)',
           fontSize: '0.78rem',
-          color: 'var(--text-muted)'
+          color: 'var(--text-secondary)'
         }}>
-          Status: <strong style={{ color: qiResult ? 'var(--accent-emerald)' : classicalResult ? 'var(--accent-cyan)' : 'var(--accent-rose)' }}>
+          Status: <strong style={{ color: qiResult ? 'var(--accent-teal-dark)' : classicalResult ? 'var(--accent-ocean)' : 'var(--accent-rose)' }}>
             {qiResult ? 'QI Solutions Ranked ✓' : classicalResult ? 'Ready to Formulate & Solve' : 'Locked (Requires Stage 04)'}
           </strong>
         </div>
@@ -438,7 +438,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
       {/* 2. UPSTREAM CONTEXT (Voyage, Fleet, Environment, Classical)   */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.55)',
+        background: 'var(--bg-card-inset)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.15rem 1.25rem',
@@ -454,9 +454,9 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           gap: '1rem',
         }}>
           {/* Voyage Context */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+          <div style={{ background: '#FFFFFF', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Voyage Corridor</div>
-            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-cyan)', marginTop: '0.2rem' }}>
+            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-ocean)', marginTop: '0.2rem' }}>
               {voyageConfig.sourcePort} → {voyageConfig.destPort}
             </div>
             <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
@@ -465,7 +465,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           </div>
 
           {/* Fleet Context */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+          <div style={{ background: '#FFFFFF', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Fleet Verification</div>
             <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-purple)', marginTop: '0.2rem' }}>
               {selectedVesselIds.length} Vessels Selected
@@ -476,9 +476,9 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           </div>
 
           {/* Environment Context */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+          <div style={{ background: '#FFFFFF', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Feasible Corridors</div>
-            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-emerald)', marginTop: '0.2rem' }}>
+            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-teal-dark)', marginTop: '0.2rem' }}>
               {feasibleRouteIds.length} Routes Feasible
             </div>
             <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
@@ -487,9 +487,9 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           </div>
 
           {/* Classical Baseline Context */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+          <div style={{ background: '#FFFFFF', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Classical Baseline (Stage 04)</div>
-            <div id="upstream-classical-cost" style={{ fontSize: '0.88rem', fontWeight: 700, color: classicalCostCandidate ? 'var(--accent-emerald)' : 'var(--text-muted)', marginTop: '0.2rem', fontFamily: 'monospace' }}>
+            <div id="upstream-classical-cost" style={{ fontSize: '0.88rem', fontWeight: 700, color: classicalCostCandidate ? 'var(--accent-teal-dark)' : 'var(--text-muted)', marginTop: '0.2rem', fontFamily: 'monospace' }}>
               {classicalCostCandidate ? `$${classicalCostCandidate.total_voyage_cost_usd.toLocaleString('en-US', { maximumFractionDigits: 0 })}` : 'Not run'}
             </div>
             <div id="upstream-classical-runtime" style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
@@ -503,8 +503,8 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
       {/* 3. EXPLANATION BANNER                                         */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(168, 85, 247, 0.08)',
-        border: '1px solid rgba(168, 85, 247, 0.3)',
+        background: 'var(--accent-purple-light)',
+        border: '1px solid #D8DDF5',
         borderRadius: 'var(--radius-sm)',
         padding: '0.95rem 1.25rem',
         marginBottom: '1.5rem',
@@ -514,7 +514,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
       }}>
         <span style={{ fontSize: '1.4rem' }}>⚛️</span>
         <div style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          <strong style={{ color: '#c084fc' }}>Identical Decision Space Handoff: </strong>
+          <strong style={{ color: 'var(--accent-purple)' }}>Identical Decision Space Handoff: </strong>
           The classical baseline defines the feasible decision space. This stage encodes those feasible decisions as binary variables in a QUBO and searches the resulting objective using quantum-inspired simulated annealing.
         </div>
       </div>
@@ -523,11 +523,12 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
       {/* 4. QUBO FORMULATION PIPELINE VISUALIZATION                     */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.7)',
+        background: '#FFFFFF',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.35rem 1.5rem',
         marginBottom: '1.75rem',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '0.85rem' }}>
           Mathematical Pipeline Flow: Classical Feasibility to QUBO Search
@@ -542,9 +543,9 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           textAlign: 'center',
           marginBottom: '1.25rem',
         }}>
-          <div style={{ background: 'rgba(0, 0, 0, 0.35)', border: '1px solid rgba(0, 229, 255, 0.25)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
+          <div style={{ background: 'var(--bg-card-inset)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
             <div style={{ fontSize: '1.1rem' }}>📋</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-cyan)', marginTop: '0.25rem' }}>Feasible Decisions</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-ocean)', marginTop: '0.25rem' }}>Feasible Decisions</div>
             <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
               {classicalResult ? `${classicalResult.benchmark.feasible_candidates_count} States` : 'Pruned Set'}
             </div>
@@ -552,9 +553,9 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
 
           <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', justifyContent: 'center' }}>→</div>
 
-          <div style={{ background: 'rgba(0, 0, 0, 0.35)', border: '1px solid rgba(168, 85, 247, 0.25)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
+          <div style={{ background: 'var(--bg-card-inset)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
             <div style={{ fontSize: '1.1rem' }}>0️⃣ 1️⃣</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#c084fc', marginTop: '0.25rem' }}>Binary Variables</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-purple)', marginTop: '0.25rem' }}>Binary Variables</div>
             <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
               {qubo ? `${qubo.num_variables} Variables` : 'x_i ∈ {0, 1}'}
             </div>
@@ -562,9 +563,9 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
 
           <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', justifyContent: 'center' }}>→</div>
 
-          <div style={{ background: 'rgba(0, 0, 0, 0.35)', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
+          <div style={{ background: 'var(--bg-card-inset)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
             <div style={{ fontSize: '1.1rem' }}>📐</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#38bdf8', marginTop: '0.25rem' }}>QUBO Matrix</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-ocean)', marginTop: '0.25rem' }}>QUBO Matrix</div>
             <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
               {qubo ? `${qubo.num_nonzero_coefficients} Non-zero Terms` : 'Q_ij Coefficients'}
             </div>
@@ -572,7 +573,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
 
           <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', justifyContent: 'center' }}>→</div>
 
-          <div style={{ background: 'rgba(0, 0, 0, 0.35)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
+          <div style={{ background: 'var(--bg-card-inset)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
             <div style={{ fontSize: '1.1rem' }}>🔥</div>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-amber)', marginTop: '0.25rem' }}>Simulated Annealing</div>
             <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>5 Temperature Runs</div>
@@ -580,22 +581,22 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
 
           <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', justifyContent: 'center' }}>→</div>
 
-          <div style={{ background: 'rgba(0, 0, 0, 0.35)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
+          <div style={{ background: 'var(--bg-card-inset)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '0.75rem 0.5rem' }}>
             <div style={{ fontSize: '1.1rem' }}>🏆</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-emerald)', marginTop: '0.25rem' }}>Feasible Solutions</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-teal-dark)', marginTop: '0.25rem' }}>Feasible Solutions</div>
             <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Top-K Ranked</div>
           </div>
         </div>
 
-        {/* Real QUBO Parameters Metadata Display inside collapsed-by-default technical disclosure */}
+        {/* Real QUBO Parameters Metadata Display */}
         {qubo && (
           <details
             id="qubo-technical-disclosure"
             style={{
               marginTop: '1rem',
-              background: 'rgba(0, 0, 0, 0.25)',
+              background: 'var(--bg-card-inset)',
               borderRadius: 'var(--radius-sm)',
-              border: '1px solid rgba(168, 85, 247, 0.25)',
+              border: '1px solid var(--border-subtle)',
               overflow: 'hidden',
             }}
           >
@@ -605,22 +606,22 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                 cursor: 'pointer',
                 fontWeight: 600,
                 fontSize: '0.8rem',
-                color: '#c084fc',
+                color: 'var(--accent-purple)',
                 userSelect: 'none',
                 outline: 'none',
               }}
             >
               QUBO Mathematical Formulation &amp; Penalty Multipliers
             </summary>
-            <div style={{ padding: '0.75rem 1rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)', fontSize: '0.78rem' }}>
+            <div style={{ padding: '0.75rem 1rem', borderTop: '1px solid var(--border-subtle)', fontSize: '0.78rem' }}>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.5rem' }}>
                 <div style={{ marginRight: '1rem' }}>
                   <span style={{ color: 'var(--text-muted)' }}>QUBO Variables: </span>
-                  <strong style={{ color: '#c084fc', fontFamily: 'monospace' }}>{qubo.num_variables}</strong>
+                  <strong style={{ color: 'var(--accent-purple)', fontFamily: 'monospace' }}>{qubo.num_variables}</strong>
                 </div>
                 <div style={{ marginRight: '1rem' }}>
                   <span style={{ color: 'var(--text-muted)' }}>Non-Zero Terms: </span>
-                  <strong style={{ color: 'var(--accent-cyan)', fontFamily: 'monospace' }}>{qubo.num_nonzero_coefficients}</strong>
+                  <strong style={{ color: 'var(--accent-ocean)', fontFamily: 'monospace' }}>{qubo.num_nonzero_coefficients}</strong>
                 </div>
                 <div style={{ marginRight: '1rem' }}>
                   <span style={{ color: 'var(--text-muted)' }}>Penalty Magnitude: </span>
@@ -628,16 +629,16 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                 </div>
                 <div>
                   <span style={{ color: 'var(--text-muted)' }}>Objective Mode: </span>
-                  <strong style={{ color: 'var(--accent-emerald)', textTransform: 'capitalize' }}>{qubo.objective_mode}</strong>
+                  <strong style={{ color: 'var(--accent-teal-dark)', textTransform: 'capitalize' }}>{qubo.objective_mode}</strong>
                 </div>
               </div>
 
-              <div style={{ paddingTop: '0.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+              <div style={{ paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
                   One-hot decision constraint penalty strategy: <strong style={{ color: 'var(--text-primary)' }}>{qubo.penalty_strategy}</strong> (Constant offset: {qubo.constant_offset})
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-                  Mathematical Formulation: <code style={{ color: '#c084fc' }}>min x^T Q x + λ (∑ x_i - 1)²</code> enforcing exactly one discrete candidate decision per vessel.
+                  Mathematical Formulation: <code style={{ color: 'var(--accent-purple)' }}>min x^T Q x + λ (∑ x_i - 1)²</code> enforcing exactly one discrete candidate decision per vessel.
                 </div>
               </div>
             </div>
@@ -649,11 +650,12 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
       {/* 5. CONTROLS & RUN TRIGGER                                      */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.7)',
+        background: '#FFFFFF',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.35rem 1.5rem',
         marginBottom: '1.75rem',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
@@ -678,13 +680,14 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                 onChange={(e) => setObjectiveMode(e.target.value as 'cost' | 'time')}
                 disabled={isRunning}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.9)',
-                  border: '1px solid var(--border-subtle)',
+                  background: '#FFFFFF',
+                  border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-sm)',
                   color: 'var(--text-primary)',
                   padding: '0.4rem 0.75rem',
                   fontSize: '0.8rem',
                   cursor: 'pointer',
+                  boxShadow: 'var(--shadow-sm)'
                 }}
               >
                 <option value="cost">Minimum Cost (Primary)</option>
@@ -703,14 +706,15 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                 onChange={(e) => setTopK(parseInt(e.target.value, 10))}
                 disabled={isRunning}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.9)',
-                  border: '1px solid var(--border-subtle)',
+                  background: '#FFFFFF',
+                  border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-sm)',
                   color: 'var(--text-primary)',
                   padding: '0.4rem 0.75rem',
                   fontSize: '0.8rem',
                   cursor: 'pointer',
                   fontFamily: 'monospace',
+                  boxShadow: 'var(--shadow-sm)'
                 }}
               >
                 <option value="3">3 Candidates</option>
@@ -729,19 +733,19 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                 padding: '0.65rem 1.5rem',
                 borderRadius: 'var(--radius-sm)',
                 background: !classicalResult
-                  ? 'rgba(255, 255, 255, 0.08)'
+                  ? 'var(--bg-secondary)'
                   : isRunning
-                  ? 'rgba(168, 85, 247, 0.2)'
-                  : 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)',
-                color: !classicalResult ? 'var(--text-muted)' : isRunning ? '#c084fc' : '#ffffff',
-                border: 'none',
+                  ? 'var(--accent-purple-light)'
+                  : 'linear-gradient(135deg, #2A74A8 0%, #1A5480 100%)',
+                color: !classicalResult ? 'var(--text-muted)' : isRunning ? 'var(--accent-purple)' : '#ffffff',
+                border: '1px solid #16476D',
                 fontWeight: 700,
                 fontSize: '0.88rem',
                 cursor: isRunning || !classicalResult ? 'not-allowed' : 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                boxShadow: !classicalResult || isRunning ? 'none' : '0 4px 15px rgba(168, 85, 247, 0.35)',
+                boxShadow: !classicalResult || isRunning ? 'none' : 'var(--shadow-button)',
                 transition: 'all 0.2s ease',
               }}
             >
@@ -759,8 +763,8 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
         <div
           id="qi-processing-state"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.85))',
-            border: '1px solid rgba(168, 85, 247, 0.4)',
+            background: 'var(--accent-purple-light)',
+            border: '1px solid #D8DDF5',
             borderRadius: 'var(--radius-md)',
             padding: '2rem 1.5rem',
             marginBottom: '1.75rem',
@@ -773,7 +777,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
             {PROCESSING_STEPS[processingStepIndex]}...
           </div>
-          <div style={{ fontSize: '0.8rem', color: '#c084fc', fontFamily: 'monospace', marginBottom: '1.25rem' }}>
+          <div style={{ fontSize: '0.8rem', color: 'var(--accent-purple)', fontFamily: 'monospace', marginBottom: '1.25rem' }}>
             Step {processingStepIndex + 1} of 5: Quantum-inspired simulated annealing heuristic
           </div>
 
@@ -798,21 +802,21 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                     fontSize: '0.72rem',
                     fontWeight: 600,
                     background: isCurrent
-                      ? 'rgba(168, 85, 247, 0.25)'
+                      ? 'var(--accent-purple-light)'
                       : isDone
-                      ? 'rgba(16, 185, 129, 0.15)'
-                      : 'rgba(255, 255, 255, 0.05)',
+                      ? 'var(--accent-teal-subtle)'
+                      : '#FFFFFF',
                     color: isCurrent
-                      ? '#c084fc'
+                      ? 'var(--accent-purple)'
                       : isDone
-                      ? 'var(--accent-emerald)'
+                      ? 'var(--accent-teal-dark)'
                       : 'var(--text-muted)',
                     border: '1px solid',
                     borderColor: isCurrent
-                      ? 'rgba(168, 85, 247, 0.5)'
+                      ? '#D8DDF5'
                       : isDone
-                      ? 'rgba(16, 185, 129, 0.3)'
-                      : 'rgba(255, 255, 255, 0.08)',
+                      ? '#C2E8DC'
+                      : 'var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.35rem',
@@ -834,11 +838,11 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
         <div
           id="qi-error-banner"
           style={{
-            background: 'rgba(244, 63, 94, 0.12)',
-            border: '1px solid rgba(244, 63, 94, 0.4)',
+            background: 'var(--accent-rose-light)',
+            border: '1px solid #F6D0D8',
             borderRadius: 'var(--radius-sm)',
             padding: '1rem 1.25rem',
-            color: '#fda4af',
+            color: 'var(--accent-rose)',
             fontSize: '0.85rem',
             marginBottom: '1.5rem',
             display: 'flex',
@@ -866,11 +870,11 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
             gap: '1rem',
             marginBottom: '1.5rem',
           }}>
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid rgba(168, 85, 247, 0.3)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 QUBO Variables
               </div>
-              <div id="kpi-qubo-variables" style={{ fontSize: '1.6rem', fontWeight: 800, color: '#c084fc', fontFamily: 'monospace', marginTop: '0.25rem' }}>
+              <div id="kpi-qubo-variables" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-purple)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
                 {qubo ? qubo.num_variables : '—'}
               </div>
               <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
@@ -878,11 +882,11 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
               </div>
             </div>
 
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Non-Zero QUBO Terms
               </div>
-              <div id="kpi-nonzero-terms" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
+              <div id="kpi-nonzero-terms" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-ocean)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
                 {qubo ? qubo.num_nonzero_coefficients : '—'}
               </div>
               <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
@@ -890,19 +894,19 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
               </div>
             </div>
 
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid #C2E8DC', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Solver Runtime
               </div>
-              <div id="kpi-qi-runtime" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-emerald)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
+              <div id="kpi-qi-runtime" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-teal-dark)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
                 {qiResult.solver_runtime_ms} ms
               </div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--accent-teal-dark)', marginTop: '0.2rem' }}>
                 Simulated annealing duration
               </div>
             </div>
 
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Feasible Alternatives
               </div>
@@ -922,17 +926,17 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
             <div
               id="card-best-qi"
               style={{
-                background: 'linear-gradient(180deg, rgba(168, 85, 247, 0.1) 0%, rgba(15, 23, 42, 0.85) 100%)',
-                border: '1px solid rgba(168, 85, 247, 0.4)',
+                background: '#FFFFFF',
+                border: '1px solid #D8DDF5',
                 borderRadius: 'var(--radius-md)',
                 padding: '1.5rem',
                 position: 'relative',
                 marginBottom: '1.5rem',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                boxShadow: 'var(--shadow-card)',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
-                <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.25)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.45)', fontWeight: 700, fontSize: '0.72rem' }}>
+                <span className="badge badge-purple" style={{ fontWeight: 700, fontSize: '0.72rem' }}>
                   ⚛️ BEST QUANTUM-INSPIRED CANDIDATE
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
@@ -953,10 +957,10 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                 alignItems: 'baseline',
                 gap: '0.5rem',
                 paddingBottom: '0.85rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                borderBottom: '1px solid var(--border-subtle)',
                 marginBottom: '1rem',
               }}>
-                <span style={{ fontSize: '2rem', fontWeight: 800, color: '#c084fc', fontFamily: 'monospace' }}>
+                <span style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent-purple)', fontFamily: 'monospace' }}>
                   ${bestSolution.total_cost_usd.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                 </span>
                 <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>USD total voyage cost</span>
@@ -970,7 +974,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
 
                 <div>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Maritime Route:</div>
-                  <strong style={{ color: '#c084fc' }}>
+                  <strong style={{ color: 'var(--accent-purple)' }}>
                     {bestSolution.route_name.includes('via') ? bestSolution.route_name.split('via')[1].trim() : bestSolution.route_name}
                   </strong>
                 </div>
@@ -996,7 +1000,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
 
                 <div>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Deadline Margin:</div>
-                  <span style={{ fontFamily: 'monospace', color: 'var(--accent-emerald)', fontWeight: 700 }}>
+                  <span style={{ fontFamily: 'monospace', color: 'var(--accent-teal-dark)', fontWeight: 700 }}>
                     +{bestSolution.deadline_margin_hours.toFixed(1)} hrs buffer
                   </span>
                 </div>
@@ -1031,11 +1035,12 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           {/* 9. TOP-K ALTERNATIVES TABLE                                   */}
           {/* ------------------------------------------------------------- */}
           <div style={{
-            background: 'rgba(15, 23, 42, 0.65)',
+            background: '#FFFFFF',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-md)',
             padding: '1.25rem 1.5rem',
             marginBottom: '1.5rem',
+            boxShadow: 'var(--shadow-sm)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
               <div>
@@ -1054,16 +1059,16 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
             <div style={{ overflowX: 'auto' }}>
               <table id="table-top-k-solutions" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
                 <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', textAlign: 'left', color: 'var(--text-muted)' }}>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Rank</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Vessel</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Route</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Speed</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Fuel</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Cost (USD)</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Voyage Duration (hrs)</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>Fuel Burn</th>
-                    <th style={{ padding: '0.5rem 0.65rem' }}>CO₂</th>
+                  <tr style={{ borderBottom: '1px solid var(--border-subtle)', textAlign: 'left', color: 'var(--text-muted)', background: 'var(--bg-card-inset)' }}>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Rank</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Vessel</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Route</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Speed</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Fuel</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Cost (USD)</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Voyage Duration (hrs)</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>Fuel Burn</th>
+                    <th style={{ padding: '0.65rem 0.75rem' }}>CO₂</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1071,35 +1076,35 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
                     <tr
                       key={sol.decision_id}
                       style={{
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-                        background: sol.rank === 1 ? 'rgba(168, 85, 247, 0.08)' : 'transparent',
+                        borderBottom: '1px solid #EFF5F9',
+                        background: sol.rank === 1 ? 'var(--accent-purple-light)' : 'transparent',
                       }}
                     >
-                      <td style={{ padding: '0.65rem', fontWeight: 700, color: sol.rank === 1 ? '#c084fc' : 'var(--text-primary)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', fontWeight: 700, color: sol.rank === 1 ? 'var(--accent-purple)' : 'var(--text-primary)' }}>
                         #{sol.rank}
                       </td>
-                      <td style={{ padding: '0.65rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                         {sol.vessel_name}
                       </td>
-                      <td style={{ padding: '0.65rem', color: 'var(--text-secondary)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', color: 'var(--text-secondary)' }}>
                         {sol.route_name.includes('via') ? sol.route_name.split('via')[1].trim() : sol.route_name}
                       </td>
-                      <td style={{ padding: '0.65rem', fontFamily: 'monospace', color: 'var(--accent-cyan)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', fontFamily: 'monospace', color: 'var(--accent-ocean)' }}>
                         {sol.speed_knots} kn
                       </td>
-                      <td style={{ padding: '0.65rem', color: 'var(--text-secondary)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', color: 'var(--text-secondary)' }}>
                         {sol.fuel_id}
                       </td>
-                      <td style={{ padding: '0.65rem', fontFamily: 'monospace', fontWeight: 700, color: 'var(--accent-emerald)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', fontFamily: 'monospace', fontWeight: 700, color: 'var(--accent-teal-dark)' }}>
                         ${sol.total_cost_usd.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                       </td>
-                      <td style={{ padding: '0.65rem', fontFamily: 'monospace', color: 'var(--text-primary)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', fontFamily: 'monospace', color: 'var(--text-primary)' }}>
                         {(sol.total_duration_hours / 24).toFixed(1)} d
                       </td>
-                      <td style={{ padding: '0.65rem', fontFamily: 'monospace', color: 'var(--text-secondary)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', fontFamily: 'monospace', color: 'var(--text-secondary)' }}>
                         {sol.fuel_consumption_tonnes.toLocaleString('en-US', { maximumFractionDigits: 1 })} MT
                       </td>
-                      <td style={{ padding: '0.65rem', fontFamily: 'monospace', color: 'var(--text-muted)' }}>
+                      <td style={{ padding: '0.65rem 0.75rem', fontFamily: 'monospace', color: 'var(--text-muted)' }}>
                         {sol.operational_co2_tonnes.toLocaleString('en-US', { maximumFractionDigits: 1 })} t
                       </td>
                     </tr>
@@ -1115,7 +1120,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
           <div
             id="classical-vs-qi-preview"
             style={{
-              background: 'rgba(15, 23, 42, 0.55)',
+              background: 'var(--bg-card-inset)',
               border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-md)',
               padding: '1.25rem 1.5rem',
@@ -1132,36 +1137,36 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-              <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+              <div style={{ background: '#FFFFFF', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Best Voyage Cost</div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '0.35rem' }}>
                   <div>
                     <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Classical:</div>
-                    <div id="preview-classical-cost" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-emerald)', fontFamily: 'monospace' }}>
+                    <div id="preview-classical-cost" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-teal-dark)', fontFamily: 'monospace' }}>
                       {classicalCostCandidate ? `$${classicalCostCandidate.total_voyage_cost_usd.toLocaleString('en-US', { maximumFractionDigits: 0 })}` : '—'}
                     </div>
                   </div>
                   <div>
                     <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Quantum-Inspired:</div>
-                    <div id="preview-qi-cost" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#c084fc', fontFamily: 'monospace' }}>
+                    <div id="preview-qi-cost" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-purple)', fontFamily: 'monospace' }}>
                       ${bestSolution?.total_cost_usd.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+              <div style={{ background: '#FFFFFF', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Solver Execution Runtime</div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '0.35rem' }}>
                   <div>
                     <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Classical Exact:</div>
-                    <div id="preview-classical-runtime" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-cyan)', fontFamily: 'monospace' }}>
+                    <div id="preview-classical-runtime" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-ocean)', fontFamily: 'monospace' }}>
                       {classicalResult ? `${classicalResult.benchmark.runtime_ms} ms` : '—'}
                     </div>
                   </div>
                   <div>
                     <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>QI Annealing:</div>
-                    <div id="preview-qi-runtime" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#c084fc', fontFamily: 'monospace' }}>
+                    <div id="preview-qi-runtime" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-purple)', fontFamily: 'monospace' }}>
                       {qiResult.solver_runtime_ms} ms
                     </div>
                   </div>
@@ -1178,8 +1183,8 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
       <div
         id="qi-honest-disclaimer"
         style={{
-          background: 'rgba(56, 189, 248, 0.08)',
-          border: '1px solid rgba(56, 189, 248, 0.3)',
+          background: 'var(--accent-blue-subtle)',
+          border: '1px solid #BEDDF0',
           borderRadius: 'var(--radius-sm)',
           padding: '0.9rem 1.25rem',
           marginBottom: '1.75rem',
@@ -1190,7 +1195,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
       >
         <span style={{ fontSize: '1.3rem' }}>ℹ️</span>
         <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          <strong style={{ color: '#38bdf8' }}>Scientific Integrity Note: </strong>
+          <strong style={{ color: 'var(--accent-ocean)' }}>Scientific Integrity Note: </strong>
           Quantum-inspired means the solver uses quantum-optimization-inspired mathematical formulation and search techniques executed classically. No quantum hardware is used in this prototype.
         </div>
       </div>
@@ -1211,7 +1216,7 @@ export const Stage05QuantumInspired: React.FC<Stage05QuantumInspiredProps> = ({
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#c084fc' }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-ocean)' }}>
             Stage 05 of 07
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>

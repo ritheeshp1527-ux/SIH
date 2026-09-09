@@ -94,58 +94,58 @@ function StageParetoPlot({
     <div
       style={{
         width: '100%',
-        background: 'rgba(11, 19, 38, 0.85)',
-        border: '1px solid var(--border-subtle)',
-        borderRadius: 'var(--radius-lg)',
+        background: 'var(--bg-card-inset, #F4FAFC)',
+        border: '1px solid var(--border-subtle, #E2EDF5)',
+        borderRadius: 'var(--radius-lg, 12px)',
         padding: '1.25rem',
         position: 'relative',
       }}
       id="stage-pareto-scatter-container"
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-        <h4 style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--accent-cyan)', margin: 0 }}>
+        <h4 style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--accent-ocean, #1F5A85)', margin: 0 }}>
           Cost vs. Transit Duration Pareto Frontier ({paretoFront.length} Non-Dominated Solutions)
         </h4>
-        <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
+        <div style={{ fontSize: '0.76rem', color: 'var(--text-secondary, #4C6D87)' }}>
           Frontier Bounds: Cost [{formatMoney(minCost)} – {formatMoney(maxCost)}] &bull; Time [{formatNum(minTime)}h – {formatNum(maxTime)}h]
         </div>
       </div>
 
       <svg viewBox={`0 0 ${width} ${height}`} width="100%" height="260" style={{ overflow: 'visible' }} role="img" aria-label="Pareto Trade-off Scatter Plot">
         {/* Subtle background grid lines */}
-        <line x1={padding} y1={getY(midCost)} x2={width - padding} y2={getY(midCost)} stroke="rgba(255, 255, 255, 0.08)" strokeDasharray="3 3" />
-        <line x1={getX(midTime)} y1={padding} x2={getX(midTime)} y2={height - padding} stroke="rgba(255, 255, 255, 0.08)" strokeDasharray="3 3" />
+        <line x1={padding} y1={getY(midCost)} x2={width - padding} y2={getY(midCost)} stroke="#DCEAF3" strokeDasharray="3 3" />
+        <line x1={getX(midTime)} y1={padding} x2={getX(midTime)} y2={height - padding} stroke="#DCEAF3" strokeDasharray="3 3" />
 
         {/* Primary Axes */}
-        <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="rgba(255, 255, 255, 0.3)" strokeWidth={1.5} />
-        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="rgba(255, 255, 255, 0.3)" strokeWidth={1.5} />
+        <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="#9BBECF" strokeWidth={1.5} />
+        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#9BBECF" strokeWidth={1.5} />
 
         {/* X Ticks & Labels */}
-        <line x1={padding} y1={height - padding} x2={padding} y2={height - padding + 5} stroke="rgba(255, 255, 255, 0.4)" />
-        <text x={padding} y={height - padding + 16} fontSize="10" textAnchor="middle" fill="var(--text-muted)">{formatNum(minTime, 0)}h</text>
+        <line x1={padding} y1={height - padding} x2={padding} y2={height - padding + 5} stroke="#9BBECF" />
+        <text x={padding} y={height - padding + 16} fontSize="10" textAnchor="middle" fill="var(--text-secondary, #4C6D87)">{formatNum(minTime, 0)}h</text>
 
-        <line x1={getX(midTime)} y1={height - padding} x2={getX(midTime)} y2={height - padding + 5} stroke="rgba(255, 255, 255, 0.4)" />
-        <text x={getX(midTime)} y={height - padding + 16} fontSize="10" textAnchor="middle" fill="var(--text-muted)">{formatNum(midTime, 0)}h</text>
+        <line x1={getX(midTime)} y1={height - padding} x2={getX(midTime)} y2={height - padding + 5} stroke="#9BBECF" />
+        <text x={getX(midTime)} y={height - padding + 16} fontSize="10" textAnchor="middle" fill="var(--text-secondary, #4C6D87)">{formatNum(midTime, 0)}h</text>
 
-        <line x1={width - padding} y1={height - padding} x2={width - padding} y2={height - padding + 5} stroke="rgba(255, 255, 255, 0.4)" />
-        <text x={width - padding} y={height - padding + 16} fontSize="10" textAnchor="middle" fill="var(--text-muted)">{formatNum(maxTime, 0)}h</text>
+        <line x1={width - padding} y1={height - padding} x2={width - padding} y2={height - padding + 5} stroke="#9BBECF" />
+        <text x={width - padding} y={height - padding + 16} fontSize="10" textAnchor="middle" fill="var(--text-secondary, #4C6D87)">{formatNum(maxTime, 0)}h</text>
 
         {/* Y Ticks & Labels */}
-        <line x1={padding - 5} y1={height - padding} x2={padding} y2={height - padding} stroke="rgba(255, 255, 255, 0.4)" />
-        <text x={padding - 8} y={height - padding + 4} fontSize="9.5" textAnchor="end" fill="var(--text-muted)">{formatMoney(minCost)}</text>
+        <line x1={padding - 5} y1={height - padding} x2={padding} y2={height - padding} stroke="#9BBECF" />
+        <text x={padding - 8} y={height - padding + 4} fontSize="9.5" textAnchor="end" fill="var(--text-secondary, #4C6D87)">{formatMoney(minCost)}</text>
 
-        <line x1={padding - 5} y1={getY(midCost)} x2={padding} y2={getY(midCost)} stroke="rgba(255, 255, 255, 0.4)" />
-        <text x={padding - 8} y={getY(midCost) + 4} fontSize="9.5" textAnchor="end" fill="var(--text-muted)">{formatMoney(midCost)}</text>
+        <line x1={padding - 5} y1={getY(midCost)} x2={padding} y2={getY(midCost)} stroke="#9BBECF" />
+        <text x={padding - 8} y={getY(midCost) + 4} fontSize="9.5" textAnchor="end" fill="var(--text-secondary, #4C6D87)">{formatMoney(midCost)}</text>
 
-        <line x1={padding - 5} y1={padding} x2={padding} y2={padding} stroke="rgba(255, 255, 255, 0.4)" />
-        <text x={padding - 8} y={padding + 4} fontSize="9.5" textAnchor="end" fill="var(--text-muted)">{formatMoney(maxCost)}</text>
+        <line x1={padding - 5} y1={padding} x2={padding} y2={padding} stroke="#9BBECF" />
+        <text x={padding - 8} y={padding + 4} fontSize="9.5" textAnchor="end" fill="var(--text-secondary, #4C6D87)">{formatMoney(maxCost)}</text>
 
         {/* Trade-off Frontier Connection Curve */}
         {frontierPath && (
           <path
             d={frontierPath}
             fill="none"
-            stroke="rgba(0, 229, 255, 0.5)"
+            stroke="#3884C7"
             strokeWidth={1.75}
             strokeDasharray="4 3"
           />
@@ -157,27 +157,27 @@ function StageParetoPlot({
           const isClassical = c.decision_id === classicalOptId;
           const isQI = c.decision_id === qiOptId;
 
-          let fill = '#64748b'; // Slate (Non-dominated alternative)
+          let fill = '#8FAEC2'; // Soft slate blue (Non-dominated alternative)
           let r = 5.5;
-          let stroke = 'rgba(255, 255, 255, 0.4)';
-          let strokeWidth = 1;
+          let stroke = '#FFFFFF';
+          let strokeWidth = 1.5;
 
           if (isClassical) {
-            fill = '#38bdf8'; // Cyan
+            fill = '#1F5A85'; // Deep Ocean Blue
             r = 7.5;
-            stroke = '#0284c7';
+            stroke = '#FFFFFF';
             strokeWidth = 2;
           }
           if (isQI) {
-            fill = '#c084fc'; // Purple
+            fill = '#7C5CBF'; // Muted purple
             r = 7.5;
-            stroke = '#9333ea';
+            stroke = '#FFFFFF';
             strokeWidth = 2;
           }
           if (isSelected) {
-            fill = '#10b981'; // Emerald
+            fill = '#3FA48E'; // Sustainability Emerald/Teal
             r = 9.5;
-            stroke = '#059669';
+            stroke = '#FFFFFF';
             strokeWidth = 2.5;
           }
 
@@ -200,10 +200,10 @@ function StageParetoPlot({
         })}
 
         {/* Axis Titles */}
-        <text x={width / 2} y={height - 2} fontSize="11" textAnchor="middle" fill="var(--text-muted)" fontWeight="600">
+        <text x={width / 2} y={height - 2} fontSize="11" textAnchor="middle" fill="var(--text-secondary, #4C6D87)" fontWeight="600">
           Transit Duration (hours) →
         </text>
-        <text x={16} y={height / 2} fontSize="11" textAnchor="middle" fill="var(--text-muted)" fontWeight="600" transform={`rotate(-90 16 ${height / 2})`}>
+        <text x={16} y={height / 2} fontSize="11" textAnchor="middle" fill="var(--text-secondary, #4C6D87)" fontWeight="600" transform={`rotate(-90 16 ${height / 2})`}>
           Total Voyage Cost (USD) →
         </text>
       </svg>
@@ -211,23 +211,23 @@ function StageParetoPlot({
       {/* Pareto Plot Legend */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', fontSize: '0.76rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <div style={{ width: 11, height: 11, borderRadius: '50%', background: '#10b981', border: '1px solid #fff' }} />
-          <strong>Selected Priority Alternative</strong>
+          <div style={{ width: 11, height: 11, borderRadius: '50%', background: '#3FA48E', border: '1px solid #fff' }} />
+          <strong style={{ color: 'var(--text-primary, #13324B)' }}>Selected Priority Alternative</strong>
         </span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#38bdf8', border: '1px solid #fff' }} />
+        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-secondary, #4C6D87)' }}>
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#1F5A85', border: '1px solid #fff' }} />
           Classical Optimum
         </span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#c084fc', border: '1px solid #fff' }} />
+        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-secondary, #4C6D87)' }}>
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#7C5CBF', border: '1px solid #fff' }} />
           Quantum-Inspired Solution
         </span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#64748b' }} />
+        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-secondary, #4C6D87)' }}>
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#8FAEC2' }} />
           Pareto Non-Dominated
         </span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)' }}>
-          <div style={{ width: 18, height: 2, background: 'var(--accent-cyan)', borderTop: '1px dashed #00e5ff' }} />
+        <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-secondary, #4C6D87)' }}>
+          <div style={{ width: 18, height: 2, background: '#3884C7', borderTop: '1px dashed #3884C7' }} />
           Non-Dominated Trade-off Frontier
         </span>
       </div>
@@ -793,7 +793,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
             <span className="badge badge-cyan" id="stage-badge-indicator">
               06 / 07
             </span>
-            <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+            <span className="badge badge-purple" style={{ background: '#EDE9FE', color: '#6D28D9', border: '1px solid #DDD6FE' }}>
               Comparative Analysis
             </span>
             <span className="badge badge-emerald">
@@ -813,13 +813,13 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
 
         <div style={{
           padding: '0.55rem 1rem',
-          background: 'rgba(15, 23, 42, 0.65)',
-          border: '1px solid var(--border-subtle)',
+          background: 'var(--bg-card-inset, #F4FAFC)',
+          border: '1px solid var(--border-subtle, #E2EDF5)',
           borderRadius: 'var(--radius-sm)',
           fontSize: '0.78rem',
-          color: 'var(--text-muted)'
+          color: 'var(--text-secondary)'
         }}>
-          Status: <strong style={{ color: comparativeResult ? 'var(--accent-emerald)' : isRunning ? 'var(--accent-amber)' : 'var(--accent-cyan)' }}>
+          Status: <strong style={{ color: comparativeResult ? 'var(--accent-teal, #2C8573)' : isRunning ? 'var(--accent-amber, #B45309)' : 'var(--accent-ocean, #1F5A85)' }}>
             {comparativeResult ? 'Comparative Analysis Completed ✓' : isRunning ? 'Analyzing Trade-Offs...' : 'Ready for Comparative Analysis'}
           </strong>
         </div>
@@ -829,42 +829,42 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* COMPACT UPSTREAM CONTEXT (Voyage, Fleet, Feasible Routes)      */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.55)',
-        border: '1px solid var(--border-subtle)',
+        background: 'var(--bg-card-inset, #F4FAFC)',
+        border: '1px solid var(--border-subtle, #E2EDF5)',
         borderRadius: 'var(--radius-md)',
         padding: '1.15rem 1.25rem',
         marginBottom: '1.5rem',
       }} id="stage-06-upstream-context">
-        <div style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
+        <div style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
           Upstream Baseline Context (Read-Only)
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', fontSize: '0.84rem' }}>
           <div>
-            <span style={{ color: 'var(--text-muted)', fontSize: '0.72rem', display: 'block' }}>Voyage</span>
-            <strong style={{ color: 'var(--accent-cyan)' }}>
+            <span style={{ color: 'var(--text-secondary)', fontSize: '0.72rem', display: 'block' }}>Voyage</span>
+            <strong style={{ color: 'var(--accent-ocean, #1F5A85)' }}>
               {voyageConfig.sourcePort} → {voyageConfig.destPort} ({formatNum(voyageConfig.cargoWeight, 0)} MT)
             </strong>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
               Depart: {new Date(voyageConfig.departureDate).toLocaleDateString()} &bull; Deadline: {new Date(voyageConfig.deadlineDate).toLocaleDateString()}
             </div>
           </div>
 
           <div>
-            <span style={{ color: 'var(--text-muted)', fontSize: '0.72rem', display: 'block' }}>Fleet Selection</span>
+            <span style={{ color: 'var(--text-secondary)', fontSize: '0.72rem', display: 'block' }}>Fleet Selection</span>
             <strong style={{ color: 'var(--text-primary)' }}>
               {`${selectedVesselIds.length} Vessels Selected`}
             </strong>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
               {selectedVesselIds.join(', ')}
             </div>
           </div>
 
           <div>
-            <span style={{ color: 'var(--text-muted)', fontSize: '0.72rem', display: 'block' }}>Feasible Routes</span>
-            <strong style={{ color: 'var(--accent-emerald)' }}>
+            <span style={{ color: 'var(--text-secondary)', fontSize: '0.72rem', display: 'block' }}>Feasible Routes</span>
+            <strong style={{ color: 'var(--accent-teal, #2C8573)' }}>
               {`${feasibleRouteIds.length} Maritime Corridors Assessed Safe`}
             </strong>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
               {feasibleRouteIds.map((r) => r.replace('RT-SG-RTM-', '')).join(', ')}
             </div>
           </div>
@@ -878,8 +878,8 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
         <div style={{
           padding: '2rem',
           textAlign: 'center',
-          background: 'rgba(15, 23, 42, 0.45)',
-          border: '1px dashed var(--border-subtle)',
+          background: 'var(--bg-card-inset, #F4FAFC)',
+          border: '1px dashed var(--border-subtle, #E2EDF5)',
           borderRadius: 'var(--radius-lg)',
           marginBottom: '2rem'
         }}>
@@ -899,8 +899,8 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
             disabled={isRunning || !classicalResult || !qiResult}
             style={{
               padding: '0.75rem 2rem',
-              background: isRunning ? 'rgba(255, 255, 255, 0.05)' : 'linear-gradient(135deg, #00e5ff 0%, #00b4d8 100%)',
-              color: isRunning ? 'var(--text-muted)' : '#080d1a',
+              background: isRunning ? 'var(--bg-card-inset, #F4FAFC)' : 'linear-gradient(135deg, #1F5A85 0%, #3884C7 100%)',
+              color: isRunning ? 'var(--text-secondary)' : '#FFFFFF',
               fontWeight: 800,
               fontSize: '0.92rem',
               borderRadius: 'var(--radius-md)',
@@ -909,7 +909,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.6rem',
-              boxShadow: isRunning ? 'none' : '0 4px 20px rgba(0, 229, 255, 0.3)',
+              boxShadow: isRunning ? 'none' : '0 4px 16px rgba(31, 90, 133, 0.25)',
             }}
           >
             <span>{isRunning ? 'Synthesizing Trade-offs...' : 'Run Comparative Analysis'}</span>
@@ -922,10 +922,10 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {error && (
         <div style={{
           padding: '1rem 1.25rem',
-          background: 'rgba(239, 68, 68, 0.1)',
-          border: '1px solid rgba(239, 68, 68, 0.3)',
+          background: '#FEF2F2',
+          border: '1px solid #FECACA',
           borderRadius: 'var(--radius-md)',
-          color: '#fca5a5',
+          color: '#B91C1C',
           fontSize: '0.85rem',
           marginBottom: '1.5rem',
           display: 'flex',
@@ -938,7 +938,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
             onClick={handleRunComparativeAnalysis}
             style={{
               padding: '0.35rem 0.8rem',
-              background: '#ef4444',
+              background: '#DC2626',
               color: '#fff',
               border: 'none',
               borderRadius: 'var(--radius-sm)',
@@ -957,11 +957,12 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* ------------------------------------------------------------- */}
       {(comparativeResult || classicalResult || qiResult) && (
         <div style={{
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-subtle)',
+          background: 'var(--bg-card, #FFFFFF)',
+          border: '1px solid var(--border-subtle, #E2EDF5)',
           borderRadius: 'var(--radius-lg)',
           padding: '1.25rem',
           marginBottom: '1.25rem',
+          boxShadow: 'var(--shadow-sm)',
         }} id="stage-headline-comparison-section">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
             <div>
@@ -973,7 +974,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                   CLASSICAL BASELINE vs QUANTUM-INSPIRED
                 </span>
               </div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                 Comparing actual optimization telemetry on identical operational requirements.
               </div>
             </div>
@@ -985,8 +986,8 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                 disabled={isRunning}
                 style={{
                   padding: '0.45rem 0.9rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid var(--border-subtle)',
+                  background: 'var(--bg-card-inset, #F4FAFC)',
+                  border: '1px solid var(--border-subtle, #E2EDF5)',
                   borderRadius: 'var(--radius-sm)',
                   color: 'var(--text-secondary)',
                   fontSize: '0.78rem',
@@ -1006,30 +1007,30 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', fontSize: '0.84rem', borderCollapse: 'collapse', textAlign: 'right' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-muted)', fontSize: '0.74rem', textTransform: 'uppercase' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)', background: 'var(--bg-card-inset, #F4FAFC)', color: 'var(--text-secondary)', fontSize: '0.74rem', textTransform: 'uppercase' }}>
                   <th style={{ padding: '0.55rem 0.65rem', textAlign: 'left' }}>Operational Metric</th>
-                  <th style={{ padding: '0.55rem 0.65rem', color: 'var(--accent-cyan)' }}>CLASSICAL BASELINE</th>
-                  <th style={{ padding: '0.55rem 0.65rem', color: '#c084fc' }}>QUANTUM-INSPIRED</th>
+                  <th style={{ padding: '0.55rem 0.65rem', color: 'var(--accent-ocean, #1F5A85)' }}>CLASSICAL BASELINE</th>
+                  <th style={{ padding: '0.55rem 0.65rem', color: '#6D28D9' }}>QUANTUM-INSPIRED</th>
                   <th style={{ padding: '0.55rem 0.65rem' }}>Difference (QI &minus; Classical)</th>
                   <th style={{ padding: '0.55rem 0.65rem' }}>Relative Gap (%)</th>
                 </tr>
               </thead>
               <tbody>
                 {/* 1. Best Cost */}
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)' }}>
                   <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Best Cost</td>
-                  <td style={{ padding: '0.55rem 0.65rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>{formatMoney(costClassical)}</td>
-                  <td style={{ padding: '0.55rem 0.65rem', fontWeight: 700, color: '#c084fc' }}>{formatMoney(costQI)}</td>
-                  <td style={{ padding: '0.55rem 0.65rem', color: costDiff === 0 ? 'var(--accent-emerald)' : costDiff > 0 ? 'var(--accent-rose)' : 'var(--accent-cyan)', fontWeight: 600 }}>
+                  <td style={{ padding: '0.55rem 0.65rem', fontWeight: 700, color: 'var(--accent-ocean, #1F5A85)' }}>{formatMoney(costClassical)}</td>
+                  <td style={{ padding: '0.55rem 0.65rem', fontWeight: 700, color: '#6D28D9' }}>{formatMoney(costQI)}</td>
+                  <td style={{ padding: '0.55rem 0.65rem', color: costDiff === 0 ? 'var(--accent-teal, #2C8573)' : costDiff > 0 ? '#DC2626' : 'var(--accent-ocean, #1F5A85)', fontWeight: 600 }}>
                     {costDiff === 0 ? '$0 (Exact match)' : `${costDiff > 0 ? '+' : ''}${formatMoney(costDiff)}`}
                   </td>
-                  <td style={{ padding: '0.55rem 0.65rem', color: costDiff === 0 ? 'var(--accent-emerald)' : 'var(--text-secondary)' }}>
+                  <td style={{ padding: '0.55rem 0.65rem', color: costDiff === 0 ? 'var(--accent-teal, #2C8573)' : 'var(--text-secondary)' }}>
                     {costDiff === 0 ? '0.00%' : formatPct(costGapPct)}
                   </td>
                 </tr>
 
                 {/* 2. Best Travel Time */}
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)' }}>
                   <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Best Travel Time</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(timeClassical)} hrs`}</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(timeQI)} hrs`}</td>
@@ -1038,30 +1039,30 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                 </tr>
 
                 {/* 3. Fuel Consumption */}
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)' }}>
                   <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Fuel Consumption</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(fuelClassical)} MT`}</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(fuelQI)} MT`}</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{fuelDiff === 0 ? '0.0 MT' : `${fuelDiff > 0 ? '+' : ''}${formatNum(fuelDiff)} MT`}</td>
-                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-muted)' }}>&mdash;</td>
+                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-secondary)' }}>&mdash;</td>
                 </tr>
 
                 {/* 4. Operational CO₂ */}
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)' }}>
                   <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Operational CO₂</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(co2Classical)} t`}</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(co2QI)} t`}</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{co2Diff === 0 ? '0.0 t' : `${co2Diff > 0 ? '+' : ''}${formatNum(co2Diff)} t`}</td>
-                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-muted)' }}>&mdash;</td>
+                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-secondary)' }}>&mdash;</td>
                 </tr>
 
                 {/* 5. Lifecycle GHG */}
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)' }}>
                   <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-primary)' }}>Lifecycle GHG</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(ghgClassical)} t`}</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{`${formatNum(ghgQI)} t`}</td>
                   <td style={{ padding: '0.55rem 0.65rem' }}>{ghgDiff === 0 ? '0.0 t' : `${ghgDiff > 0 ? '+' : ''}${formatNum(ghgDiff)} t`}</td>
-                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-muted)' }}>&mdash;</td>
+                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-secondary)' }}>&mdash;</td>
                 </tr>
 
                 {/* 6. Runtime */}
@@ -1072,7 +1073,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                   <td style={{ padding: '0.55rem 0.65rem', fontFamily: 'var(--font-mono)' }}>
                     {runtimeDiff === 0 ? '0.0 ms' : `${runtimeDiff > 0 ? '+' : ''}${formatNum(runtimeDiff)} ms`}
                   </td>
-                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-muted)' }}>
+                  <td style={{ padding: '0.55rem 0.65rem', color: 'var(--text-secondary)' }}>
                     {runtimeDiff === 0 ? '0.00%' : formatPct(runtimeDiffPct)}
                   </td>
                 </tr>
@@ -1087,18 +1088,19 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* ------------------------------------------------------------- */}
       {(comparativeResult || classicalResult || qiResult) && (
         <div style={{
-          background: 'rgba(15, 23, 42, 0.65)',
+          background: 'var(--bg-card, #FFFFFF)',
           borderLeft: `4px solid ${performanceBadgeColor}`,
-          borderTop: '1px solid var(--border-subtle)',
-          borderRight: '1px solid var(--border-subtle)',
-          borderBottom: '1px solid var(--border-subtle)',
+          borderTop: '1px solid var(--border-subtle, #E2EDF5)',
+          borderRight: '1px solid var(--border-subtle, #E2EDF5)',
+          borderBottom: '1px solid var(--border-subtle, #E2EDF5)',
           borderRadius: '0 var(--radius-md) var(--radius-md) 0',
           padding: '1rem 1.25rem',
           marginBottom: '1.25rem',
+          boxShadow: 'var(--shadow-sm)',
         }} id="stage-honest-interpretation-banner">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.5rem' }}>
             <div>
-              <span className="badge" style={{ background: 'rgba(255, 255, 255, 0.08)', color: performanceBadgeColor, fontWeight: 700, marginBottom: '0.35rem', display: 'inline-block' }}>
+              <span className="badge" style={{ background: 'var(--bg-card-inset, #F4FAFC)', color: performanceBadgeColor, fontWeight: 700, marginBottom: '0.35rem', display: 'inline-block' }}>
                 Honest Performance Interpretation
               </span>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0.2rem 0' }}>
@@ -1110,26 +1112,26 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               <div style={{
                 padding: '0.35rem 0.75rem',
-                background: costDiff === 0 ? 'rgba(16, 185, 129, 0.15)' : 'rgba(244, 63, 94, 0.12)',
-                border: `1px solid ${costDiff === 0 ? 'rgba(16, 185, 129, 0.3)' : 'rgba(244, 63, 94, 0.25)'}`,
+                background: costDiff === 0 ? '#E8F6F2' : '#FEF2F2',
+                border: `1px solid ${costDiff === 0 ? '#A7F3D0' : '#FECACA'}`,
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.78rem',
               }}>
-                <span style={{ color: 'var(--text-muted)' }}>Cost Gap: </span>
-                <strong style={{ color: costDiff === 0 ? 'var(--accent-emerald)' : '#fda4af' }}>
+                <span style={{ color: 'var(--text-secondary)' }}>Cost Gap: </span>
+                <strong style={{ color: costDiff === 0 ? 'var(--accent-teal, #2C8573)' : '#DC2626' }}>
                   {costDiff === 0 ? '$0 (0.00%)' : `${costDiff > 0 ? '+' : ''}${formatMoney(costDiff)} (${formatPct(costGapPct)})`}
                 </strong>
               </div>
 
               <div style={{
                 padding: '0.35rem 0.75rem',
-                background: 'rgba(56, 189, 248, 0.12)',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
+                background: '#E0F2FE',
+                border: '1px solid #BAE6FD',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.78rem',
               }}>
-                <span style={{ color: 'var(--text-muted)' }}>Runtime Difference: </span>
-                <strong style={{ color: '#38bdf8' }}>
+                <span style={{ color: 'var(--text-secondary)' }}>Runtime Difference: </span>
+                <strong style={{ color: 'var(--accent-ocean, #1F5A85)' }}>
                   {runtimeDiff === 0 ? '0 ms' : `${runtimeDiff > 0 ? '+' : ''}${formatNum(runtimeDiff)} ms (${formatPct(runtimeDiffPct)})`}
                 </strong>
               </div>
@@ -1140,7 +1142,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
             {performanceNarrative}
           </p>
 
-          <div style={{ marginTop: '0.75rem', fontSize: '0.74rem', color: 'var(--text-muted)', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '0.5rem' }}>
+          <div style={{ marginTop: '0.75rem', fontSize: '0.74rem', color: 'var(--text-secondary)', borderTop: '1px solid var(--border-subtle, #E2EDF5)', paddingTop: '0.5rem' }}>
             <strong>Scientific Credibility Notice:</strong> Classical Exhaustive Baseline represents exact discrete optimization. Quantum-Inspired Simulated Annealing is a heuristic search on classical CPU hardware. If QI returns an objective gap, it is displayed truthfully without artificial inflation.
           </div>
         </div>
@@ -1151,11 +1153,12 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* ------------------------------------------------------------- */}
       {comparativeResult && comparativeResult.pareto_front && (
         <div style={{
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-subtle)',
+          background: 'var(--bg-card, #FFFFFF)',
+          border: '1px solid var(--border-subtle, #E2EDF5)',
           borderRadius: 'var(--radius-lg)',
           padding: '1.25rem',
           marginBottom: '1.25rem',
+          boxShadow: 'var(--shadow-sm)',
         }} id="stage-pareto-section">
           <div style={{ marginBottom: '0.85rem' }}>
             <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
@@ -1181,22 +1184,23 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* ------------------------------------------------------------- */}
       {comparativeResult && (
         <div style={{
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-subtle)',
+          background: 'var(--bg-card, #FFFFFF)',
+          border: '1px solid var(--border-subtle, #E2EDF5)',
           borderRadius: 'var(--radius-lg)',
           padding: '1.25rem',
           marginBottom: '1.25rem',
+          boxShadow: 'var(--shadow-sm)',
         }} id="stage-priority-selection-section">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <div>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                 Operational Decision Priorities
               </h3>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                 Select a corporate priority to inspect the backend-selected candidate from the non-dominated Pareto front.
               </div>
             </div>
-            <span className="badge badge-purple" style={{ fontSize: '0.72rem' }}>
+            <span className="badge badge-purple" style={{ fontSize: '0.72rem', background: '#EDE9FE', color: '#6D28D9' }}>
               6 Supported Criteria
             </span>
           </div>
@@ -1213,10 +1217,10 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                   onClick={() => setSelectedPriority(p)}
                   style={{
                     padding: '0.75rem 0.85rem',
-                    background: isSelected ? 'rgba(0, 229, 255, 0.12)' : 'rgba(255, 255, 255, 0.03)',
-                    border: isSelected ? '2px solid var(--accent-cyan)' : '1px solid var(--border-subtle)',
+                    background: isSelected ? '#EBF5FB' : 'var(--bg-card-inset, #F4FAFC)',
+                    border: isSelected ? '2px solid var(--accent-ocean, #1F5A85)' : '1px solid var(--border-subtle, #E2EDF5)',
                     borderRadius: 'var(--radius-md)',
-                    color: isSelected ? 'var(--accent-cyan)' : 'var(--text-secondary)',
+                    color: isSelected ? 'var(--accent-ocean, #1F5A85)' : 'var(--text-secondary)',
                     cursor: 'pointer',
                     textAlign: 'left',
                     transition: 'all 0.15s ease',
@@ -1225,11 +1229,11 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem' }}>
                     <span style={{ fontSize: '1.1rem' }}>{meta.icon}</span>
-                    <strong style={{ fontSize: '0.85rem', color: isSelected ? 'var(--accent-cyan)' : 'var(--text-primary)' }}>
+                    <strong style={{ fontSize: '0.85rem', color: isSelected ? 'var(--accent-ocean, #1F5A85)' : 'var(--text-primary)' }}>
                       {meta.label}
                     </strong>
                   </div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', lineHeight: 1.3 }}>
                     {meta.desc}
                   </div>
                 </button>
@@ -1244,12 +1248,12 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* ------------------------------------------------------------- */}
       {comparativeResult && balancedCandidate && (
         <div style={{
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)',
-          border: '2px solid rgba(16, 185, 129, 0.45)',
+          background: 'linear-gradient(135deg, #E8F6F2 0%, #FFFFFF 100%)',
+          border: '2px solid #3FA48E',
           borderRadius: 'var(--radius-lg)',
           padding: '1.25rem',
           marginBottom: '1.25rem',
-          boxShadow: '0 8px 32px rgba(16, 185, 129, 0.1)',
+          boxShadow: '0 4px 20px rgba(63, 164, 142, 0.12)',
         }} id="stage-balanced-tradeoff-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.85rem' }}>
             <div>
@@ -1257,7 +1261,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                 <span className="badge badge-emerald" style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase' }}>
                   ★ Balanced Trade-Off
                 </span>
-                <span style={{ fontSize: '0.8rem', color: 'var(--accent-emerald)', fontWeight: 700 }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--accent-teal, #2C8573)', fontWeight: 700 }}>
                   Multi-Objective Compromise Heuristic
                 </span>
               </div>
@@ -1272,8 +1276,8 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                 borderRadius: 'var(--radius-full)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
-                background: balancedCandidate.weather_risk_level === 'LOW' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(245, 158, 11, 0.2)',
-                color: balancedCandidate.weather_risk_level === 'LOW' ? '#34d399' : '#fbbf24',
+                background: balancedCandidate.weather_risk_level === 'LOW' ? '#E8F6F2' : '#FEF3C7',
+                color: balancedCandidate.weather_risk_level === 'LOW' ? '#2C8573' : '#B45309',
                 border: '1px solid currentColor',
               }}>
                 {`Risk: ${balancedCandidate.weather_risk_level}`}
@@ -1283,9 +1287,9 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                 borderRadius: 'var(--radius-full)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
-                background: 'rgba(56, 189, 248, 0.15)',
-                color: '#38bdf8',
-                border: '1px solid #38bdf8',
+                background: '#E0F2FE',
+                color: '#1F5A85',
+                border: '1px solid #BAE6FD',
               }}>
                 {`Speed: ${balancedCandidate.cruising_speed_knots} kts (${balancedCandidate.fuel_name})`}
               </span>
@@ -1295,43 +1299,43 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
           {/* Key Metrics Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem', marginBottom: '0.85rem' }}>
             <div className="kpi-card" style={{ padding: '0.65rem 0.85rem' }}>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Cost</div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Cost</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-ocean, #1F5A85)' }}>
                 {formatMoney(balancedCandidate.total_voyage_cost_usd)}
               </div>
             </div>
 
             <div className="kpi-card" style={{ padding: '0.65rem 0.85rem' }}>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Voyage Duration (hrs)</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Voyage Duration (hrs)</div>
               <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                 {`${formatNum(balancedCandidate.total_voyage_time_hours)}h`}
               </div>
             </div>
 
             <div className="kpi-card" style={{ padding: '0.65rem 0.85rem' }}>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Fuel Consumption</div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-amber)' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Fuel Consumption</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-amber, #B45309)' }}>
                 {`${formatNum(balancedCandidate.fuel_consumption_tonnes)} MT`}
               </div>
             </div>
 
             <div className="kpi-card" style={{ padding: '0.75rem 1rem' }}>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Operational CO₂</div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-emerald)' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Operational CO₂</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent-teal, #2C8573)' }}>
                 {`${formatNum(balancedCandidate.operational_co2_tonnes)}t`}
               </div>
             </div>
 
             <div className="kpi-card" style={{ padding: '0.75rem 1rem' }}>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Lifecycle GHG</div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#c084fc' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Lifecycle GHG</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#6D28D9' }}>
                 {`${formatNum(balancedCandidate.lifecycle_ghg_tonnes)}t`}
               </div>
             </div>
 
             <div className="kpi-card" style={{ padding: '0.75rem 1rem' }}>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Deadline Margin</div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: balancedCandidate.deadline_margin_hours > 0 ? 'var(--accent-emerald)' : '#ef4444' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Deadline Margin</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: balancedCandidate.deadline_margin_hours > 0 ? 'var(--accent-teal, #2C8573)' : '#DC2626' }}>
                 {`${formatNum(balancedCandidate.deadline_margin_hours)}h`}
               </div>
             </div>
@@ -1340,8 +1344,8 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
           {/* Mandatory Heuristic Caveat */}
           <div style={{
             fontSize: '0.75rem',
-            color: 'var(--text-muted)',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            color: 'var(--text-secondary)',
+            borderTop: '1px solid var(--border-subtle, #E2EDF5)',
             paddingTop: '0.65rem',
             lineHeight: 1.5,
           }}>
@@ -1355,17 +1359,18 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* ------------------------------------------------------------- */}
       {comparativeResult && (
         <div style={{
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-subtle)',
+          background: 'var(--bg-card, #FFFFFF)',
+          border: '1px solid var(--border-subtle, #E2EDF5)',
           borderRadius: 'var(--radius-lg)',
           padding: '1.25rem',
           marginBottom: '1.25rem',
+          boxShadow: 'var(--shadow-sm)',
         }} id="stage-top-alternatives-section">
           <div style={{ marginBottom: '0.85rem' }}>
             <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
               Top Priority Alternatives
             </h3>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
               Compact side-by-side comparison of the strongest candidate voyages under key organizational priorities.
             </div>
           </div>
@@ -1373,7 +1378,7 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', fontSize: '0.82rem', borderCollapse: 'collapse', textAlign: 'right' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-muted)', fontSize: '0.72rem', textTransform: 'uppercase' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)', background: 'var(--bg-card-inset, #F4FAFC)', color: 'var(--text-secondary)', fontSize: '0.72rem', textTransform: 'uppercase' }}>
                   <th style={{ padding: '0.55rem 0.65rem', textAlign: 'left' }}>Priority</th>
                   <th style={{ padding: '0.55rem 0.65rem', textAlign: 'left' }}>Vessel</th>
                   <th style={{ padding: '0.55rem 0.65rem', textAlign: 'left' }}>Route</th>
@@ -1397,11 +1402,11 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                     <tr
                       key={pKey}
                       style={{
-                        borderBottom: '1px solid var(--border-subtle)',
-                        background: isCurPriority ? 'rgba(0, 229, 255, 0.08)' : 'transparent',
+                        borderBottom: '1px solid var(--border-subtle, #E2EDF5)',
+                        background: isCurPriority ? '#EBF5FB' : 'transparent',
                       }}
                     >
-                      <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left', fontWeight: 700, color: isCurPriority ? 'var(--accent-cyan)' : 'var(--text-primary)' }}>
+                      <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left', fontWeight: 700, color: isCurPriority ? 'var(--accent-ocean, #1F5A85)' : 'var(--text-primary)' }}>
                         <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                           <span>{PRIORITY_METADATA[pKey]?.icon}</span>
                           <span>{PRIORITY_METADATA[pKey]?.label}</span>
@@ -1411,11 +1416,11 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
                       <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left' }}>{c.route_name.replace('Singapore to Rotterdam via ', '')}</td>
                       <td style={{ padding: '0.55rem 0.65rem' }}>{c.cruising_speed_knots} kts</td>
                       <td style={{ padding: '0.55rem 0.65rem', textAlign: 'left' }}>{c.fuel_name.split(' ')[0]}</td>
-                      <td style={{ padding: '0.55rem 0.65rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>{formatMoney(c.total_voyage_cost_usd)}</td>
+                      <td style={{ padding: '0.55rem 0.65rem', fontWeight: 700, color: 'var(--accent-ocean, #1F5A85)' }}>{formatMoney(c.total_voyage_cost_usd)}</td>
                       <td style={{ padding: '0.55rem 0.65rem' }}>{formatNum(c.total_voyage_time_hours)}h</td>
                       <td style={{ padding: '0.55rem 0.65rem' }}>{formatNum(c.fuel_consumption_tonnes)}</td>
                       <td style={{ padding: '0.55rem 0.65rem' }}>{formatNum(c.operational_co2_tonnes)}</td>
-                      <td style={{ padding: '0.55rem 0.65rem', color: c.deadline_margin_hours > 0 ? 'var(--accent-emerald)' : '#ef4444', fontWeight: 600 }}>
+                      <td style={{ padding: '0.55rem 0.65rem', color: c.deadline_margin_hours > 0 ? 'var(--accent-teal, #2C8573)' : '#DC2626', fontWeight: 600 }}>
                         {formatNum(c.deadline_margin_hours)}h
                       </td>
                     </tr>
@@ -1432,15 +1437,18 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {/* ------------------------------------------------------------- */}
       {comparativeResult && dynamicInsights.length > 0 && (
         <div style={{
-          background: 'rgba(15, 23, 42, 0.65)',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-lg)',
+          background: 'var(--bg-card-inset, #F4FAFC)',
+          borderLeft: '4px solid var(--accent-ocean, #1F5A85)',
+          borderTop: '1px solid var(--border-subtle, #E2EDF5)',
+          borderRight: '1px solid var(--border-subtle, #E2EDF5)',
+          borderBottom: '1px solid var(--border-subtle, #E2EDF5)',
+          borderRadius: '0 var(--radius-md) var(--radius-md) 0',
           padding: '1rem 1.25rem',
           marginBottom: '1.25rem',
         }} id="stage-decision-insights-section">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.65rem' }}>
             <span style={{ fontSize: '1.2rem' }}>💡</span>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--accent-cyan)', margin: 0 }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--accent-ocean, #1F5A85)', margin: 0 }}>
               Automated Decision Insights
             </h3>
           </div>
@@ -1461,70 +1469,71 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
       {comparativeResult && (
         <details
           style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-subtle)',
+            background: 'var(--bg-card, #FFFFFF)',
+            border: '1px solid var(--border-subtle, #E2EDF5)',
             borderRadius: 'var(--radius-lg)',
             padding: '0.85rem 1.25rem',
             marginBottom: '1.25rem',
+            boxShadow: 'var(--shadow-sm)',
           }}
           id="stage-technical-telemetry-details"
         >
           <summary style={{ cursor: 'pointer', fontWeight: 700, fontSize: '0.88rem', color: 'var(--text-primary)', outline: 'none' }}>
             Technical Telemetry &amp; Solver Configuration (Collapsible)
           </summary>
-          <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--border-subtle)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', fontSize: '0.8rem' }}>
+          <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--border-subtle, #E2EDF5)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', fontSize: '0.8rem' }}>
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>Candidate Combinations Evaluated</span>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>Candidate Combinations Evaluated</span>
               <strong style={{ color: 'var(--text-primary)' }}>
                 {comparativeResult.classical?.candidates_evaluated || classicalResult?.benchmark?.total_candidates_evaluated || 60}
               </strong>
             </div>
 
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>Feasible Solution Set</span>
-              <strong style={{ color: 'var(--accent-emerald)' }}>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>Feasible Solution Set</span>
+              <strong style={{ color: 'var(--accent-teal, #2C8573)' }}>
                 {comparativeResult.classical?.feasible_solutions_count || classicalResult?.benchmark?.feasible_candidates_count || 32} Candidates
               </strong>
             </div>
 
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>Pareto Efficient Solutions</span>
-              <strong style={{ color: 'var(--accent-cyan)' }}>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>Pareto Efficient Solutions</span>
+              <strong style={{ color: 'var(--accent-ocean, #1F5A85)' }}>
                 {comparativeResult.pareto_front.length} Non-Dominated Alternatives
               </strong>
             </div>
 
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>QUBO Variable Count</span>
-              <strong style={{ color: '#c084fc' }}>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>QUBO Variable Count</span>
+              <strong style={{ color: '#6D28D9' }}>
                 {qiResult?.qubo_summary?.num_variables || 60} Variables
               </strong>
             </div>
 
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>Classical Exhaustive Runtime</span>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>Classical Exhaustive Runtime</span>
               <strong style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
                 {formatNum(runtimeClassical)} ms
               </strong>
             </div>
 
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>QI Annealing Runtime</span>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>QI Annealing Runtime</span>
               <strong style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
                 {formatNum(runtimeQI)} ms
               </strong>
             </div>
 
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>Multi-Objective Weights</span>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>Multi-Objective Weights</span>
               <strong style={{ color: 'var(--text-primary)' }}>
                 Equal normalized weighting (1/5 each: Cost, Time, Fuel, CO₂, GHG)
               </strong>
             </div>
 
             <div>
-              <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.72rem' }}>Feasibility Rate</span>
-              <strong style={{ color: 'var(--accent-emerald)' }}>
+              <span style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.72rem' }}>Feasibility Rate</span>
+              <strong style={{ color: 'var(--accent-teal, #2C8573)' }}>
                 {classicalResult ? formatPct(classicalResult.benchmark?.feasibility_rate_pct || 53.3) : '53.3%'}
               </strong>
             </div>
@@ -1547,10 +1556,10 @@ export const Stage06Compare: React.FC<Stage06CompareProps> = ({
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-ocean, #1F5A85)' }}>
             Stage 06 of 07
           </div>
-          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
             {comparativeResult ? 'Comparative Analysis Complete' : 'Awaiting Synthesis'}
           </div>
         </div>

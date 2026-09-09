@@ -32,7 +32,7 @@ export const App: React.FC = () => {
   const [backendStatus, setBackendStatus] = useState<'connected' | 'checking' | 'disconnected'>('checking');
   const [lastCheckTime, setLastCheckTime] = useState<string>('');
 
-  // Phase 10B, 10C, 10D, 10E, 10F, 10G, 10H: 7-Stage Guided Workflow Shell State
+  // 7-Stage Guided Workflow Shell State
   const [activeStage, setActiveStage] = useState<number>(1);
   const [maxUnlockedStage, setMaxUnlockedStage] = useState<number>(1);
   const [viewMode, setViewMode] = useState<'staged' | 'classic'>('staged');
@@ -61,19 +61,18 @@ export const App: React.FC = () => {
   // Stage 06: Comparative Decision Analysis State
   const [comparativeResult, setComparativeResult] = useState<ComparativeAnalysisResponse | null>(null);
 
-  // Cross-phase integration: pass selected route distance, vessel, and weather multiplier to fuel intelligence
+  // Cross-phase integration
   const [selectedRouteDistance, setSelectedRouteDistance] = useState<number | null>(null);
   const [selectedRouteVesselId, setSelectedRouteVesselId] = useState<string | null>(null);
   const [selectedRouteWeatherFactor, setSelectedRouteWeatherFactor] = useState<number | null>(null);
-
-
 
   const STAGES_CONFIG = [
     {
       id: 1,
       number: '01',
-      name: 'Voyage',
-      title: 'Stage 01 — Voyage',
+      name: 'Voyage Details',
+      shortName: 'Voyage',
+      title: 'Stage 01 — Voyage Details',
       icon: '🧭',
       badge: 'Maritime Corridors',
       summary: 'Define origin/destination ports, cargo payload weight, departure timestamp, schedule arrival deadlines, and canal transit draft limits.',
@@ -82,8 +81,9 @@ export const App: React.FC = () => {
     {
       id: 2,
       number: '02',
-      name: 'Fleet',
-      title: 'Stage 02 — Fleet',
+      name: 'Fleet Selection',
+      shortName: 'Fleet',
+      title: 'Stage 02 — Fleet Selection',
       icon: '🚢',
       badge: 'Vessel & Fuel Intelligence',
       summary: 'Review fleet vessels, Deadweight Tonnage (DWT) capacities, speed limits, engine ratings, and alternative bunker fuel compatibility.',
@@ -92,8 +92,9 @@ export const App: React.FC = () => {
     {
       id: 3,
       number: '03',
-      name: 'Environment',
-      title: 'Stage 03 — Environment',
+      name: 'Environmental Data',
+      shortName: 'Environment',
+      title: 'Stage 03 — Environmental Data',
       icon: '🌊',
       badge: 'Ocean & Weather Modeling',
       summary: 'Assess oceanographic conditions along candidate route segments, including significant wave height, sea state, and ocean current drift.',
@@ -102,8 +103,9 @@ export const App: React.FC = () => {
     {
       id: 4,
       number: '04',
-      name: 'Classical',
-      title: 'Stage 04 — Classical',
+      name: 'Classical Optimization',
+      shortName: 'Classical',
+      title: 'Stage 04 — Classical Baseline',
       icon: '💻',
       badge: 'Exhaustive Baseline',
       summary: 'Execute the exhaustive discrete combinatorial optimizer across Vessel × Route × Speed × Fuel decision variables.',
@@ -113,7 +115,8 @@ export const App: React.FC = () => {
       id: 5,
       number: '05',
       name: 'Quantum-Inspired',
-      title: 'Stage 05 — Quantum-Inspired',
+      shortName: 'Quantum',
+      title: 'Stage 05 — Quantum-Inspired QUBO',
       icon: '⚛️',
       badge: 'QUBO & Simulated Annealing',
       summary: 'Formulate the voyage optimization problem as a Quadratic Unconstrained Binary Optimization (QUBO) model with one-hot encoding.',
@@ -122,8 +125,9 @@ export const App: React.FC = () => {
     {
       id: 6,
       number: '06',
-      name: 'Compare',
-      title: 'Stage 06 — Compare',
+      name: 'Comparative Analysis',
+      shortName: 'Compare',
+      title: 'Stage 06 — Comparative Decision Analysis',
       icon: '⚖️',
       badge: 'Comparative Decision Analysis',
       summary: 'Perform multi-objective comparative evaluation between Classical exact baseline and Quantum-Inspired solutions.',
@@ -132,8 +136,9 @@ export const App: React.FC = () => {
     {
       id: 7,
       number: '07',
-      name: 'Decision',
-      title: 'Stage 07 — Decision',
+      name: 'Results & Decision',
+      shortName: 'Decision',
+      title: 'Stage 07 — Executive Decision',
       icon: '🎯',
       badge: 'Executive Recommendation',
       summary: 'Review final executive recommendation, recommended vessel-route-speed-fuel plan, and transparent decision justifications.',
@@ -166,7 +171,6 @@ export const App: React.FC = () => {
   };
 
   const handleStepClick = (stageId: number) => {
-    // Only permit navigation to current or unlocked/completed stages
     if (stageId <= maxUnlockedStage) {
       setActiveStage(stageId);
       scrollToTop();
@@ -233,105 +237,138 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+      {/* Subtle watercolor ocean mist background layer */}
+      <div className="watercolor-wave-bg" />
+
       <Header status={backendStatus} version={health?.version || '0.1.0'} />
 
-      <main className="container" style={{ flex: 1, paddingBottom: '4rem' }}>
-        {/* Hero Section */}
-        <section style={{ marginBottom: '2.5rem' }}>
+      <main className="container" style={{ flex: 1, paddingBottom: '3.5rem', position: 'relative', zIndex: 1 }}>
+        {/* Main Dashboard Hero Banner */}
+        <section style={{ marginBottom: '1.75rem' }}>
           <div style={{
-            background: 'radial-gradient(ellipse at top left, rgba(0, 229, 255, 0.12), transparent 70%), var(--bg-card)',
+            background: '#FFFFFF',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-lg)',
-            padding: '2.25rem',
-            boxShadow: 'var(--shadow-card)'
+            padding: '1.75rem 2rem',
+            boxShadow: 'var(--shadow-card)',
+            position: 'relative',
+            overflow: 'hidden',
           }}>
-            <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
-              <span className="badge badge-cyan">Problem Statement: SIH26138</span>
-              <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
-                7-Stage Guided Optimization Workflow
-              </span>
-              <span className="badge badge-amber">Deterministic Simulation Mode</span>
-            </div>
-
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.25, marginBottom: '0.85rem', letterSpacing: '-0.03em' }}>
-              Quantum-Inspired Fuel Consumption Prediction &amp; Green Fleet Optimization
-            </h2>
-
-            <p style={{ fontSize: '0.98rem', color: 'var(--text-secondary)', maxWidth: '850px', lineHeight: 1.6 }}>
-              A presentation-ready prototype engineering a hybrid computational framework for maritime voyage optimization,
-              bunker fuel transition, and carbon footprint reduction. Navigated through a structured 7-stage guided operational workflow.
-            </p>
-
+            {/* Top decorative subtle watercolor wash gradient */}
             <div style={{
-              display: 'flex',
-              gap: '1.25rem',
-              marginTop: '1.5rem',
-              alignItems: 'center',
-              flexWrap: 'wrap'
-            }}>
-              <a
-                href="http://127.0.0.1:8000/docs"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: 'inline-flex',
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              width: '380px',
+              height: '100%',
+              background: 'radial-gradient(ellipse at 80% 20%, rgba(221, 242, 236, 0.5) 0%, rgba(220, 239, 248, 0.3) 50%, transparent 80%)',
+              pointerEvents: 'none'
+            }} />
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem', position: 'relative' }}>
+              <div>
+                <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '0.6rem', flexWrap: 'wrap' }}>
+                  <span className="badge badge-cyan">Problem Statement: SIH26138</span>
+                  <span className="badge badge-emerald">
+                    🍃 7-Stage Guided Optimization Workflow
+                  </span>
+                  <span className="badge badge-purple">Deterministic Simulation Mode</span>
+                </div>
+
+                <h2 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.25, marginBottom: '0.4rem', letterSpacing: '-0.025em' }}>
+                  Maritime Fleet Optimization
+                </h2>
+
+                <p style={{ fontSize: '0.94rem', color: 'var(--text-secondary)', maxWidth: '780px', lineHeight: 1.55 }}>
+                  Optimize voyages for lower cost, lower emissions and a healthier planet using hybrid classical and quantum-inspired algorithmic intelligence.
+                </p>
+              </div>
+
+              {/* Right Decorative Badge / Action */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.75rem' }}>
+                <div style={{
+                  display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  padding: '0.55rem 1.15rem',
-                  background: 'linear-gradient(135deg, #00e5ff 0%, #00b4d8 100%)',
-                  color: '#080d1a',
-                  fontWeight: 700,
-                  fontSize: '0.82rem',
-                  borderRadius: 'var(--radius-sm)',
-                  boxShadow: '0 4px 15px rgba(0, 229, 255, 0.3)',
-                  transition: 'transform 0.15s ease'
-                }}
-              >
-                <span>FastAPI Swagger UI</span>
-                <span>↗</span>
-              </a>
+                  padding: '0.4rem 0.85rem',
+                  background: 'var(--accent-teal-subtle)',
+                  border: '1px solid #C5E9DD',
+                  borderRadius: 'var(--radius-full)',
+                  color: 'var(--accent-teal-dark)',
+                  fontSize: '0.8rem',
+                  fontWeight: 700
+                }}>
+                  <span>🍃</span>
+                  <span>Safer Seas &bull; Greener Tomorrows</span>
+                </div>
 
-              <button
-                onClick={checkHealthAndMeta}
-                style={{
-                  padding: '0.55rem 1.15rem',
-                  background: 'transparent',
-                  color: 'var(--text-primary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 'var(--radius-sm)',
-                  cursor: 'pointer',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem'
-                }}
-              >
-                <span>Health Check</span>
-                {lastCheckTime && <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>({lastCheckTime})</span>}
-              </button>
+                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                  <a
+                    href="http://127.0.0.1:8000/docs"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      padding: '0.45rem 0.95rem',
+                      background: 'var(--accent-ocean)',
+                      color: '#FFFFFF',
+                      fontWeight: 700,
+                      fontSize: '0.8rem',
+                      borderRadius: 'var(--radius-sm)',
+                      boxShadow: 'var(--shadow-sm)',
+                      transition: 'all var(--transition-fast)'
+                    }}
+                  >
+                    <span>FastAPI Swagger UI</span>
+                    <span>↗</span>
+                  </a>
+
+                  <button
+                    onClick={checkHealthAndMeta}
+                    style={{
+                      padding: '0.45rem 0.95rem',
+                      background: '#FFFFFF',
+                      color: 'var(--accent-ocean)',
+                      border: '1px solid var(--border-medium)',
+                      borderRadius: 'var(--radius-sm)',
+                      cursor: 'pointer',
+                      fontSize: '0.8rem',
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      boxShadow: 'var(--shadow-sm)'
+                    }}
+                  >
+                    <span>Health Check</span>
+                    {lastCheckTime && <span style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>({lastCheckTime})</span>}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* View Mode Toggle Bar */}
-        <section style={{ marginBottom: '1.75rem' }}>
+        {/* View Mode Switcher */}
+        <section style={{ marginBottom: '1.5rem' }}>
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '0.75rem 1.25rem',
-            background: 'rgba(15, 23, 42, 0.7)',
+            padding: '0.65rem 1.15rem',
+            background: '#FFFFFF',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-md)',
-            backdropFilter: 'blur(8px)',
+            boxShadow: 'var(--shadow-sm)',
             flexWrap: 'wrap',
-            gap: '1rem',
+            gap: '0.75rem',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <span style={{ fontSize: '1rem' }}>🧭</span>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span style={{ fontSize: '0.95rem' }}>🧭</span>
+              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                 Application View:
               </span>
               <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
@@ -345,14 +382,14 @@ export const App: React.FC = () => {
                 id="view-staged-btn"
                 onClick={() => setViewMode('staged')}
                 style={{
-                  padding: '0.45rem 0.95rem',
+                  padding: '0.4rem 0.9rem',
                   borderRadius: 'var(--radius-sm)',
                   border: '1px solid',
-                  borderColor: viewMode === 'staged' ? 'var(--accent-cyan)' : 'var(--border-subtle)',
-                  background: viewMode === 'staged' ? 'rgba(0, 229, 255, 0.15)' : 'transparent',
-                  color: viewMode === 'staged' ? 'var(--accent-cyan)' : 'var(--text-secondary)',
+                  borderColor: viewMode === 'staged' ? 'var(--accent-ocean)' : 'var(--border-subtle)',
+                  background: viewMode === 'staged' ? 'var(--accent-blue-subtle)' : '#FFFFFF',
+                  color: viewMode === 'staged' ? 'var(--accent-ocean)' : 'var(--text-secondary)',
                   fontWeight: 700,
-                  fontSize: '0.8rem',
+                  fontSize: '0.78rem',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -369,14 +406,14 @@ export const App: React.FC = () => {
                 id="view-classic-btn"
                 onClick={() => setViewMode('classic')}
                 style={{
-                  padding: '0.45rem 0.95rem',
+                  padding: '0.4rem 0.9rem',
                   borderRadius: 'var(--radius-sm)',
                   border: '1px solid',
                   borderColor: viewMode === 'classic' ? 'var(--accent-purple)' : 'var(--border-subtle)',
-                  background: viewMode === 'classic' ? 'rgba(168, 85, 247, 0.15)' : 'transparent',
-                  color: viewMode === 'classic' ? '#c084fc' : 'var(--text-secondary)',
+                  background: viewMode === 'classic' ? 'var(--accent-purple-light)' : '#FFFFFF',
+                  color: viewMode === 'classic' ? 'var(--accent-purple)' : 'var(--text-secondary)',
                   fontWeight: 700,
-                  fontSize: '0.8rem',
+                  fontSize: '0.78rem',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -395,10 +432,22 @@ export const App: React.FC = () => {
         {/* MODE 1: Guided 7-Stage Workflow Shell                         */}
         {/* ------------------------------------------------------------- */}
         {viewMode === 'staged' && (
-          <section id="guided-workflow-shell" style={{ marginBottom: '3rem' }}>
-            {/* Horizontal 7-Stage Stepper with 3 States: completed, current, locked */}
-            <div className="workflow-stepper" role="tablist" aria-label="7-Stage Workflow Stepper">
-              {STAGES_CONFIG.map((stage) => {
+          <section id="guided-workflow-shell" style={{ marginBottom: '2.5rem' }}>
+            {/* Redesigned Workflow Stepper Matching Reference Design */}
+            <div className="workflow-stepper" role="tablist" aria-label="7-Stage Workflow Stepper" style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '1rem 1.25rem',
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: 'var(--radius-lg)',
+              boxShadow: 'var(--shadow-card)',
+              position: 'relative',
+              overflowX: 'auto',
+              gap: '0.5rem',
+            }}>
+              {STAGES_CONFIG.map((stage, idx) => {
                 const isAllStagesCompleted = comparativeResult !== null && activeStage === 7;
                 const isCurrent = stage.id === activeStage;
                 const isCompleted = stage.id < activeStage || (isAllStagesCompleted && stage.id === 7);
@@ -406,45 +455,98 @@ export const App: React.FC = () => {
 
                 let stateClass = 'locked';
                 let stateLabel = 'Locked';
-                let iconSymbol = '🔒';
 
                 if (isCurrent) {
                   stateClass = 'current';
-                  stateLabel = isAllStagesCompleted && stage.id === 7 ? 'Decision ✓' : 'Current';
-                  iconSymbol = isAllStagesCompleted && stage.id === 7 ? '✓' : '●';
+                  stateLabel = isAllStagesCompleted && stage.id === 7 ? 'Decision ✓' : 'Active';
                 } else if (isCompleted) {
                   stateClass = 'completed';
                   stateLabel = 'Completed';
-                  iconSymbol = '✓';
                 } else if (!isLocked) {
-                  stateClass = 'completed'; // Unlocked / ready
+                  stateClass = 'completed';
                   stateLabel = 'Unlocked';
-                  iconSymbol = '○';
                 }
 
                 return (
-                  <button
-                    key={stage.id}
-                    type="button"
-                    role="tab"
-                    id={`stepper-stage-${stage.number}`}
-                    aria-selected={isCurrent}
-                    disabled={isLocked}
-                    onClick={() => handleStepClick(stage.id)}
-                    className={`workflow-step-btn ${stateClass}`}
-                    title={isLocked ? `Stage ${stage.number} is locked. Complete preceding stages to unlock.` : `Go to Stage ${stage.number} (${stage.name})`}
-                  >
-                    <div className="workflow-step-badge">
-                      <span>{iconSymbol}</span>
-                      <span>STAGE {stage.number}</span>
-                    </div>
-                    <div className="workflow-step-title">{stage.name}</div>
-                    <div className="workflow-step-status-tag" style={{
-                      color: isCurrent ? 'var(--accent-cyan)' : isCompleted ? 'var(--accent-emerald)' : 'var(--text-muted)'
-                    }}>
-                      {stateLabel}
-                    </div>
-                  </button>
+                  <React.Fragment key={stage.id}>
+                    <button
+                      type="button"
+                      role="tab"
+                      id={`stepper-stage-${stage.number}`}
+                      aria-selected={isCurrent}
+                      disabled={isLocked}
+                      onClick={() => handleStepClick(stage.id)}
+                      className={`workflow-step-btn ${stateClass}`}
+                      title={isLocked ? `Stage ${stage.number} is locked. Complete preceding stages to unlock.` : `Go to Stage ${stage.number} (${stage.name})`}
+                      style={{
+                        flex: 1,
+                        minWidth: '120px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                        padding: '0.65rem 0.5rem',
+                        background: isCurrent ? 'var(--accent-blue-subtle)' : isCompleted ? '#F7FCFA' : 'transparent',
+                        borderRadius: 'var(--radius-md)',
+                        border: isCurrent ? '1px solid #BEDDF0' : isCompleted ? '1px solid #D5EFE7' : '1px solid transparent',
+                        transition: 'all var(--transition-fast)',
+                        position: 'relative',
+                        cursor: isLocked ? 'not-allowed' : 'pointer'
+                      }}
+                    >
+                      {/* Numbered / Checked Circular Badge */}
+                      <div style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '0.78rem',
+                        fontWeight: 800,
+                        marginBottom: '0.35rem',
+                        background: isCurrent
+                          ? 'var(--accent-ocean)'
+                          : isCompleted
+                          ? 'var(--accent-teal)'
+                          : '#E2EEF5',
+                        color: isCurrent || isCompleted ? '#FFFFFF' : 'var(--text-muted)',
+                        boxShadow: isCurrent ? '0 2px 8px rgba(31, 90, 133, 0.3)' : 'none',
+                        transition: 'all var(--transition-fast)'
+                      }}>
+                        {isCompleted ? '✓' : stage.id}
+                      </div>
+
+                      {/* Stage Name */}
+                      <div className="workflow-step-title" style={{
+                        fontSize: '0.82rem',
+                        fontWeight: isCurrent ? 800 : 600,
+                        color: isCurrent ? 'var(--accent-ocean)' : isCompleted ? 'var(--text-primary)' : 'var(--text-muted)',
+                        lineHeight: 1.2
+                      }}>
+                        {stage.shortName}
+                      </div>
+
+                      <div className="workflow-step-status-tag" style={{
+                        fontSize: '0.65rem',
+                        marginTop: '0.2rem',
+                        color: isCurrent ? 'var(--accent-ocean)' : isCompleted ? 'var(--accent-teal)' : 'var(--text-muted)'
+                      }}>
+                        {stateLabel}
+                      </div>
+                    </button>
+
+                    {/* Connecting Line between steps */}
+                    {idx < STAGES_CONFIG.length - 1 && (
+                      <div style={{
+                        width: '20px',
+                        height: '2px',
+                        background: stage.id < activeStage ? 'var(--accent-teal)' : '#DCE9F2',
+                        flexShrink: 0,
+                        transition: 'background var(--transition-fast)'
+                      }} />
+                    )}
+                  </React.Fragment>
                 );
               })}
             </div>
@@ -460,7 +562,6 @@ export const App: React.FC = () => {
                   scrollToTop();
                 }}
                 onValuesModified={() => {
-                  // Invalidate downstream unlocked stages if voyage inputs are modified
                   setMaxUnlockedStage(1);
                   setEnvironmentResult(null);
                   setClassicalResult(null);
@@ -474,7 +575,6 @@ export const App: React.FC = () => {
                 selectedVesselIds={selectedVesselIds}
                 onSelectionChange={(vesselIds) => {
                   setSelectedVesselIds(vesselIds);
-                  // Invalidate downstream stage 03, 04, 05, and 06 results if fleet changes
                   setEnvironmentResult(null);
                   setClassicalResult(null);
                   setQiResult(null);
@@ -498,7 +598,6 @@ export const App: React.FC = () => {
                 environmentResult={environmentResult}
                 onEnvironmentProcessed={(result) => {
                   setEnvironmentResult(result);
-                  // Invalidate downstream classical, QI, and comparison results if environment conditions are re-run
                   setClassicalResult(null);
                   setQiResult(null);
                   setComparativeResult(null);
@@ -522,7 +621,6 @@ export const App: React.FC = () => {
                 classicalResult={classicalResult}
                 onClassicalOptimized={(result) => {
                   setClassicalResult(result);
-                  // Invalidate downstream QI and comparison results if classical settings are re-run
                   setQiResult(null);
                   setComparativeResult(null);
                   setMaxUnlockedStage(5);
@@ -546,7 +644,6 @@ export const App: React.FC = () => {
                 qiResult={qiResult}
                 onQiOptimized={(result) => {
                   setQiResult(result);
-                  // Invalidate downstream comparison and decision results if QI is re-run
                   setComparativeResult(null);
                   setMaxUnlockedStage(6);
                 }}
@@ -602,7 +699,7 @@ export const App: React.FC = () => {
                       <span className="badge badge-cyan">
                         {currentStageInfo.number} / 07
                       </span>
-                      <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+                      <span className="badge badge-purple">
                         {currentStageInfo.badge}
                       </span>
                     </div>
@@ -616,58 +713,17 @@ export const App: React.FC = () => {
                   </div>
 
                   <div style={{
-                    padding: '0.5rem 1rem',
-                    background: 'rgba(15, 23, 42, 0.6)',
+                    padding: '0.45rem 0.9rem',
+                    background: 'var(--bg-secondary)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-sm)',
                     fontSize: '0.78rem',
-                    color: 'var(--text-muted)'
+                    color: 'var(--text-secondary)'
                   }}>
-                    Status: <strong style={{ color: 'var(--accent-cyan)' }}>Stage {activeStage} Active</strong>
+                    Status: <strong style={{ color: 'var(--accent-ocean)' }}>Stage {activeStage} Active</strong>
                   </div>
                 </div>
 
-                {/* Stage Placeholder Content Area */}
-                <div
-                  style={{
-                    minHeight: '260px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'rgba(15, 23, 42, 0.45)',
-                    border: '1px dashed var(--border-subtle)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: '2.5rem',
-                    textAlign: 'center',
-                    margin: '1.5rem 0',
-                  }}
-                >
-                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
-                    {currentStageInfo.icon}
-                  </div>
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                    {currentStageInfo.title}
-                  </h3>
-                  <p style={{ maxWidth: '620px', color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
-                    {currentStageInfo.details}
-                  </p>
-                  <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.4rem 0.85rem',
-                    background: 'rgba(0, 229, 255, 0.08)',
-                    border: '1px solid rgba(0, 229, 255, 0.25)',
-                    borderRadius: 'var(--radius-full)',
-                    fontSize: '0.78rem',
-                    color: 'var(--accent-cyan)'
-                  }}>
-                    <span>⚡ Shell Ready for Component Integration (Upcoming Phase)</span>
-                  </div>
-                </div>
-
-                {/* Previous & Continue Navigation Controls */}
                 <div className="stage-nav-bar">
                   <button
                     type="button"
@@ -681,7 +737,7 @@ export const App: React.FC = () => {
                   </button>
 
                   <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-ocean)' }}>
                       Stage {currentStageInfo.number} of {STAGES_CONFIG.length}
                     </div>
                     <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
@@ -706,7 +762,7 @@ export const App: React.FC = () => {
         )}
 
         {/* ------------------------------------------------------------- */}
-        {/* MODE 2: Classic All-Modules View (Preserves 100% of features)  */}
+        {/* MODE 2: Classic All-Modules View                              */}
         {/* ------------------------------------------------------------- */}
         {viewMode === 'classic' && (
           <div id="classic-modules-view">
@@ -716,13 +772,12 @@ export const App: React.FC = () => {
               gap: '0.6rem',
               marginBottom: '2.5rem',
               padding: '0.75rem 1rem',
-              background: 'rgba(15, 23, 42, 0.7)',
+              background: '#FFFFFF',
               border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-md)',
-              backdropFilter: 'blur(8px)',
+              boxShadow: 'var(--shadow-sm)',
               overflowX: 'auto',
               whiteSpace: 'nowrap',
-              boxShadow: 'var(--shadow-card)',
               alignItems: 'center',
             }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', marginRight: '0.25rem', letterSpacing: '0.04em' }}>
@@ -793,8 +848,8 @@ export const App: React.FC = () => {
             {/* Prototype Rules & Non-Fabrication Notice */}
             <section style={{ marginBottom: '3rem' }}>
               <div style={{
-                background: 'rgba(15, 23, 42, 0.6)',
-                borderLeft: '4px solid var(--accent-cyan)',
+                background: '#FFFFFF',
+                borderLeft: '4px solid var(--accent-ocean)',
                 borderTop: '1px solid var(--border-subtle)',
                 borderRight: '1px solid var(--border-subtle)',
                 borderBottom: '1px solid var(--border-subtle)',
@@ -802,11 +857,12 @@ export const App: React.FC = () => {
                 padding: '1.25rem 1.5rem',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.5rem'
+                gap: '0.5rem',
+                boxShadow: 'var(--shadow-sm)'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <span style={{ fontSize: '1.1rem' }}>🛡️</span>
-                  <strong style={{ fontSize: '0.95rem', color: 'var(--accent-cyan)' }}>
+                  <strong style={{ fontSize: '0.95rem', color: 'var(--accent-ocean)' }}>
                     Prototype Architecture Principles &amp; Transparency
                   </strong>
                 </div>
@@ -825,21 +881,142 @@ export const App: React.FC = () => {
             <PipelineOverview stages={stages} />
           </div>
         )}
+
+        {/* Bottom 3 Sustainability & Performance Cards (From Reference Design) */}
+        <section style={{ marginTop: '2rem', marginBottom: '1.5rem' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.25rem',
+          }}>
+            {/* Card 1: Lower Emissions */}
+            <div style={{
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: 'var(--radius-md)',
+              padding: '1.25rem 1.5rem',
+              boxShadow: 'var(--shadow-card)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem'
+            }}>
+              <div style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                background: 'var(--accent-teal-subtle)',
+                border: '1px solid #C5E9DD',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.3rem',
+                color: 'var(--accent-teal-dark)',
+                flexShrink: 0
+              }}>
+                🍃
+              </div>
+              <div>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                  Lower Emissions
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '0.2rem 0 0', lineHeight: 1.35 }}>
+                  Choose cleaner fuels and emission-optimized candidate routes
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2: Cost Efficient */}
+            <div style={{
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: 'var(--radius-md)',
+              padding: '1.25rem 1.5rem',
+              boxShadow: 'var(--shadow-card)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem'
+            }}>
+              <div style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                background: 'var(--accent-blue-subtle)',
+                border: '1px solid #BEDDF0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.3rem',
+                color: 'var(--accent-ocean)',
+                flexShrink: 0
+              }}>
+                🛢️
+              </div>
+              <div>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                  Cost Efficient
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '0.2rem 0 0', lineHeight: 1.35 }}>
+                  Optimize vessel speed, routing and bunker fuel combinations
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3: Safer Journeys */}
+            <div style={{
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: 'var(--radius-md)',
+              padding: '1.25rem 1.5rem',
+              boxShadow: 'var(--shadow-card)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem'
+            }}>
+              <div style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                background: 'var(--accent-purple-light)',
+                border: '1px solid #D8DDF5',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.3rem',
+                color: 'var(--accent-purple)',
+                flexShrink: 0
+              }}>
+                🛡️
+              </div>
+              <div>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                  Safer Journeys
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '0.2rem 0 0', lineHeight: 1.35 }}>
+                  Real-time environmental awareness and draft limit adherence
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
+      {/* Footer */}
       <footer style={{
         borderTop: '1px solid var(--border-subtle)',
-        padding: '1.5rem 0',
-        background: 'var(--bg-primary)',
+        padding: '1.25rem 0',
+        background: 'rgba(255, 255, 255, 0.9)',
         fontSize: '0.8rem',
-        color: 'var(--text-muted)'
+        color: 'var(--text-secondary)',
+        position: 'relative',
+        zIndex: 1
       }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-          <div>SIH26138 Maritime Optimization Engine &bull; 7-Stage Guided Optimization Workflow</div>
+          <div>GreenFleet AI &bull; SIH26138 Maritime Optimization Engine &bull; 7-Stage Guided Optimization Workflow</div>
+          <div style={{ fontStyle: 'italic', color: 'var(--text-muted)', fontSize: '0.78rem' }}>
+            Sustainable Shipping, Stronger Tomorrow. 🌊
+          </div>
         </div>
       </footer>
     </div>
   );
 };
-
-

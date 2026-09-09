@@ -134,7 +134,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
       {/* ------------------------------------------------------------- */}
       {/* 1. STAGE HEADER                                               */}
       {/* ------------------------------------------------------------- */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.25rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.25rem', borderBottom: '1px solid var(--border-subtle, #E2EDF5)', paddingBottom: '1.5rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.4rem' }}>
             <span className="badge badge-emerald" style={{ fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.04em' }}>
@@ -143,7 +143,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
             <span className="badge badge-cyan" style={{ fontSize: '0.78rem', fontWeight: 700 }}>
               Decision
             </span>
-            <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ fontSize: '0.8rem', color: 'var(--accent-teal, #2C8573)', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
               <span>✓</span>
               <span>All optimization stages completed</span>
             </span>
@@ -164,18 +164,18 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
             alignItems: 'center',
             gap: '0.5rem',
             padding: '0.45rem 0.9rem',
-            background: 'rgba(16, 185, 129, 0.12)',
-            border: '1px solid rgba(16, 185, 129, 0.35)',
+            background: '#E8F6F2',
+            border: '1px solid #A7F3D0',
             borderRadius: 'var(--radius-full)',
             fontSize: '0.8rem',
             fontWeight: 700,
-            color: '#34d399'
+            color: '#2C8573'
           }}>
             <span>✨</span>
             <span>Optimization workflow complete</span>
           </div>
-          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-            Workflow ID: <code style={{ color: 'var(--accent-cyan)' }}>{comparativeResult.request?.source_port_id || voyageConfig.sourcePort}-{comparativeResult.request?.destination_port_id || voyageConfig.destPort}</code>
+          <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+            Workflow ID: <code style={{ color: 'var(--accent-ocean, #1F5A85)' }}>{comparativeResult.request?.source_port_id || voyageConfig.sourcePort}-{comparativeResult.request?.destination_port_id || voyageConfig.destPort}</code>
           </span>
         </div>
       </div>
@@ -188,11 +188,11 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           <div
             id="primary-recommendation-card"
             style={{
-              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
-              border: '2px solid rgba(16, 185, 129, 0.45)',
+              background: 'linear-gradient(135deg, #E8F6F2 0%, #FFFFFF 100%)',
+              border: '2px solid #3FA48E',
               borderRadius: 'var(--radius-lg)',
               padding: '2rem',
-              boxShadow: '0 12px 36px rgba(16, 185, 129, 0.12)',
+              boxShadow: '0 8px 30px rgba(63, 164, 142, 0.12)',
               position: 'relative',
               overflow: 'hidden'
             }}
@@ -200,9 +200,9 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
             {/* Top Badge & Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
               <div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.8rem', background: 'rgba(16, 185, 129, 0.25)', border: '1px solid #10b981', borderRadius: 'var(--radius-full)', marginBottom: '0.65rem' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.3rem 0.8rem', background: '#E8F6F2', border: '1px solid #3FA48E', borderRadius: 'var(--radius-full)', marginBottom: '0.65rem' }}>
                   <span style={{ fontSize: '0.85rem' }}>★</span>
-                  <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#34d399', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#2C8573', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Recommended Voyage Plan
                   </span>
                 </div>
@@ -210,20 +210,20 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                   {candidate.vessel_name}
                 </h3>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
-                  Vessel Type: <strong style={{ color: 'var(--text-primary)' }}>{candidate.vessel_type || 'Commercial Bulk Carrier'}</strong> &bull; Vessel ID: <code style={{ color: 'var(--accent-cyan)' }}>{candidate.vessel_id}</code>
+                  Vessel Type: <strong style={{ color: 'var(--text-primary)' }}>{candidate.vessel_type || 'Commercial Bulk Carrier'}</strong> &bull; Vessel ID: <code style={{ color: 'var(--accent-ocean, #1F5A85)' }}>{candidate.vessel_id}</code>
                 </div>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <div style={{
                   padding: '0.5rem 1rem',
-                  background: 'rgba(16, 185, 129, 0.2)',
-                  border: '1px solid #10b981',
+                  background: '#E8F6F2',
+                  border: '1px solid #3FA48E',
                   borderRadius: 'var(--radius-md)',
                   textAlign: 'right'
                 }}>
-                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Feasibility Status</div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#34d399' }}>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Feasibility Status</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#2C8573' }}>
                     {candidate.is_feasible ? 'FEASIBLE & VERIFIED ✓' : 'INFEASIBLE'}
                   </div>
                 </div>
@@ -236,13 +236,13 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
               gap: '1rem',
               marginBottom: '1.75rem',
-              background: 'rgba(0, 0, 0, 0.35)',
+              background: 'var(--bg-card-inset, #F4FAFC)',
               padding: '1.25rem',
               borderRadius: 'var(--radius-md)',
-              border: '1px solid rgba(255, 255, 255, 0.08)'
+              border: '1px solid var(--border-subtle, #E2EDF5)'
             }}>
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>1. Deployed Vessel</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>1. Deployed Vessel</div>
                 <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', marginTop: '0.2rem' }}>
                   {candidate.vessel_name}
                 </div>
@@ -252,8 +252,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               </div>
 
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>2. Maritime Route</div>
-                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--accent-cyan)', marginTop: '0.2rem' }}>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>2. Maritime Route</div>
+                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--accent-ocean, #1F5A85)', marginTop: '0.2rem' }}>
                   {candidate.route_name}
                 </div>
                 <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
@@ -262,8 +262,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               </div>
 
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>3. Cruising Speed</div>
-                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#fbbf24', marginTop: '0.2rem' }}>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>3. Cruising Speed</div>
+                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--accent-amber, #B45309)', marginTop: '0.2rem' }}>
                   {`${formatNum(candidate.cruising_speed_knots, 1)} kts`}
                 </div>
                 <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
@@ -272,12 +272,12 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               </div>
 
               <div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>4. Bunker Fuel</div>
-                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#c084fc', marginTop: '0.2rem' }}>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>4. Bunker Fuel</div>
+                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#6D28D9', marginTop: '0.2rem' }}>
                   {candidate.fuel_name}
                 </div>
                 <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
-                  Fuel ID: <code style={{ color: '#c084fc' }}>{candidate.fuel_id}</code>
+                  Fuel ID: <code style={{ color: '#6D28D9' }}>{candidate.fuel_id}</code>
                 </div>
               </div>
             </div>
@@ -289,15 +289,15 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               gap: '0.85rem',
             }}>
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Total Voyage Cost</div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Total Voyage Cost</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-ocean, #1F5A85)' }}>
                   {formatMoney(candidate.total_voyage_cost_usd)}
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Bunker + Port/Canal</div>
               </div>
 
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Voyage Duration (hrs)</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Voyage Duration (hrs)</div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                   {`${formatNum(candidate.total_voyage_time_hours, 1)} hrs`}
                 </div>
@@ -307,39 +307,39 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               </div>
 
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Fuel Consumption</div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-amber)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Fuel Consumption</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-amber, #B45309)' }}>
                   {`${formatNum(candidate.fuel_consumption_tonnes, 1)} MT`}
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Hydrodynamically adjusted</div>
               </div>
 
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Operational CO₂</div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-emerald)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Operational CO₂</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-teal, #2C8573)' }}>
                   {`${formatNum(candidate.operational_co2_tonnes, 1)} MT`}
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Direct combustion</div>
               </div>
 
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Lifecycle GHG</div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#c084fc' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Lifecycle GHG</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#6D28D9' }}>
                   {`${formatNum(candidate.lifecycle_ghg_tonnes, 1)} MT`}
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Well-to-Wake boundary</div>
               </div>
 
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Deadline Margin</div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: candidate.deadline_margin_hours >= 0 ? 'var(--accent-emerald)' : '#ef4444' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Deadline Margin</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: candidate.deadline_margin_hours >= 0 ? 'var(--accent-teal, #2C8573)' : '#DC2626' }}>
                   {candidate.deadline_margin_hours >= 0 ? `+${formatNum(candidate.deadline_margin_hours, 1)} hrs` : `${formatNum(candidate.deadline_margin_hours, 1)} hrs`}
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Schedule buffer</div>
               </div>
 
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Cargo Load</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Cargo Load</div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                   {`${formatNum(candidate.cargo_tonnes, 0)} MT`}
                 </div>
@@ -347,8 +347,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               </div>
 
               <div className="kpi-card" style={{ padding: '0.9rem 1rem' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Vessel Utilization</div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Vessel Utilization</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent-ocean, #1F5A85)' }}>
                   {`${formatNum(candidate.cargo_utilization_pct, 1)}%`}
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Deadweight capacity</div>
@@ -359,7 +359,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           {/* ------------------------------------------------------------- */}
           {/* 4. WHY THIS PLAN?                                             */}
           {/* ------------------------------------------------------------- */}
-          <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid var(--accent-emerald)' }}>
+          <div className="glass-panel" style={{ padding: '1.5rem', background: 'var(--bg-card, #FFFFFF)', border: '1px solid var(--border-subtle, #E2EDF5)', borderLeft: '4px solid var(--accent-teal, #3FA48E)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
               <span style={{ fontSize: '1.1rem' }}>💡</span>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
@@ -386,10 +386,10 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                 </li>
               )}
               <li style={{ marginBottom: '0.35rem' }}>
-                Preserves <strong style={{ color: 'var(--accent-emerald)' }}>{`${formatNum(candidate.deadline_margin_hours, 1)} hours`}</strong> of schedule buffer ahead of the delivery deadline ({new Date(candidate.deadline_datetime).toLocaleDateString('en-US')}).
+                Preserves <strong style={{ color: 'var(--accent-teal, #2C8573)' }}>{`${formatNum(candidate.deadline_margin_hours, 1)} hours`}</strong> of schedule buffer ahead of the delivery deadline ({new Date(candidate.deadline_datetime).toLocaleDateString('en-US')}).
               </li>
               <li style={{ marginBottom: '0.35rem' }}>
-                Navigates via the environmentally verified <strong style={{ color: 'var(--text-primary)' }}>{candidate.route_name}</strong> corridor under <strong style={{ color: candidate.weather_risk_level === 'LOW' ? '#34d399' : '#fbbf24' }}>{candidate.weather_risk_level}</strong> weather risk.
+                Navigates via the environmentally verified <strong style={{ color: 'var(--text-primary)' }}>{candidate.route_name}</strong> corridor under <strong style={{ color: candidate.weather_risk_level === 'LOW' ? '#2C8573' : '#B45309' }}>{candidate.weather_risk_level}</strong> weather risk.
               </li>
               <li>
                 Cargo payload ({`${formatNum(candidate.cargo_tonnes, 0)} MT`}) is within the vessel DWT limit at <strong style={{ color: 'var(--text-primary)' }}>{`${formatNum(candidate.cargo_utilization_pct, 1)}%`}</strong> deadweight utilization.
@@ -400,7 +400,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           {/* ------------------------------------------------------------- */}
           {/* 5. TRADE-OFF ACCEPTED                                         */}
           {/* ------------------------------------------------------------- */}
-          <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #fbbf24' }}>
+          <div className="glass-panel" style={{ padding: '1.5rem', background: 'var(--bg-card, #FFFFFF)', border: '1px solid var(--border-subtle, #E2EDF5)', borderLeft: '4px solid #F59E0B', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
               <span style={{ fontSize: '1.1rem' }}>⚖️</span>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
@@ -415,12 +415,12 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                 </div>
               ) : (
                 <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                  Compared with the minimum-cost alternative ({minCostCand.vessel_name} via {minCostCand.route_name} at {formatMoney(minCostCand.total_voyage_cost_usd)}), this plan costs <strong style={{ color: '#fbbf24' }}>{`${formatMoney(costDelta)} more (${formatPct((costDelta / (minCostCand.total_voyage_cost_usd || 1)) * 100)})`}</strong>
+                  Compared with the minimum-cost alternative ({minCostCand.vessel_name} via {minCostCand.route_name} at {formatMoney(minCostCand.total_voyage_cost_usd)}), this plan costs <strong style={{ color: '#B45309' }}>{`${formatMoney(costDelta)} more (${formatPct((costDelta / (minCostCand.total_voyage_cost_usd || 1)) * 100)})`}</strong>
                   {timeSavedHours > 0.05 && (
-                    <span> but reduces transit travel time by <strong style={{ color: 'var(--accent-cyan)' }}>{`${formatNum(timeSavedHours, 1)} hours`}</strong></span>
+                    <span> but reduces transit travel time by <strong style={{ color: 'var(--accent-ocean, #1F5A85)' }}>{`${formatNum(timeSavedHours, 1)} hours`}</strong></span>
                   )}
                   {co2SavedTonnes > 0.05 && (
-                    <span> and operational CO₂ emissions by <strong style={{ color: 'var(--accent-emerald)' }}>{`${formatNum(co2SavedTonnes, 1)} MT`}</strong></span>
+                    <span> and operational CO₂ emissions by <strong style={{ color: 'var(--accent-teal, #2C8573)' }}>{`${formatNum(co2SavedTonnes, 1)} MT`}</strong></span>
                   )}
                   {fuelSavedTonnes > 0.05 && (
                     <span> (saving {`${formatNum(fuelSavedTonnes, 1)} MT`} bunker fuel)</span>
@@ -438,7 +438,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           {/* ------------------------------------------------------------- */}
           {/* 6. ALTERNATIVES INSPECTION                                    */}
           {/* ------------------------------------------------------------- */}
-          <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #c084fc' }}>
+          <div className="glass-panel" style={{ padding: '1.5rem', background: 'var(--bg-card, #FFFFFF)', border: '1px solid var(--border-subtle, #E2EDF5)', borderLeft: '4px solid #8B5CF6', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '1.1rem' }}>📋</span>
@@ -446,7 +446,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                   Alternative Options
                 </h3>
               </div>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                 Click any alternative to inspect details without altering the primary recommendation
               </span>
             </div>
@@ -458,7 +458,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
             <div style={{ overflowX: 'auto', marginBottom: '1.25rem' }}>
               <table style={{ width: '100%', fontSize: '0.82rem', borderCollapse: 'collapse', textAlign: 'left' }}>
                 <thead>
-                  <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-muted)', fontSize: '0.72rem', textTransform: 'uppercase' }}>
+                  <tr style={{ borderBottom: '1px solid var(--border-subtle, #E2EDF5)', background: 'var(--bg-card-inset, #F4FAFC)', color: 'var(--text-secondary)', fontSize: '0.72rem', textTransform: 'uppercase' }}>
                     <th style={{ padding: '0.65rem 0.75rem' }}>Strategy / Priority</th>
                     <th style={{ padding: '0.65rem 0.75rem' }}>Vessel</th>
                     <th style={{ padding: '0.65rem 0.75rem' }}>Route</th>
@@ -480,11 +480,11 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                       <tr
                         key={alt.key}
                         style={{
-                          borderBottom: '1px solid var(--border-subtle)',
+                          borderBottom: '1px solid var(--border-subtle, #E2EDF5)',
                           background: isInspected
-                            ? 'rgba(192, 132, 252, 0.12)'
+                            ? '#EDE9FE'
                             : isPrimary
-                            ? 'rgba(16, 185, 129, 0.08)'
+                            ? '#E8F6F2'
                             : 'transparent',
                           transition: 'background 0.15s ease',
                         }}
@@ -500,10 +500,10 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                           </div>
                         </td>
                         <td style={{ padding: '0.65rem 0.75rem', color: 'var(--text-primary)' }}>{c.vessel_name}</td>
-                        <td style={{ padding: '0.65rem 0.75rem', color: 'var(--accent-cyan)' }}>{c.route_name}</td>
+                        <td style={{ padding: '0.65rem 0.75rem', color: 'var(--accent-ocean, #1F5A85)' }}>{c.route_name}</td>
                         <td style={{ padding: '0.65rem 0.75rem' }}>{`${formatNum(c.cruising_speed_knots, 1)} kts`}</td>
                         <td style={{ padding: '0.65rem 0.75rem' }}>{c.fuel_name}</td>
-                        <td style={{ padding: '0.65rem 0.75rem', textAlign: 'right', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+                        <td style={{ padding: '0.65rem 0.75rem', textAlign: 'right', fontWeight: 700, color: 'var(--accent-ocean, #1F5A85)' }}>
                           {formatMoney(c.total_voyage_cost_usd)}
                         </td>
                         <td style={{ padding: '0.65rem 0.75rem', textAlign: 'right' }}>{`${formatNum(c.total_voyage_time_hours, 1)} hrs`}</td>
@@ -515,9 +515,9 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                             style={{
                               padding: '0.25rem 0.65rem',
                               fontSize: '0.72rem',
-                              background: isInspected ? 'rgba(192, 132, 252, 0.3)' : 'rgba(255, 255, 255, 0.06)',
-                              border: isInspected ? '1px solid #c084fc' : '1px solid var(--border-subtle)',
-                              color: isInspected ? '#c084fc' : 'var(--text-primary)',
+                              background: isInspected ? '#DDD6FE' : 'var(--bg-card-inset, #F4FAFC)',
+                              border: isInspected ? '1px solid #8B5CF6' : '1px solid var(--border-subtle, #E2EDF5)',
+                              color: isInspected ? '#6D28D9' : 'var(--text-primary)',
                             }}
                             onClick={() => setInspectedAltKey(isInspected ? null : alt.key)}
                           >
@@ -536,8 +536,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               <div
                 id="inspected-alternative-panel"
                 style={{
-                  background: 'rgba(192, 132, 252, 0.08)',
-                  border: '1px solid rgba(192, 132, 252, 0.35)',
+                  background: '#F5F3FF',
+                  border: '1px solid #DDD6FE',
                   borderRadius: 'var(--radius-md)',
                   padding: '1.25rem',
                   marginTop: '1rem',
@@ -545,16 +545,16 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span className="badge badge-purple" style={{ fontSize: '0.7rem' }}>
+                    <span className="badge badge-purple" style={{ fontSize: '0.7rem', background: '#EDE9FE', color: '#6D28D9' }}>
                       INSPECTING ALTERNATIVE: {inspectedAlt.label}
                     </span>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                       (Official recommendation above remains active)
                     </span>
                   </div>
                   <button
                     type="button"
-                    style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.8rem' }}
+                    style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', fontSize: '0.8rem' }}
                     onClick={() => setInspectedAltKey(null)}
                   >
                     ✕ Close
@@ -563,34 +563,34 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem', marginTop: '0.75rem' }}>
                   <div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Vessel</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>Vessel</div>
                     <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{inspectedAlt.rec.candidate.vessel_name}</div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Route</div>
-                    <div style={{ fontWeight: 700, color: 'var(--accent-cyan)' }}>{inspectedAlt.rec.candidate.route_name}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>Route</div>
+                    <div style={{ fontWeight: 700, color: 'var(--accent-ocean, #1F5A85)' }}>{inspectedAlt.rec.candidate.route_name}</div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Speed / Fuel</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>Speed / Fuel</div>
                     <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
                       {`${formatNum(inspectedAlt.rec.candidate.cruising_speed_knots, 1)} kts / ${inspectedAlt.rec.candidate.fuel_name}`}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Cost</div>
-                    <div style={{ fontWeight: 700, color: 'var(--accent-cyan)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>Cost</div>
+                    <div style={{ fontWeight: 700, color: 'var(--accent-ocean, #1F5A85)' }}>
                       {formatMoney(inspectedAlt.rec.candidate.total_voyage_cost_usd)}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Transit Time</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>Transit Time</div>
                     <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
                       {`${formatNum(inspectedAlt.rec.candidate.total_voyage_time_hours, 1)} hrs`}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Operational CO₂</div>
-                    <div style={{ fontWeight: 700, color: 'var(--accent-emerald)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>Operational CO₂</div>
+                    <div style={{ fontWeight: 700, color: 'var(--accent-teal, #2C8573)' }}>
                       {`${formatNum(inspectedAlt.rec.candidate.operational_co2_tonnes, 1)} MT`}
                     </div>
                   </div>
@@ -602,7 +602,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           {/* ------------------------------------------------------------- */}
           {/* 7. OPERATIONAL CHECKLIST                                      */}
           {/* ------------------------------------------------------------- */}
-          <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid var(--accent-cyan)' }}>
+          <div className="glass-panel" style={{ padding: '1.5rem', background: 'var(--bg-card, #FFFFFF)', border: '1px solid var(--border-subtle, #E2EDF5)', borderLeft: '4px solid var(--accent-ocean, #1F5A85)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
               <span style={{ fontSize: '1.1rem' }}>✓</span>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
@@ -615,8 +615,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.85rem' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-sm)' }}>
-                <span style={{ color: '#10b981', fontWeight: 800, fontSize: '1rem' }}>✓</span>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'var(--bg-card-inset, #F4FAFC)', border: '1px solid var(--border-subtle, #E2EDF5)', borderRadius: 'var(--radius-sm)' }}>
+                <span style={{ color: '#2C8573', fontWeight: 800, fontSize: '1rem' }}>✓</span>
                 <div>
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>Cargo capacity satisfied</div>
                   <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
@@ -625,8 +625,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-sm)' }}>
-                <span style={{ color: '#10b981', fontWeight: 800, fontSize: '1rem' }}>✓</span>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'var(--bg-card-inset, #F4FAFC)', border: '1px solid var(--border-subtle, #E2EDF5)', borderRadius: 'var(--radius-sm)' }}>
+                <span style={{ color: '#2C8573', fontWeight: 800, fontSize: '1rem' }}>✓</span>
                 <div>
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>Route environmentally feasible</div>
                   <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
@@ -635,8 +635,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-sm)' }}>
-                <span style={{ color: candidate.deadline_margin_hours >= 0 ? '#10b981' : '#ef4444', fontWeight: 800, fontSize: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'var(--bg-card-inset, #F4FAFC)', border: '1px solid var(--border-subtle, #E2EDF5)', borderRadius: 'var(--radius-sm)' }}>
+                <span style={{ color: candidate.deadline_margin_hours >= 0 ? '#2C8573' : '#DC2626', fontWeight: 800, fontSize: '1rem' }}>
                   {candidate.deadline_margin_hours >= 0 ? '✓' : '✗'}
                 </span>
                 <div>
@@ -647,8 +647,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-sm)' }}>
-                <span style={{ color: '#10b981', fontWeight: 800, fontSize: '1rem' }}>✓</span>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'var(--bg-card-inset, #F4FAFC)', border: '1px solid var(--border-subtle, #E2EDF5)', borderRadius: 'var(--radius-sm)' }}>
+                <span style={{ color: '#2C8573', fontWeight: 800, fontSize: '1rem' }}>✓</span>
                 <div>
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>Fuel compatibility confirmed</div>
                   <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
@@ -657,8 +657,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-sm)' }}>
-                <span style={{ color: '#10b981', fontWeight: 800, fontSize: '1rem' }}>✓</span>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'var(--bg-card-inset, #F4FAFC)', border: '1px solid var(--border-subtle, #E2EDF5)', borderRadius: 'var(--radius-sm)' }}>
+                <span style={{ color: '#2C8573', fontWeight: 800, fontSize: '1rem' }}>✓</span>
                 <div>
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>Speed within vessel limits</div>
                   <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
@@ -667,8 +667,8 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: 'var(--radius-sm)' }}>
-                <span style={{ color: '#10b981', fontWeight: 800, fontSize: '1rem' }}>✓</span>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', padding: '0.75rem 1rem', background: 'var(--bg-card-inset, #F4FAFC)', border: '1px solid var(--border-subtle, #E2EDF5)', borderRadius: 'var(--radius-sm)' }}>
+                <span style={{ color: '#2C8573', fontWeight: 800, fontSize: '1rem' }}>✓</span>
                 <div>
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>Emission footprint evaluated</div>
                   <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
@@ -683,8 +683,11 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           {/* 8. DECISION NOTES / LIMITATIONS                               */}
           {/* ------------------------------------------------------------- */}
           <div style={{
-            background: 'rgba(15, 23, 42, 0.65)',
-            borderLeft: '4px solid var(--accent-cyan)',
+            background: 'var(--bg-card-inset, #F4FAFC)',
+            borderLeft: '4px solid var(--accent-ocean, #1F5A85)',
+            borderTop: '1px solid var(--border-subtle, #E2EDF5)',
+            borderRight: '1px solid var(--border-subtle, #E2EDF5)',
+            borderBottom: '1px solid var(--border-subtle, #E2EDF5)',
             borderRadius: '0 var(--radius-md) var(--radius-md) 0',
             padding: '1.25rem 1.5rem',
             display: 'flex',
@@ -693,7 +696,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '1rem' }}>ℹ️</span>
-              <strong style={{ fontSize: '0.85rem', color: 'var(--accent-cyan)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <strong style={{ fontSize: '0.85rem', color: 'var(--accent-ocean, #1F5A85)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Decision Notes &amp; Operational Limitations
               </strong>
             </div>
@@ -714,7 +717,7 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
           </div>
         </>
       ) : (
-        <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+        <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
           No recommended candidate found in comparative analysis.
         </div>
       )}
@@ -734,22 +737,22 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#10b981' }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-teal, #2C8573)' }}>
             Workflow Stage 07 of 07
           </div>
-          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
             Final Decision Screen
           </div>
         </div>
 
         {showResetConfirm ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.75rem', color: '#ef4444', fontWeight: 600 }}>Reset all stages?</span>
+            <span style={{ fontSize: '0.75rem', color: '#DC2626', fontWeight: 600 }}>Reset all stages?</span>
             <button
               type="button"
               id="stage07-confirm-reset-btn"
               className="stage-nav-btn"
-              style={{ background: '#ef4444', color: '#fff', border: '1px solid #dc2626', padding: '0.5rem 0.9rem', fontSize: '0.8rem' }}
+              style={{ background: '#DC2626', color: '#fff', border: '1px solid #B91C1C', padding: '0.5rem 0.9rem', fontSize: '0.8rem' }}
               onClick={() => {
                 setShowResetConfirm(false);
                 onResetWorkflow();
@@ -772,9 +775,10 @@ export const Stage07Decision: React.FC<Stage07DecisionProps> = ({
             id="stage07-reset-btn"
             className="stage-nav-btn stage-nav-btn-primary"
             style={{
-              background: 'linear-gradient(135deg, rgba(0, 229, 255, 0.2) 0%, rgba(16, 185, 129, 0.3) 100%)',
-              border: '1px solid var(--accent-cyan)',
-              color: 'var(--text-primary)',
+              background: 'linear-gradient(135deg, #1F5A85 0%, #3884C7 100%)',
+              border: 'none',
+              color: '#FFFFFF',
+              boxShadow: '0 4px 16px rgba(31, 90, 133, 0.25)',
             }}
             onClick={() => setShowResetConfirm(true)}
           >

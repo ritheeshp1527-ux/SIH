@@ -282,10 +282,10 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
             <span className="badge badge-cyan" id="stage-badge-indicator">
               04 / 07
             </span>
-            <span className="badge badge-purple" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+            <span className="badge badge-emerald">
               Exhaustive Baseline
             </span>
-            <span className="badge" style={{ background: 'rgba(56, 189, 248, 0.12)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.25)' }}>
+            <span className="badge badge-purple" style={{ background: '#EDE9FE', color: '#6D28D9', border: '1px solid #DDD6FE' }}>
               Conventional Solver
             </span>
           </div>
@@ -302,14 +302,14 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
 
         <div style={{
           padding: '0.55rem 1rem',
-          background: 'rgba(15, 23, 42, 0.65)',
-          border: '1px solid var(--border-subtle)',
+          background: 'var(--bg-card-inset, #F4FAFC)',
+          border: '1px solid var(--border-subtle, #E2EDF5)',
           borderRadius: 'var(--radius-sm)',
           fontSize: '0.78rem',
-          color: 'var(--text-muted)'
+          color: 'var(--text-secondary)'
         }}>
-          Status: <strong style={{ color: classicalResult ? 'var(--accent-emerald)' : 'var(--accent-cyan)' }}>
-            {classicalResult ? 'Classical Baseline Solved ✓' : 'Ready to Run'}
+          Status: <strong style={{ color: classicalResult ? 'var(--accent-teal-dark, #2C8573)' : isRunning ? 'var(--accent-amber, #B45309)' : 'var(--accent-ocean, #1F5A85)' }}>
+            {classicalResult ? 'Classical Baseline Solved ✓' : isRunning ? 'Optimizing Fleet...' : 'Ready to Run'}
           </strong>
         </div>
       </div>
@@ -318,7 +318,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
       {/* 2. READ-ONLY CONTEXT (Voyage, Fleet, Environment)             */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.55)',
+        background: 'var(--bg-card-inset)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.15rem 1.25rem',
@@ -334,9 +334,9 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
           gap: '1rem',
         }}>
           {/* Voyage Context */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+          <div style={{ background: '#FFFFFF', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Voyage Route &amp; Cargo</div>
-            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-cyan)', marginTop: '0.2rem' }}>
+            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-ocean)', marginTop: '0.2rem' }}>
               {voyageConfig.sourcePort} → {voyageConfig.destPort}
             </div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
@@ -348,7 +348,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
           </div>
 
           {/* Fleet Context */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+          <div style={{ background: '#FFFFFF', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Candidate Fleet (Stage 02)</div>
             <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-purple)', marginTop: '0.2rem' }}>
               {selectedVesselIds.length} {selectedVesselIds.length === 1 ? 'Vessel Selected' : 'Vessels Selected'}
@@ -362,9 +362,9 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
           </div>
 
           {/* Environment Context */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.25)', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+          <div style={{ background: '#FFFFFF', padding: '0.75rem 0.95rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Feasible Corridors (Stage 03)</div>
-            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-emerald)', marginTop: '0.2rem' }}>
+            <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-teal-dark)', marginTop: '0.2rem' }}>
               {feasibleRouteIds.length} {feasibleRouteIds.length === 1 ? 'Feasible Route' : 'Feasible Routes'}
             </div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
@@ -381,8 +381,8 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
       {/* 3. EXPLANATION BANNER                                         */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(0, 229, 255, 0.06)',
-        border: '1px solid rgba(0, 229, 255, 0.25)',
+        background: 'var(--accent-blue-subtle)',
+        border: '1px solid #BEDDF0',
         borderRadius: 'var(--radius-sm)',
         padding: '0.9rem 1.25rem',
         marginBottom: '1.5rem',
@@ -392,7 +392,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
       }}>
         <span style={{ fontSize: '1.3rem' }}>💡</span>
         <div style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          <strong style={{ color: 'var(--accent-cyan)' }}>Conventional Decision Space Evaluation: </strong>
+          <strong style={{ color: 'var(--accent-ocean)' }}>Conventional Decision Space Evaluation: </strong>
           The classical baseline exhaustively evaluates feasible vessel × route × speed × fuel combinations under the configured operational constraints.
         </div>
       </div>
@@ -401,11 +401,12 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
       {/* 4. OPTIMIZATION CONTROLS & RUN TRIGGER                        */}
       {/* ------------------------------------------------------------- */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.7)',
+        background: '#FFFFFF',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-md)',
         padding: '1.35rem 1.5rem',
         marginBottom: '1.75rem',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
@@ -430,14 +431,15 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                 onChange={(e) => setSpeedGridStep(parseFloat(e.target.value))}
                 disabled={isRunning}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.9)',
-                  border: '1px solid var(--border-subtle)',
+                  background: '#FFFFFF',
+                  border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-sm)',
                   color: 'var(--text-primary)',
                   padding: '0.4rem 0.75rem',
                   fontSize: '0.8rem',
                   cursor: 'pointer',
                   fontFamily: 'var(--font-mono, monospace)',
+                  boxShadow: 'var(--shadow-sm)'
                 }}
               >
                 <option value="1.0">1.0 knots (Standard ~140 points)</option>
@@ -454,16 +456,16 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
               style={{
                 padding: '0.65rem 1.5rem',
                 borderRadius: 'var(--radius-sm)',
-                background: isRunning ? 'rgba(0, 229, 255, 0.2)' : 'linear-gradient(135deg, #00e5ff 0%, #00b4d8 100%)',
-                color: isRunning ? 'var(--accent-cyan)' : '#080d1a',
-                border: 'none',
+                background: isRunning ? 'var(--bg-secondary)' : 'linear-gradient(135deg, #2A74A8 0%, #1A5480 100%)',
+                color: isRunning ? 'var(--accent-ocean)' : '#FFFFFF',
+                border: '1px solid #16476D',
                 fontWeight: 700,
                 fontSize: '0.88rem',
                 cursor: isRunning || feasibleRouteIds.length === 0 ? 'not-allowed' : 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                boxShadow: isRunning ? 'none' : '0 4px 15px rgba(0, 229, 255, 0.3)',
+                boxShadow: isRunning ? 'none' : 'var(--shadow-button)',
                 transition: 'all 0.2s ease',
               }}
             >
@@ -474,7 +476,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
         </div>
 
         {/* Collapsible Advanced Toggle */}
-        <div style={{ marginTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '0.75rem' }}>
+        <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.75rem' }}>
           <button
             type="button"
             id="toggle-advanced-controls-btn"
@@ -482,7 +484,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
             style={{
               background: 'transparent',
               border: 'none',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               fontSize: '0.76rem',
               cursor: 'pointer',
               display: 'inline-flex',
@@ -499,7 +501,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
             <div style={{ marginTop: '0.75rem', display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
               <div>
                 <span style={{ color: 'var(--text-muted)' }}>Objective Formulation: </span>
-                <span style={{ fontFamily: 'monospace', color: 'var(--accent-cyan)' }}>Multi-Objective Discrete Search</span>
+                <span style={{ fontFamily: 'monospace', color: 'var(--accent-ocean)' }}>Multi-Objective Discrete Search</span>
               </div>
               <div>
                 <span style={{ color: 'var(--text-muted)' }}>Target Currency: </span>
@@ -507,7 +509,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
               </div>
               <div>
                 <span style={{ color: 'var(--text-muted)' }}>Environment Scope: </span>
-                <span style={{ fontFamily: 'monospace', color: 'var(--accent-emerald)' }}>
+                <span style={{ fontFamily: 'monospace', color: 'var(--accent-teal-dark)' }}>
                   {environmentResult?.scenario_id || 'Nominal Weather Override'}
                 </span>
               </div>
@@ -523,8 +525,8 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
         <div
           id="classical-processing-state"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(0, 229, 255, 0.08), rgba(15, 23, 42, 0.8))',
-            border: '1px solid rgba(0, 229, 255, 0.35)',
+            background: 'var(--accent-blue-subtle)',
+            border: '1px solid #BEDDF0',
             borderRadius: 'var(--radius-md)',
             padding: '2rem 1.5rem',
             marginBottom: '1.75rem',
@@ -537,7 +539,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
           <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
             {PROCESSING_STEPS[processingStepIndex]}...
           </div>
-          <div style={{ fontSize: '0.8rem', color: 'var(--accent-cyan)', fontFamily: 'monospace', marginBottom: '1.25rem' }}>
+          <div style={{ fontSize: '0.8rem', color: 'var(--accent-ocean)', fontFamily: 'monospace', marginBottom: '1.25rem' }}>
             Phase {processingStepIndex + 1} of 4: Evaluating vessel × route × speed × fuel combinations
           </div>
 
@@ -563,21 +565,21 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                     fontSize: '0.72rem',
                     fontWeight: 600,
                     background: isCurrent
-                      ? 'rgba(0, 229, 255, 0.2)'
+                      ? 'var(--accent-blue-light)'
                       : isDone
-                      ? 'rgba(16, 185, 129, 0.15)'
-                      : 'rgba(255, 255, 255, 0.05)',
+                      ? 'var(--accent-teal-subtle)'
+                      : '#FFFFFF',
                     color: isCurrent
-                      ? 'var(--accent-cyan)'
+                      ? 'var(--accent-ocean)'
                       : isDone
-                      ? 'var(--accent-emerald)'
+                      ? 'var(--accent-teal-dark)'
                       : 'var(--text-muted)',
                     border: '1px solid',
                     borderColor: isCurrent
-                      ? 'rgba(0, 229, 255, 0.4)'
+                      ? '#BEDDF0'
                       : isDone
-                      ? 'rgba(16, 185, 129, 0.3)'
-                      : 'rgba(255, 255, 255, 0.08)',
+                      ? '#C2E8DC'
+                      : 'var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.35rem',
@@ -599,11 +601,11 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
         <div
           id="classical-error-banner"
           style={{
-            background: 'rgba(244, 63, 94, 0.12)',
-            border: '1px solid rgba(244, 63, 94, 0.4)',
+            background: 'var(--accent-rose-light)',
+            border: '1px solid #F6D0D8',
             borderRadius: 'var(--radius-sm)',
             padding: '1rem 1.25rem',
-            color: '#fda4af',
+            color: 'var(--accent-rose)',
             fontSize: '0.85rem',
             marginBottom: '1.5rem',
             display: 'flex',
@@ -631,7 +633,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
             gap: '1rem',
             marginBottom: '1.5rem',
           }}>
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Candidates Evaluated
               </div>
@@ -643,23 +645,23 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
               </div>
             </div>
 
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid #C2E8DC', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Feasible Candidates
               </div>
-              <div id="kpi-feasible-candidates" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-emerald)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
+              <div id="kpi-feasible-candidates" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-teal-dark)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
                 {benchmark ? benchmark.feasible_candidates_count : '—'}
               </div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--accent-emerald)', marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '0.7rem', color: 'var(--accent-teal-dark)', marginTop: '0.2rem' }}>
                 {benchmark?.feasibility_rate_pct != null ? `${benchmark.feasibility_rate_pct}% Feasibility Rate` : 'Constraint validated'}
               </div>
             </div>
 
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Classical Runtime
               </div>
-              <div id="kpi-classical-runtime" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
+              <div id="kpi-classical-runtime" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-ocean)', fontFamily: 'monospace', marginTop: '0.25rem' }}>
                 {benchmark ? `${benchmark.runtime_ms} ms` : '—'}
               </div>
               <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
@@ -667,7 +669,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
               </div>
             </div>
 
-            <div style={{ background: 'rgba(15, 23, 42, 0.65)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem' }}>
+            <div style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Speed Discretization
               </div>
@@ -693,16 +695,16 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
             <div
               id="card-cost-efficient"
               style={{
-                background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.8) 100%)',
-                border: '1px solid rgba(16, 185, 129, 0.35)',
+                background: '#FFFFFF',
+                border: '1px solid #C2E8DC',
                 borderRadius: 'var(--radius-md)',
                 padding: '1.4rem 1.5rem',
                 position: 'relative',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                boxShadow: 'var(--shadow-card)',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
-                <span className="badge" style={{ background: 'rgba(16, 185, 129, 0.2)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.35)', fontWeight: 700, fontSize: '0.72rem' }}>
+                <span className="badge badge-emerald" style={{ fontWeight: 700, fontSize: '0.72rem' }}>
                   🏆 LOWEST COST OPTIMUM
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
@@ -725,10 +727,10 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                     alignItems: 'baseline',
                     gap: '0.5rem',
                     paddingBottom: '0.85rem',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                    borderBottom: '1px solid var(--border-subtle)',
                     marginBottom: '0.85rem',
                   }}>
-                    <span style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--accent-emerald)', fontFamily: 'monospace' }}>
+                    <span style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--accent-teal-dark)', fontFamily: 'monospace' }}>
                       ${(costOptimum.total_voyage_cost_usd).toLocaleString('en-US', { maximumFractionDigits: 0 })}
                     </span>
                     <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>USD total voyage cost</span>
@@ -742,7 +744,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
 
                     <div>
                       <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Maritime Route:</div>
-                      <strong style={{ color: 'var(--accent-emerald)' }}>
+                      <strong style={{ color: 'var(--accent-teal-dark)' }}>
                         {costOptimum.route_name.includes('via') ? costOptimum.route_name.split('via')[1].trim() : costOptimum.route_name}
                       </strong>
                     </div>
@@ -768,7 +770,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
 
                     <div>
                       <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Deadline Margin:</div>
-                      <span style={{ fontFamily: 'monospace', color: 'var(--accent-emerald)', fontWeight: 700 }}>
+                      <span style={{ fontFamily: 'monospace', color: 'var(--accent-teal-dark)', fontWeight: 700 }}>
                         +{costOptimum.deadline_margin_hours.toFixed(1)} hrs buffer
                       </span>
                     </div>
@@ -789,7 +791,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                   </div>
                 </div>
               ) : (
-                <div style={{ padding: '1rem', background: 'rgba(244, 63, 94, 0.1)', borderRadius: 'var(--radius-sm)', color: '#fda4af', fontSize: '0.82rem' }}>
+                <div style={{ padding: '1rem', background: 'var(--accent-rose-light)', borderRadius: 'var(--radius-sm)', color: 'var(--accent-rose)', fontSize: '0.82rem' }}>
                   No feasible cost-efficient solution met operational constraints.
                 </div>
               )}
@@ -799,16 +801,16 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
             <div
               id="card-time-efficient"
               style={{
-                background: 'linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, rgba(15, 23, 42, 0.8) 100%)',
-                border: '1px solid rgba(0, 229, 255, 0.35)',
+                background: '#FFFFFF',
+                border: '1px solid #BEDDF0',
                 borderRadius: 'var(--radius-md)',
                 padding: '1.4rem 1.5rem',
                 position: 'relative',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                boxShadow: 'var(--shadow-card)',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
-                <span className="badge" style={{ background: 'rgba(0, 229, 255, 0.2)', color: '#38bdf8', border: '1px solid rgba(0, 229, 255, 0.35)', fontWeight: 700, fontSize: '0.72rem' }}>
+                <span className="badge badge-cyan" style={{ fontWeight: 700, fontSize: '0.72rem' }}>
                   ⚡ FASTEST FEASIBLE
                 </span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
@@ -831,10 +833,10 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                     alignItems: 'baseline',
                     gap: '0.5rem',
                     paddingBottom: '0.85rem',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                    borderBottom: '1px solid var(--border-subtle)',
                     marginBottom: '0.85rem',
                   }}>
-                    <span style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--accent-cyan)', fontFamily: 'monospace' }}>
+                    <span style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--accent-ocean)', fontFamily: 'monospace' }}>
                       {(timeOptimum.total_voyage_time_hours / 24).toFixed(1)} days
                     </span>
                     <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
@@ -850,7 +852,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
 
                     <div>
                       <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Maritime Route:</div>
-                      <strong style={{ color: 'var(--accent-cyan)' }}>
+                      <strong style={{ color: 'var(--accent-ocean)' }}>
                         {timeOptimum.route_name.includes('via') ? timeOptimum.route_name.split('via')[1].trim() : timeOptimum.route_name}
                       </strong>
                     </div>
@@ -876,7 +878,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
 
                     <div>
                       <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Deadline Margin:</div>
-                      <span style={{ fontFamily: 'monospace', color: 'var(--accent-cyan)', fontWeight: 700 }}>
+                      <span style={{ fontFamily: 'monospace', color: 'var(--accent-ocean)', fontWeight: 700 }}>
                         +{timeOptimum.deadline_margin_hours.toFixed(1)} hrs buffer
                       </span>
                     </div>
@@ -897,16 +899,16 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                   </div>
                 </div>
               ) : (
-                <div style={{ padding: '1rem', background: 'rgba(244, 63, 94, 0.1)', borderRadius: 'var(--radius-sm)', color: '#fda4af', fontSize: '0.82rem' }}>
+                <div style={{ padding: '1rem', background: 'var(--accent-rose-light)', borderRadius: 'var(--radius-sm)', color: 'var(--accent-rose)', fontSize: '0.82rem' }}>
                   No feasible time-efficient solution met operational constraints.
                 </div>
               )}
             </div>
           </div>
 
-          {/* Collapsible Technical Details (Pruning Breakdown & Decision Keys) */}
+          {/* Collapsible Technical Details */}
           <div style={{
-            background: 'rgba(15, 23, 42, 0.55)',
+            background: 'var(--bg-card-inset)',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-sm)',
             padding: '1rem 1.25rem',
@@ -919,7 +921,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: 'var(--accent-cyan)',
+                color: 'var(--accent-ocean)',
                 fontSize: '0.78rem',
                 fontWeight: 600,
                 cursor: 'pointer',
@@ -934,7 +936,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
             </button>
 
             {showRejectionBreakdown && benchmark && (
-              <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+              <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid var(--border-subtle)' }}>
                 <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.5rem' }}>
                   Constraint Infeasibility Pruning Counts:
                 </div>
@@ -945,14 +947,15 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                       key={key}
                       style={{
                         padding: '0.35rem 0.65rem',
-                        background: 'rgba(0, 0, 0, 0.3)',
+                        background: '#FFFFFF',
                         borderRadius: 'var(--radius-sm)',
                         fontSize: '0.72rem',
-                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                        border: '1px solid var(--border-subtle)',
+                        boxShadow: 'var(--shadow-sm)'
                       }}
                     >
                       <span style={{ color: 'var(--text-muted)', textTransform: 'capitalize' }}>{key.replace('_', ' ')}: </span>
-                      <strong style={{ color: val > 0 ? '#fbbf24' : 'var(--text-muted)', fontFamily: 'monospace' }}>{val}</strong>
+                      <strong style={{ color: val > 0 ? 'var(--accent-amber)' : 'var(--text-muted)', fontFamily: 'monospace' }}>{val}</strong>
                     </div>
                   ))}
                 </div>
@@ -967,15 +970,15 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
                       key={dec.decision_id}
                       style={{
                         padding: '0.4rem 0.6rem',
-                        background: 'rgba(0, 0, 0, 0.2)',
-                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        background: '#FFFFFF',
+                        border: '1px solid var(--border-subtle)',
                         borderRadius: 'var(--radius-sm)',
                         fontSize: '0.7rem',
                         fontFamily: 'monospace',
                         color: 'var(--text-secondary)',
                       }}
                     >
-                      <div style={{ color: 'var(--accent-cyan)', fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ color: 'var(--accent-ocean)', fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {dec.decision_id}
                       </div>
                       <div style={{ color: 'var(--text-muted)', fontSize: '0.65rem' }}>
@@ -1006,7 +1009,7 @@ export const Stage04Classical: React.FC<Stage04ClassicalProps> = ({
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-ocean)' }}>
             Stage 04 of 07
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
