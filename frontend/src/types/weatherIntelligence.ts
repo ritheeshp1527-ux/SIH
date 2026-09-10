@@ -74,3 +74,77 @@ export interface WeatherScenarioPreset {
   vessel_id: string;
   speed_knots: number;
 }
+
+// ==============================================================================
+// Phase 4B & 4C: Live SeaRoute + Weather Contracts
+// ==============================================================================
+
+export interface LiveVoyageRequest {
+  source_port: string;
+  destination_port: string;
+  departure_datetime?: string;
+  vessel_id?: string;
+  vessel_draft_m?: number;
+  vessel_speed_knots?: number;
+  avoid_seca?: boolean;
+  avoid_hra?: boolean;
+}
+
+export interface NormalizedEnvironmentalPoint {
+  latitude: number;
+  longitude: number;
+  timestamp: string;
+  wind_speed_knots: number | null;
+  wind_direction_deg: number | null;
+  significant_wave_height_m: number | null;
+  wave_direction_deg: number | null;
+  wave_period_s: number | null;
+  ocean_current_velocity_knots: number | null;
+  ocean_current_direction_deg: number | null;
+  sea_state: number | null;
+  along_track_current_knots: number | null;
+  storm_flag: boolean | null;
+  weather_risk_level: string | null;
+  visibility_m: number | null;
+}
+
+export interface NormalizedRouteOptimization {
+  score: number;
+  rank: number;
+  distance_score: number;
+  wind_score: number;
+  wave_score: number | null;
+  current_score: number | null;
+  risk_score: number;
+  storm_penalty: number;
+  marine_coverage_ratio: number;
+  weather_coverage_ratio: number;
+  explanation: string;
+}
+
+export interface NormalizedRoutePlan {
+  id: string;
+  is_primary: boolean;
+  distance_m: number;
+  distance_nm: number;
+  duration_ms: number;
+  duration_hours: number;
+  geometry: Record<string, any>;
+  environmental_points: NormalizedEnvironmentalPoint[];
+  metadata: Record<string, any>;
+  optimization?: NormalizedRouteOptimization | null;
+}
+
+export interface LiveVoyageResponse {
+  status: string;
+  source_port: string;
+  destination_port: string;
+  source_locode: string;
+  destination_locode: string;
+  routes: NormalizedRoutePlan[];
+  primary_route?: NormalizedRoutePlan | null;
+  fuel_model_input?: Record<string, any> | null;
+  marine_coverage_ratio: number;
+  weather_coverage_ratio: number;
+}
+

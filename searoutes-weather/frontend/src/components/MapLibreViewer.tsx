@@ -13,9 +13,13 @@ export const MapLibreViewer: React.FC<MapLibreViewerProps> = ({ routePlan }) => 
   useEffect(() => {
     if (map.current || !mapContainer.current) return; 
     
+    const styleUrl = import.meta.env.VITE_GEOAPIFY_API_KEY
+      ? `https://maps.geoapify.com/v1/styles/osm-bright/style.json?apiKey=${import.meta.env.VITE_GEOAPIFY_API_KEY}`
+      : 'https://demotiles.maplibre.org/style.json';
+
     map.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: `https://maps.geoapify.com/v1/styles/osm-bright/style.json?apiKey=${import.meta.env.VITE_GEOAPIFY_API_KEY}`,
+      style: styleUrl,
       center: [0, 20],
       zoom: 2,
       attributionControl: false // Disable default to add custom one with proper credits

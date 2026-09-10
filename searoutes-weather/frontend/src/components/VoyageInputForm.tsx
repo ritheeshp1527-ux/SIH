@@ -6,15 +6,20 @@ interface VoyageInputFormProps {
 }
 
 export const VoyageInputForm: React.FC<VoyageInputFormProps> = ({ onSubmit, isLoading }) => {
-  const [formData, setFormData] = useState({
-    sourcePort: 'USNYC',
-    destinationPort: 'NLRTM',
-    departureTimestamp: new Date().toISOString().slice(0, 16),
-    vesselImo: '',
-    vesselDraft: '',
-    vesselSpeed: '',
-    avoidSeca: false,
-    avoidHra: false,
+  const [formData, setFormData] = useState(() => {
+    const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
+    return {
+      sourcePort: params.get('sourcePort') || 'USNYC',
+      destinationPort: params.get('destinationPort') || 'NLRTM',
+      departureTimestamp: params.get('departureTimestamp')
+        ? new Date(params.get('departureTimestamp')!).toISOString().slice(0, 16)
+        : new Date().toISOString().slice(0, 16),
+      vesselImo: params.get('vesselImo') || '',
+      vesselDraft: params.get('vesselDraft') || '',
+      vesselSpeed: params.get('vesselSpeed') || '',
+      avoidSeca: params.get('avoidSeca') === 'true',
+      avoidHra: params.get('avoidHra') === 'true',
+    };
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -38,6 +38,8 @@ yarn-debug.log*
 yarn-error.log*
 frontend/dist/
 frontend/build/
+searoutes-weather/backend/dist/
+searoutes-weather/frontend/dist/
 .pnpm-debug.log*
 
 # Operating System & IDE

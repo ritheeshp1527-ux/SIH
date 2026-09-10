@@ -23,6 +23,9 @@ class Settings(BaseModel):
     USE_DEMO_DATA: bool = os.getenv("USE_DEMO_DATA", "true").lower() in ("true", "1")
     USE_DEMO_OPTIMIZER: bool = True
 
+    # SeaRoutes + Weather Reference Engine Service URL
+    SEAROUTES_SERVICE_URL: str = os.getenv("SEAROUTES_SERVICE_URL", "http://127.0.0.1:3001")
+
     # CORS Configuration
     CORS_ORIGINS: List[str] = [
         "http://localhost:5173",

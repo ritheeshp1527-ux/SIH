@@ -1,5 +1,6 @@
 from typing import List, Optional
-from fastapi import APIRouter, HTTPException, Query, Path, Depends
+from fastapi import APIRouter, HTTPException, Query, Path, Depends, status
+from fastapi.responses import JSONResponse
 
 from backend.app.models.weather_intelligence import (
     SegmentEnvironmentalCondition,
@@ -7,9 +8,18 @@ from backend.app.models.weather_intelligence import (
     RouteEnvironmentalAssessmentResponse,
     WeatherScenarioPreset,
 )
+from backend.app.models.live_weather_route import (
+    LiveVoyageRequest,
+    LiveVoyageResponse,
+)
 from backend.app.services.demo.demo_weather_provider import DemoWeatherProvider
 from backend.app.services.route_environmental_assessment_service import (
     RouteEnvironmentalAssessmentService,
+)
+from backend.app.services.external.live_weather_route_adapter import (
+    LiveWeatherRouteAdapter,
+    ReferenceServiceUnavailableException,
+    ReferenceBadRequestException,
 )
 from backend.app.api.v1.endpoints.routes import get_route_provider
 from backend.app.api.v1.endpoints.fuel import get_fuel_service
@@ -18,6 +28,7 @@ router = APIRouter()
 
 # Singletons for dependency injection
 _weather_provider = DemoWeatherProvider()
+_live_weather_adapter: Optional[LiveWeatherRouteAdapter] = None
 
 def get_assessment_service() -> RouteEnvironmentalAssessmentService:
     return RouteEnvironmentalAssessmentService(
@@ -25,6 +36,14 @@ def get_assessment_service() -> RouteEnvironmentalAssessmentService:
         route_provider=get_route_provider(),
         fuel_service=get_fuel_service(),
     )
+
+def get_live_weather_adapter() -> LiveWeatherRouteAdapter:
+    global _live_weather_adapter
+    if _live_weather_adapter is None:
+        _live_weather_adapter = LiveWeatherRouteAdapter(
+            fuel_service=get_fuel_service(),
+        )
+    return _live_weather_adapter
 
 @router.get(
     "/segments",
@@ -95,3 +114,29 @@ def get_weather_scenario(
             detail=f"Weather scenario '{scenario_id}' not found."
         )
     return sc
+
+@router.post(
+    "/live-voyage",
+    response_model=LiveVoyageResponse,
+    summary="Evaluate live SeaRoute maritime routing and Open-Meteo environmental conditions",
+    description="Connects to the internal searoutes-weather reference service to compute maritime route candidates and live weather along track."
+)
+def evaluate_live_voyage(
+    request: LiveVoyageRequest,
+    adapter: LiveWeatherRouteAdapter = Depends(get_live_weather_adapter)
+):
+    try:
+        return adapter.evaluate_live_voyage(request)
+    except ValueError as ve:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
+    except ReferenceBadRequestException as rbe:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=rbe.message)
+    except ReferenceServiceUnavailableException as sue:
+        return JSONResponse(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            content={
+                "status": "unavailable",
+                "source": "live_weather_engine",
+                "message": sue.message
+            }
+        )

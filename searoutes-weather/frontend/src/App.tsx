@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapLibreViewer } from './components/MapLibreViewer';
 import { VoyageInputForm } from './components/VoyageInputForm';
 import { getVoyageRoute } from './services/apiClient';
@@ -22,6 +22,25 @@ function App() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const sourcePort = params.get('sourcePort');
+    const destinationPort = params.get('destinationPort');
+    const departureTimestamp = params.get('departureTimestamp');
+    const vesselSpeed = params.get('vesselSpeed');
+    const vesselDraft = params.get('vesselDraft');
+
+    if (sourcePort && destinationPort) {
+      handleGenerateRoute({
+        sourcePort,
+        destinationPort,
+        departureTimestamp: departureTimestamp ? new Date(departureTimestamp).toISOString() : new Date().toISOString(),
+        vesselSpeed: vesselSpeed ? parseFloat(vesselSpeed) : undefined,
+        vesselDraft: vesselDraft ? parseFloat(vesselDraft) : undefined,
+      });
+    }
+  }, []);
 
   return (
     <div className="app-container">

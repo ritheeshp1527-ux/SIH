@@ -25,6 +25,8 @@ import {
   ComparativeAnalysisResponse,
   WorkflowOptimizationRequest,
   WorkflowOptimizationResponse,
+  LiveVoyageRequest,
+  LiveVoyageResponse,
 } from '../types';
 
 const API_BASE = '/api/v1';
@@ -186,6 +188,30 @@ export async function assessRouteEnvironmentalImpact(
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({}));
     throw new Error(errorBody.detail || `Environmental route assessment failed with status ${response.status}`);
+  }
+  return response.json();
+}
+
+// Phase 4B & 4C: Live SeaRoute + Weather Bridge
+export async function fetchLiveVoyage(request: LiveVoyageRequest): Promise<LiveVoyageResponse> {
+  const response = await fetch(`${API_BASE}/weather/live-voyage`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(request),
+  });
+  if (!response.ok) {
+    const errorBody = await response.json().catch(() => ({}));
+    const message =
+      (typeof errorBody.detail === 'object' && errorBody.detail?.message) ||
+      (typeof errorBody.detail === 'string' && errorBody.detail) ||
+      `Live voyage service unavailable (status ${response.status})`;
+    const error: any = new Error(message);
+    error.status = response.status;
+    error.detail = errorBody.detail;
+    throw error;
   }
   return response.json();
 }

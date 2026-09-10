@@ -50,6 +50,7 @@ test('1. Stage 03 renders title, subtitle, and stage indicators', () => {
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 
@@ -75,6 +76,7 @@ test('2. Read-only voyage and fleet context is displayed without re-entry', () =
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 
@@ -98,6 +100,7 @@ test('3. Environmental data source is honestly labelled as simulated demo data',
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 
@@ -125,6 +128,7 @@ test('4. Existing route options are displayed with project distances and draft r
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 
@@ -150,6 +154,7 @@ test('5. Feasibility status, along-track current, and fuel factors are displayed
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 
@@ -186,6 +191,7 @@ test('6. Infeasible routes are excluded with specific disqualification reasons',
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 
@@ -227,6 +233,7 @@ test('7. Continue is blocked when all routes are infeasible', () => {
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 
@@ -253,6 +260,7 @@ test('8. Continue is enabled with feasible routes; Previous button is wired to S
       onValidContinue: () => {},
       onPrevious: () => {},
       skipAnimation: true,
+      mode: 'demo',
     })
   );
 

@@ -192,8 +192,29 @@ export const App: React.FC = () => {
     setClassicalResult(null);
     setQiResult(null);
     setComparativeResult(null);
+    setSelectedRouteDistance(null);
+    setSelectedRouteVesselId(null);
+    setSelectedRouteWeatherFactor(null);
     scrollToTop();
   };
+
+  // Authoritative Stage 01 Voyage state invalidation:
+  // When voyageConfig parameters are modified, purge all downstream stage results
+  useEffect(() => {
+    setEnvironmentResult(null);
+    setClassicalResult(null);
+    setQiResult(null);
+    setComparativeResult(null);
+    setSelectedRouteDistance(null);
+    setSelectedRouteVesselId(null);
+    setSelectedRouteWeatherFactor(null);
+  }, [
+    voyageConfig.sourcePort,
+    voyageConfig.destPort,
+    voyageConfig.cargoWeight,
+    voyageConfig.departureDate,
+    voyageConfig.deadlineDate,
+  ]);
 
   const checkHealthAndMeta = async () => {
     try {
