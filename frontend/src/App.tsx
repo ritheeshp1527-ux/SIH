@@ -39,11 +39,11 @@ export const App: React.FC = () => {
 
   // Stage 01: Voyage Input State
   const [voyageConfig, setVoyageConfig] = useState<VoyageFormValues>({
-    sourcePort: 'PORT-SG',
-    destPort: 'PORT-RTM',
-    cargoWeight: 60000,
-    departureDate: '2026-10-01T12:00',
-    deadlineDate: '2026-10-29T12:00',
+    sourcePort: '',
+    destPort: '',
+    cargoWeight: 0,
+    departureDate: '',
+    deadlineDate: '',
   });
 
   // Stage 02: Fleet Selection State

@@ -114,6 +114,30 @@ export async function fetchPorts(): Promise<Port[]> {
   return response.json();
 }
 
+export async function fetchGlobalPorts(): Promise<Port[]> {
+  try {
+    const response = await fetch('https://cdn.jsdelivr.net/npm/searoute-ts@2.3.0/dist/ports.json');
+    if (!response.ok) {
+      throw new Error(`Failed to fetch global ports: ${response.status}`);
+    }
+    const data = await response.json();
+    const ports: Port[] = [];
+    for (const [id, info] of Object.entries(data)) {
+      ports.push({
+        id,
+        name: (info as any).name,
+        country: (info as any).country,
+        longitude: (info as any).coordinates[0],
+        latitude: (info as any).coordinates[1],
+      });
+    }
+    return ports;
+  } catch (err) {
+    console.error('Failed to load global ports', err);
+    return [];
+  }
+}
+
 export async function fetchWaypoints(): Promise<Waypoint[]> {
   const response = await fetch(`${API_BASE}/routes/waypoints`, {
     headers: { 'Accept': 'application/json' },
