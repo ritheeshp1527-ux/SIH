@@ -125,6 +125,23 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
     }
   })();
 
+  // Format departure date for read-only header
+  const formattedDeparture = (() => {
+    try {
+      const d = new Date(voyageConfig.departureDate);
+      return isNaN(d.getTime()) ? voyageConfig.departureDate : d.toLocaleDateString(undefined, {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short'
+      });
+    } catch {
+      return voyageConfig.departureDate;
+    }
+  })();
+
   // Port label helper
   const formatPortName = (portId: string) => {
     if (portId === 'PORT-SG') return 'Singapore (PORT-SG)';
@@ -273,6 +290,13 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
           </div>
           <div style={{ width: '1px', height: '24px', background: 'var(--border-subtle)' }} />
           <div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Departure Time</div>
+            <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
+              {formattedDeparture}
+            </div>
+          </div>
+          <div style={{ width: '1px', height: '24px', background: 'var(--border-subtle)' }} />
+          <div>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Delivery Deadline</div>
             <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
               {formattedDeadline}
@@ -371,8 +395,9 @@ export const Stage02Fleet: React.FC<Stage02FleetProps> = ({
                       <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.2 }}>
                         {vessel.name}
                       </div>
-                      <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontFamily: 'monospace', marginTop: '0.1rem' }}>
-                        {vessel.id}
+                      <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontFamily: 'monospace', marginTop: '0.2rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                        <span title="Internal Vessel Identifier">ID: {vessel.id}</span>
+                        <span style={{ fontSize: '0.65rem', padding: '0.1rem 0.3rem', background: 'var(--bg-card-inset)', borderRadius: '2px', border: '1px solid var(--border-subtle)' }} title="IMO numbers are not available in the current dataset">No IMO</span>
                       </div>
                     </div>
                   </div>

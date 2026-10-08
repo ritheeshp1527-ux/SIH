@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPorts, fetchSampleWorkflowRequest } from '../services/api';
+import { fetchPorts, fetchGlobalPorts, fetchSampleWorkflowRequest } from '../services/api';
 import { Port } from '../types';
 
 export interface VoyageFormValues {
@@ -121,12 +121,38 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [demoLoadedNotification, setDemoLoadedNotification] = useState(false);
 
+  const [sourcePortSearch, setSourcePortSearch] = useState('');
+  const [destPortSearch, setDestPortSearch] = useState('');
+
+  // Sync internal search state with values if they differ initially (e.g. demo load)
+  useEffect(() => {
+    if (values.sourcePort && ports.length > 0) {
+      const p = ports.find(p => p.id === values.sourcePort);
+      if (p) setSourcePortSearch(`${p.name} (${p.id})`);
+    }
+  }, [values.sourcePort, ports]);
+
+  useEffect(() => {
+    if (values.destPort && ports.length > 0) {
+      const p = ports.find(p => p.id === values.destPort);
+      if (p) setDestPortSearch(`${p.name} (${p.id})`);
+    }
+  }, [values.destPort, ports]);
+
   useEffect(() => {
     let mounted = true;
-    fetchPorts()
-      .then((loadedPorts) => {
-        if (mounted && loadedPorts && loadedPorts.length > 0) {
-          setPorts(loadedPorts);
+    Promise.all([fetchPorts(), fetchGlobalPorts()])
+      .then(([backendPorts, globalPorts]) => {
+        if (!mounted) return;
+        const merged = new Map<string, Port>();
+        // Add global ports first
+        globalPorts.forEach(p => merged.set(p.id, p));
+        // Overwrite/add backend ports (preserves custom metadata like draft_limit_m, port_cost)
+        backendPorts.forEach(p => merged.set(p.id, p));
+        
+        const finalPorts = Array.from(merged.values()).sort((a, b) => a.name.localeCompare(b.name));
+        if (finalPorts.length > 0) {
+          setPorts(finalPorts);
         }
       })
       .catch(() => {
@@ -142,15 +168,16 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
     sourcePort?: string;
     destPort?: string;
     cargoWeight?: string;
+    departureDate?: string;
     deadlineDate?: string;
   } = {};
 
   if (!values.sourcePort) {
-    errors.sourcePort = 'Source port is required.';
+    errors.sourcePort = 'Source port is required. Please select a valid port from the list.';
   }
 
   if (!values.destPort) {
-    errors.destPort = 'Destination port is required.';
+    errors.destPort = 'Destination port is required. Please select a valid port from the list.';
   } else if (values.sourcePort && values.sourcePort === values.destPort) {
     errors.destPort = 'Destination port must be different from source port.';
   }
@@ -161,6 +188,12 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
 
   const departureMs = new Date(values.departureDate).getTime();
   const deadlineMs = new Date(values.deadlineDate).getTime();
+
+  if (!values.departureDate || isNaN(departureMs)) {
+    errors.departureDate = 'Preferred departure date and time is required.';
+  } else if (!isNaN(deadlineMs) && departureMs >= deadlineMs) {
+    errors.departureDate = 'Departure must occur before the delivery deadline.';
+  }
 
   if (!values.deadlineDate || isNaN(deadlineMs)) {
     errors.deadlineDate = 'Delivery deadline must be a valid date and time.';
@@ -183,6 +216,21 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
     if (onValuesModified) {
       onValuesModified();
     }
+  };
+
+  const handlePortSearchChange = (field: 'sourcePort' | 'destPort', val: string) => {
+    if (field === 'sourcePort') setSourcePortSearch(val);
+    if (field === 'destPort') setDestPortSearch(val);
+
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    
+    // Strict validation: Attempt to match the exact string or ID
+    const matched = ports.find(p => `${p.name} (${p.id})` === val || p.id === val);
+    const resolvedId = matched ? matched.id : '';
+    
+    const updated = { ...values, [field]: resolvedId };
+    onChange(updated);
+    if (onValuesModified) onValuesModified();
   };
 
   const handleLoadDemo = async () => {
@@ -218,6 +266,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
       sourcePort: true,
       destPort: true,
       cargoWeight: true,
+      departureDate: true,
       deadlineDate: true,
     });
     setDemoLoadedNotification(true);
@@ -234,6 +283,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
       sourcePort: true,
       destPort: true,
       cargoWeight: true,
+      departureDate: true,
       deadlineDate: true,
     });
 
@@ -316,10 +366,12 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             <label htmlFor="voyage-source-port" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.45rem' }}>
               Source Port <span style={{ color: '#D44A61' }}>*</span>
             </label>
-            <select
+            <input
               id="voyage-source-port"
-              value={values.sourcePort}
-              onChange={(e) => handleFieldChange('sourcePort', e.target.value)}
+              list="ports-list"
+              value={sourcePortSearch}
+              onChange={(e) => handlePortSearchChange('sourcePort', e.target.value)}
+              placeholder="Search origin port..."
               style={{
                 width: '100%',
                 padding: '0.7rem 0.85rem',
@@ -332,14 +384,12 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
                 outline: 'none',
                 boxShadow: 'var(--shadow-sm)',
               }}
-            >
-              <option value="" disabled>Select port of origin...</option>
+            />
+            <datalist id="ports-list">
               {ports.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name} ({p.id}) &bull; {p.country}
-                </option>
+                <option key={`src-${p.id}`} value={`${p.name} (${p.id})`} />
               ))}
-            </select>
+            </datalist>
             <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
               Commercial port of departure with verified bunker availability.
             </div>
@@ -356,10 +406,12 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             <label htmlFor="voyage-dest-port" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.45rem' }}>
               Destination Port <span style={{ color: '#D44A61' }}>*</span>
             </label>
-            <select
+            <input
               id="voyage-dest-port"
-              value={values.destPort}
-              onChange={(e) => handleFieldChange('destPort', e.target.value)}
+              list="ports-list"
+              value={destPortSearch}
+              onChange={(e) => handlePortSearchChange('destPort', e.target.value)}
+              placeholder="Search destination port..."
               style={{
                 width: '100%',
                 padding: '0.7rem 0.85rem',
@@ -372,14 +424,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
                 outline: 'none',
                 boxShadow: 'var(--shadow-sm)',
               }}
-            >
-              <option value="" disabled>Select destination port...</option>
-              {ports.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name} ({p.id}) &bull; {p.country}
-                </option>
-              ))}
-            </select>
+            />
             <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
               Discharge port for vessel berthing and cargo unloading.
             </div>
@@ -410,7 +455,7 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             <input
               id="voyage-cargo-load"
               type="number"
-              min={1}
+              min={0}
               step={500}
               value={isNaN(values.cargoWeight) ? '' : values.cargoWeight}
               onChange={(e) => handleFieldChange('cargoWeight', parseFloat(e.target.value) || 0)}
@@ -439,7 +484,43 @@ export const Stage01Voyage: React.FC<Stage01VoyageProps> = ({
             )}
           </div>
 
-          {/* 4. Delivery Deadline */}
+          {/* 4. Preferred Departure Date & Time */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
+              <label htmlFor="voyage-departure-date" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                Preferred Departure Date &amp; Time <span style={{ color: '#D44A61' }}>*</span>
+              </label>
+            </div>
+            <input
+              id="voyage-departure-date"
+              type="datetime-local"
+              value={values.departureDate}
+              onChange={(e) => handleFieldChange('departureDate', e.target.value)}
+              style={{
+                width: '100%',
+                padding: '0.7rem 0.85rem',
+                background: '#FFFFFF',
+                border: `1px solid ${touched.departureDate && errors.departureDate ? '#D44A61' : 'var(--border-medium)'}`,
+                color: 'var(--text-primary)',
+                borderRadius: 'var(--radius-sm)',
+                fontSize: '0.92rem',
+                fontFamily: 'var(--font-sans)',
+                outline: 'none',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+            />
+            <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
+              Scheduled departure time from origin (UTC).
+            </div>
+            {touched.departureDate && errors.departureDate && (
+              <div style={{ fontSize: '0.78rem', color: '#D44A61', marginTop: '0.3rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <span>⚠️</span>
+                <span>{errors.departureDate}</span>
+              </div>
+            )}
+          </div>
+
+          {/* 5. Delivery Deadline */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
               <label htmlFor="voyage-delivery-deadline" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>

@@ -30,6 +30,9 @@ router = APIRouter()
 _weather_provider = DemoWeatherProvider()
 _live_weather_adapter: Optional[LiveWeatherRouteAdapter] = None
 
+from backend.app.api.v1.endpoints.routes import get_route_provider
+from backend.app.services.external.external_route_provider import ExternalRouteProvider
+from backend.app.services.interfaces.route_provider import RouteProviderBase
 def get_assessment_service() -> RouteEnvironmentalAssessmentService:
     return RouteEnvironmentalAssessmentService(
         weather_provider=_weather_provider,
@@ -123,10 +126,14 @@ def get_weather_scenario(
 )
 def evaluate_live_voyage(
     request: LiveVoyageRequest,
-    adapter: LiveWeatherRouteAdapter = Depends(get_live_weather_adapter)
+    adapter: LiveWeatherRouteAdapter = Depends(get_live_weather_adapter),
+    route_provider: RouteProviderBase = Depends(get_route_provider)
 ):
     try:
-        return adapter.evaluate_live_voyage(request)
+        resp = adapter.evaluate_live_voyage(request)
+        if isinstance(route_provider, ExternalRouteProvider):
+            route_provider.cache_live_routes(resp, request.source_port, request.destination_port)
+        return resp
     except ValueError as ve:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
     except ReferenceBadRequestException as rbe:

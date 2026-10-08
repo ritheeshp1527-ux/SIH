@@ -222,6 +222,8 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
   const [liveError, setLiveError] = useState<string | null>(null);
   const [liveErrorStatus, setLiveErrorStatus] = useState<number | null>(null);
   const [isMapAvailable, setIsMapAvailable] = useState<boolean | null>(null);
+  const [avoidSeca, setAvoidSeca] = useState<boolean>(false);
+  const [avoidHra, setAvoidHra] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -258,6 +260,8 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
       destination_port: voyageConfig.destPort,
       departure_datetime: voyageConfig.departureDate,
       vessel_id: selectedVesselIds[0] || 'VES-001',
+      avoid_seca: avoidSeca,
+      avoid_hra: avoidHra,
     })
       .then((data) => {
         setLiveResponse(data);
@@ -902,6 +906,25 @@ export const Stage03Environment: React.FC<Stage03EnvironmentProps> = ({
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.6rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', marginBottom: '0.5rem', background: 'var(--bg-secondary)', padding: '0.55rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', cursor: 'pointer', color: 'var(--text-secondary)' }}>
+                <input type="checkbox" checked={avoidSeca} onChange={(e) => setAvoidSeca(e.target.checked)} />
+                Avoid SECA
+              </label>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', cursor: 'pointer', color: 'var(--text-secondary)' }}>
+                <input type="checkbox" checked={avoidHra} onChange={(e) => setAvoidHra(e.target.checked)} />
+                Avoid HRA
+              </label>
+              <button 
+                type="button" 
+                onClick={executeLiveVoyageRequest}
+                disabled={isLoadingLive}
+                style={{ fontSize: '0.75rem', padding: '0.2rem 0.6rem', marginLeft: '0.5rem', background: '#FFFFFF', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-sm)', cursor: isLoadingLive ? 'not-allowed' : 'pointer' }}
+              >
+                ↻ Recalculate
+              </button>
+            </div>
+
             <div style={{
               padding: '0.55rem 1.15rem',
               background: 'var(--bg-secondary)',

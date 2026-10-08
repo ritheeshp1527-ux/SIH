@@ -16,8 +16,17 @@ from backend.app.services.optimization_benchmark_service import OptimizationBenc
 
 router = APIRouter()
 
+from backend.app.api.v1.endpoints.routes import get_route_provider
+from backend.app.api.v1.endpoints.fuel import get_fuel_service
+
 # Singleton optimizer and service instances
-_classical_optimizer = ClassicalVoyageOptimizer()
+_route_provider = get_route_provider()
+_fuel_service = get_fuel_service()
+
+_classical_optimizer = ClassicalVoyageOptimizer(
+    route_provider=_route_provider,
+    fuel_service=_fuel_service
+)
 _quantum_optimizer = QuantumInspiredVoyageOptimizer(classical_optimizer=_classical_optimizer)
 _benchmark_service = OptimizationBenchmarkService(
     classical_optimizer=_classical_optimizer,

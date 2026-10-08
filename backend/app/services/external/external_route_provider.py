@@ -12,7 +12,11 @@ from backend.app.models.maritime_network import (
 from backend.app.models.vessel import Vessel
 from backend.app.models.route import Route, Checkpoint
 from backend.app.data.ingestion.route_ingestion import MaritimeNetworkIngestionService
-
+import httpx
+import logging
+from backend.app.models.live_weather_route import LiveVoyageRequest
+from backend.app.services.external.live_weather_route_adapter import LiveWeatherRouteAdapter
+from backend.app.api.v1.endpoints.fuel import get_fuel_service
 from backend.app.services.demo.demo_route_provider import DemoRouteProvider
 
 # UN/LOCODE alias map for backwards compatibility with demo identifiers
@@ -42,6 +46,29 @@ class ExternalRouteProvider(RouteProviderBase):
             self._ports
         ) = self._ingestion.load_routes()
         self._demo_provider = DemoRouteProvider()
+        self._global_ports_cache: Dict[str, Port] = {}
+        self._live_adapter = LiveWeatherRouteAdapter(fuel_service=get_fuel_service())
+        self._fetch_global_ports()
+
+    def _fetch_global_ports(self):
+        try:
+            with httpx.Client(timeout=10.0) as client:
+                response = client.get("https://cdn.jsdelivr.net/npm/searoute-ts@2.3.0/dist/ports.json")
+                if response.status_code == 200:
+                    data = response.json()
+                    for pid, info in data.items():
+                        self._global_ports_cache[pid] = Port(
+                            id=pid,
+                            name=info.get("name", pid),
+                            country=info.get("country", ""),
+                            longitude=info.get("coordinates", [0,0])[0],
+                            latitude=info.get("coordinates", [0,0])[1],
+                            draft_limit_m=100.0,
+                            max_vessel_capacity_tonnes=500000.0,
+                            fuel_availability=[]
+                        )
+        except Exception as e:
+            logging.getLogger(__name__).warning(f"Failed to fetch global ports: {e}")
 
     def get_ports(self) -> List[Port]:
         return list(self._ports.values())
@@ -53,6 +80,8 @@ class ExternalRouteProvider(RouteProviderBase):
             if port_id in LOCODE_ALIASES:
                 return port.model_copy(update={"id": port_id})
             return port
+        if code in self._global_ports_cache:
+            return self._global_ports_cache[code]
         return self._demo_provider.get_port_by_id(port_id)
 
     def get_waypoints(self) -> List[Waypoint]:
@@ -91,28 +120,19 @@ class ExternalRouteProvider(RouteProviderBase):
         src_code = resolve_locode(origin_port_id)
         dst_code = resolve_locode(destination_port_id)
 
-        origin_port = self._ports.get(src_code)
-        if not origin_port:
-            origin_port = self._demo_provider.get_port_by_id(origin_port_id)
+        origin_port = self.get_port_by_id(origin_port_id)
         if not origin_port:
             raise HTTPException(
                 status_code=404,
                 detail=f"Origin port '{origin_port_id}' not found in maritime catalog."
             )
 
-        dest_port = self._ports.get(dst_code)
-        if not dest_port:
-            dest_port = self._demo_provider.get_port_by_id(destination_port_id)
+        dest_port = self.get_port_by_id(destination_port_id)
         if not dest_port:
             raise HTTPException(
                 status_code=404,
                 detail=f"Destination port '{destination_port_id}' not found in maritime catalog."
             )
-
-        if origin_port_id in LOCODE_ALIASES:
-            origin_port = origin_port.model_copy(update={"id": origin_port_id})
-        if destination_port_id in LOCODE_ALIASES:
-            dest_port = dest_port.model_copy(update={"id": destination_port_id})
 
         candidates: List[MaritimeRoute] = []
         for route_template in self._maritime_routes.values():
@@ -168,7 +188,51 @@ class ExternalRouteProvider(RouteProviderBase):
 
                 candidates.append(route)
 
+        if not candidates:
+            try:
+                live_req = LiveVoyageRequest(
+                    source_port=src_code,
+                    destination_port=dst_code,
+                    vessel_id=vessel.id if vessel else None
+                )
+                live_resp = self._live_adapter.evaluate_live_voyage(live_req)
+                self.cache_live_routes(live_resp, src_code, dst_code)
+                for plan in live_resp.routes:
+                    if plan.id in self._maritime_routes:
+                        candidates.append(self._maritime_routes[plan.id])
+            except Exception as e:
+                logging.getLogger(__name__).warning(f"Dynamic routing failed for {src_code}->{dst_code}: {e}")
+
         return candidates
+
+    def cache_live_routes(self, live_resp, src_code: str, dst_code: str):
+        src_code = resolve_locode(src_code)
+        dst_code = resolve_locode(dst_code)
+        origin_port = self.get_port_by_id(src_code)
+        dest_port = self.get_port_by_id(dst_code)
+        for plan in live_resp.routes:
+            route = MaritimeRoute(
+                id=plan.id,
+                name=plan.metadata.get("name") or plan.metadata.get("label") or f"Live Route {plan.id}",
+                origin_port_id=src_code,
+                destination_port_id=dst_code,
+                origin_port=origin_port,
+                destination_port=dest_port,
+                waypoint_ids=[],
+                waypoints=[],
+                segment_ids=[],
+                segments=[],
+                total_distance_nm=plan.distance_nm,
+                estimated_transit_hours=plan.duration_hours,
+                estimated_transit_days=plan.duration_hours / 24.0,
+                route_cost=0.0,
+                restrictions=[],
+                feasibility_status="feasible",
+                infeasibility_reasons=[],
+                route_type="open_ocean",
+                disclaimer="Live dynamic SeaRoute"
+            )
+            self._maritime_routes[route.id] = route
 
     def get_routes(self, source: str, destination: str) -> List[Route]:
         """Backward compatibility helper returning legacy Route objects."""
